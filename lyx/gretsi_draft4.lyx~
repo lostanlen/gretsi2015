@@ -1,0 +1,1425 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass amsart
+\begin_preamble
+\renewcommand\[{\begin{equation}}
+\renewcommand\]{\end{equation}}
+
+\renewcommand{\labelenumi}{\emph{(\alph{enumi})}}
+
+\renewcommand{\thefootnote}{\*} 
+\end_preamble
+\use_default_options true
+\begin_removed_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_removed_modules
+\begin_modules
+theorems-starred
+\end_modules
+\maintain_unincluded_children false
+\language french
+\language_package default
+\inputencoding ascii
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Transformée de scattering en spirale temps-chroma-octave
+\end_layout
+
+\begin_layout Standard
+Dans le cadre de la classification automatique de sons harmoniques, on propose
+ de remplacer l'axe fréquentiel par une spirale faisant un tour à chaque
+ octave.
+ On en déduit une transformée en ondelettes à partir des déplacements élémentair
+es sur la spirale.
+ On donne une illustration numérique des capacités de discrimination de
+ la transformée en spirale à travers une formulation transitoire du modèle
+ source-filtre.
+ 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Ce travail est financé par la bourse ERC InvariantClass 32095.
+ Le code source des expériences et figures est en libre accès sur 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+www.github.com/lostanlen/scattering.m
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Du temps-fréquence au temps-chroma-octave
+\end_layout
+
+\begin_layout Standard
+Les paradoxes de hauteur synthétisés par Shepard et Risset [Risset] montrent
+ que la perception de la hauteur n'est pas réductible au continuum grave-aigu
+ des fréquences physiques.
+ En effet, en sommant des sinusoïdes de fréquence 
+\begin_inset Formula $2^{n}f_{0}$
+\end_inset
+
+ avec 
+\begin_inset Formula $n\in\mathbb{Z}$
+\end_inset
+
+, on obtient une note que l'on peut nommer sur une gamme musicale, bien
+ qu'elle ne puisse être localisée dans le grave ou l'aigu.
+ Dès lors, en faisant progressivement croître 
+\begin_inset Formula $f_{0}$
+\end_inset
+
+ jusqu'à 
+\begin_inset Formula $2f_{0}$
+\end_inset
+
+, on peut construire un 
+\emph on
+glissando
+\emph default
+ qui semble monter indéfiniment lorsqu'il est répété.
+ Par ailleurs, en filtrant les sinusoïdes dans une bande dont la fréquence
+ centrale diminue, on peut donner l'impression de passer du registre aigu
+ au registre grave tout en restant sur la même note.
+ La composition de ces deux opérations produit un son paradoxal qui monte
+ localement tout en descendant globalement.
+ Cette expérience met en lumière le fait qu'il y a en fait deux attributs
+ perceptifs associés à la fréquence.
+ Le premier, appelé hauteur tonale ou 
+\emph on
+chroma
+\emph default
+, encode la mélodie musicale et l'intonation de la voix ; le second, appelé
+ hauteur spectrale ou simplement 
+\emph on
+octave
+\emph default
+, est une composante essentielle du timbre.
+\end_layout
+
+\begin_layout Standard
+Afin de prendre en compte ces propriétés, on choisit de remplacer l'axe
+ rectilinéaire des hauteurs par un schéma en spirale, à raison d'un tour
+ par octave : un changement de chroma est alors analogue à une rotation,
+ tandis qu'un changement d'octave est une dilatation par rapport au centre
+ de la spirale.
+ Cette idée a été confirmée par de nombreuses expériences en psychoacoustique,
+ mais aussi en neurologie de l'audition [Warren].
+ On verra à la section 4 qu'elle permet d'interpréter une formulation transitoir
+e du modèle source-filtre.
+\end_layout
+
+\begin_layout Standard
+On commence par construire une transformée en ondelettes couvrant les fréquences
+ audibles : soit 
+\begin_inset Formula $\psi(u_{1})$
+\end_inset
+
+ un filtre passe-bande à valeurs complexes, de fréquence centrale réduite
+ 
+\begin_inset Formula $1$
+\end_inset
+
+ et de largeur de bande 
+\begin_inset Formula $1/Q$
+\end_inset
+
+.
+ L'analyse en ondelettes consiste à dilater la transformée de Fourier 
+\begin_inset Formula $\hat{\psi}(\omega_{1})$
+\end_inset
+
+ de 
+\begin_inset Formula $\psi(u_{1})$
+\end_inset
+
+ par des facteurs de résolution 
+\begin_inset Formula $\lambda_{1}>0$
+\end_inset
+
+ : 
+\begin_inset Formula 
+\[
+\widehat{\psi_{\lambda_{1}}}(\omega_{1})=\hat{\psi}(\frac{\omega_{1}}{\lambda_{1}}),\;\text{c'est-à-dire}\;\;\psi_{\lambda_{1}}(u_{1})=\lambda_{1}\psi(\lambda_{1}u_{1}).
+\]
+
+\end_inset
+
+La variable 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ est homogène à une fréquence (mesurée en Hertz) relativement au temps 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+.
+ Ainsi, chaque ondelette 
+\begin_inset Formula $\psi_{\lambda_{1}}(u_{1})$
+\end_inset
+
+ est un filtre passe-bande de fréquence centrale 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+, de largeur de bande 
+\begin_inset Formula $\lambda_{1}/Q$
+\end_inset
+
+ et de support temporel 
+\begin_inset Formula $Q/\lambda_{1}$
+\end_inset
+
+.
+ Son facteur de qualité, défini comme le rapport de la fréquence centrale
+ sur la largeur de bande, reste égal à 
+\begin_inset Formula $Q$
+\end_inset
+
+.
+ On choisit 
+\begin_inset Formula $Q=16$
+\end_inset
+
+ dans les figures de cet article.
+\end_layout
+
+\begin_layout Standard
+Un son de Shepard est une somme de sinusoïdes dont les fréquences s'échelonnent
+ sur des octaves consécutives.
+ On peut les noter 
+\begin_inset Formula $2^{k+\chi}$
+\end_inset
+
+ avec 
+\begin_inset Formula $k$
+\end_inset
+
+ parcourant 
+\begin_inset Formula $\mathbb{Z}$
+\end_inset
+
+ et 
+\begin_inset Formula $\chi\in\left[0;1\right[$
+\end_inset
+
+ une constante dépendant du son de Shepard choisi.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%ecrire que l'on peut toujours se restreindre au spectre audible donc pas
+ de probleme d'integrabilite
+\end_layout
+
+\end_inset
+
+On constate que les sons de Shepard ne peuvent pas être rangés selon un
+ ordre linéaire grave-aigu, mais doivent être agencés en cercle.
+\end_layout
+
+\begin_layout Standard
+Le scalogramme d'un son de Shepard vaut :
+\begin_inset Formula 
+\[
+x_{1}(u_{1},\lambda_{1})=\sum_{k=-\infty}^{+\infty}\delta(\lambda_{1}-2^{k+\chi})=\sum_{k=-\infty}^{+\infty}\delta(\log_{2}\lambda_{1}-k-\chi)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+s'écrivent 
+\begin_inset Formula $2^{k}\xi$
+\end_inset
+
+ avec 
+\begin_inset Formula $k\in\mathbb{Z}$
+\end_inset
+
+.
+ Sur un axe log-fréquentiel, celles-ci s'écrivent 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%Commenter le scalogramme et motiver la spirale
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename /Users/vlostan/GRETSI/figures/fig1/gretsi_fig1.png
+	lyxscale 30
+	width 8.8cm
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+En haut, un scalogramme du mot anglais 
+\emph on
+lion
+\emph default
+.
+ En bas, le spiralogramme correspondant : le temps est la coordonnée longitudina
+le, le chroma la coordonnée angulaire, l'octave la coordonnée radiale.
+ Les fréquences aigues sont près de l'axe longitudinal.
+ La clarté et la transparence sont inversement proportionelles à l'amplitude
+ des coefficients.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:spiralogram"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Transformées en ondelettes sur la spirale
+\end_layout
+
+\begin_layout Standard
+C'est en raison de ses bonnes propriétés de résolution temps-fréquence,
+ de stabilité aux déformations, et de sparsité que le scalogramme 
+\begin_inset Formula $x_{1}(u_{1},\lambda_{1})$
+\end_inset
+
+ est un outil de choix pour la classification de sons.
+ Or, afin de pouvoir généraliser une classe de signaux à partir d'un nombre
+ limité d'exemples, il est nécessaire de construire une représentation invariant
+e par translation à l'échelle temporelle 
+\begin_inset Formula $T$
+\end_inset
+
+ des unités à classifier.
+ Le scalogramme est une représentation 
+\emph on
+covariante 
+\emph default
+à la translation, bien qu'on puisse le rendre invariant en appliquant une
+ moyenne glissante sur l'axe temporel.
+ L'échelle 
+\begin_inset Formula $T$
+\end_inset
+
+ vaut typiquement 
+\begin_inset Formula $200\,\mathrm{ms}$
+\end_inset
+
+ pour des notes de musique ou des syllabes ; pourtant, en raison de la nature
+ transitoire des signaux de musique et de parole, les capacités de discriminatio
+n du scalogramme chutent dès que 
+\begin_inset Formula $T$
+\end_inset
+
+ dépasse 
+\begin_inset Formula $20\,\mathrm{ms}$
+\end_inset
+
+.
+ Afin d'étendre cette limite, il s'agit de démoduler les oscillations du
+ scalogramme 
+\begin_inset Formula $x_{1}(u_{1},\lambda_{1})$
+\end_inset
+
+ dont la période est inférieure à 
+\begin_inset Formula $T$
+\end_inset
+
+ ; encore une fois, on requiert une bonne stabilité à la variabilité naturelle
+ des sons à l'intérieur d'une classe.
+\end_layout
+
+\begin_layout Standard
+Compte tenu de ces observations, [Andén et Mallat, 2011] ont introduit la
+ transformée de scattering pour les sons, comme le 
+\begin_inset Quotes fld
+\end_inset
+
+scalogramme du scalogramme
+\begin_inset Quotes frd
+\end_inset
+
+.
+ Pour toute fréquence 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+, il s'agit de transformer 
+\begin_inset Formula $x_{1}(u_{1},\lambda_{1})$
+\end_inset
+
+ en ondelettes comme un signal unidimensionnel du temps 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+, et d'appliquer le module :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+x_{2}(u_{1},\lambda_{1},\lambda_{2})=\vert x_{1}(u_{1},\lambda_{1})\ast\psi_{\lambda_{2}}(u_{1})\vert,\label{eq:plain-scattering}
+\end{equation}
+
+\end_inset
+
+où 
+\begin_inset Formula $\psi_{\lambda_{2}}(u_{1})$
+\end_inset
+
+ est une ondelette de fréquence centrale 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ (en Hertz).
+ La transformée de scattering capture explicitement les modulations d'amplitude
+ du signal, ce qui a mené à des progrès considérables en classification
+ de signaux.
+ Cependant, elle n'est pas stable aux mouvement de hauteur au-delà de 
+\begin_inset Formula $Q^{-1}$
+\end_inset
+
+, soit typiquement un seizième d'octave.
+ Pour intégrer l'évolution de hauteur dans la transformée, on peut redéfinir
+ 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ comme 
+\begin_inset Formula 
+\[
+x_{2}(u_{2},\lambda_{1},\lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}\vert(u_{2}),
+\]
+
+\end_inset
+
+où 
+\begin_inset Formula $u_{2}$
+\end_inset
+
+ est une variable générique construite à partir du temps 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+ et de la fréquence 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+.
+ Il faut remarquer que cette équation est une généralisation du modèle original
+ du scattering 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:plain-scattering"
+
+\end_inset
+
+ : en écrivant 
+\begin_inset Formula $u_{2}=u_{1}$
+\end_inset
+
+ et en factorisant l'action de 
+\begin_inset Formula $\psi_{\lambda_{2}}(u_{2})$
+\end_inset
+
+ sur toutes les fréquences 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+, on parvient à 
+\begin_inset Formula $\vert x_{1}\ast\psi_{\lambda_{2}}\vert(u_{2})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Le modèle cortical de [Patil et al.] effectue des transformées sur les déplacemen
+ts joints en temps et en log-fréquence : 
+\begin_inset Formula $u_{2}=(u_{1},\log_{2}\lambda_{1})$
+\end_inset
+
+.
+ La variable de Fourier correspondante s'écrit 
+\begin_inset Formula $\lambda_{2}=(a,b)$
+\end_inset
+
+ où 
+\begin_inset Formula $a$
+\end_inset
+
+ est la fréquence temporelle (en Hertz) 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+ et 
+\begin_inset Formula $b$
+\end_inset
+
+ est la fréquence log-fréquentielle (en cycles par octave).
+ 
+\begin_inset Formula 
+\[
+\psi_{\lambda_{2}}(u_{1},\log_{2}\lambda_{1})=\psi_{a}(u_{1})\ast\psi_{b}(\log_{2}\lambda_{1})
+\]
+
+\end_inset
+
+Nous proposons d'étendre ce modèle afin d'inclure la variabilité des déplacement
+s sur les octaves.
+ On pose donc 
+\begin_inset Formula $u_{2}=(u_{1},\log_{2}\lambda_{1},\lfloor\log_{2}\lambda_{1}\rfloor)$
+\end_inset
+
+ la variable de déplacement sur la spirale.
+ La variable de Fourier correspondante s'écrit 
+\begin_inset Formula $\lambda_{2}=(a,b,c)$
+\end_inset
+
+ où 
+\begin_inset Formula $a$
+\end_inset
+
+ est la fréquence temporelle (en Hertz), 
+\begin_inset Formula $b$
+\end_inset
+
+ est la fréquence log-fréquentielle (en cycles par octave), 
+\begin_inset Formula $c$
+\end_inset
+
+ est la 
+\begin_inset Quotes fld
+\end_inset
+
+fréquence selon les octaves
+\begin_inset Quotes frd
+\end_inset
+
+ (en cycles par octave).
+ L'expérience de Shepard nous apprend que, bien les fréquences 
+\begin_inset Formula $b$
+\end_inset
+
+ et 
+\begin_inset Formula $c$
+\end_inset
+
+ soient exprimées dans la même unité, elles correspondent à des phénomènes
+ différents : avec typiquement 
+\begin_inset Formula $\vert b^{-1}\vert<1$
+\end_inset
+
+ octave et 
+\begin_inset Formula $\vert c^{-1}\vert>1$
+\end_inset
+
+ octave, 
+\begin_inset Formula $b$
+\end_inset
+
+ quantifie un déplacement angulaire sur la spirale tandis que 
+\begin_inset Formula $c$
+\end_inset
+
+ quantifie un déplacement radial.
+ On propose d'appeler 
+\begin_inset Quotes fld
+\end_inset
+
+ondelettes de Shepard
+\begin_inset Quotes frd
+\end_inset
+
+ les produits séparables d'ondelettes sur la spirale 
+\begin_inset Formula $u_{2}=(u_{1},\log_{2}\lambda_{1},\lfloor\log_{2}\lambda_{1}\rfloor)$
+\end_inset
+
+ : 
+\begin_inset Formula 
+\[
+\psi_{\lambda_{2}}(u_{1},\log_{2}\lambda_{1},\lfloor\log_{2}\lambda_{1}\rfloor)=\psi_{a}(u_{1})\ast\psi_{b}(\log_{2}\lambda_{1})\ast\psi_{c}(\lfloor\log_{2}\lambda_{1}\rfloor).
+\]
+
+\end_inset
+
+Sur la figure 2, on a représenté deux ondelettes de Shepard 
+\begin_inset Formula $\psi_{\lambda_{2}}$
+\end_inset
+
+ pour différentes valeurs de fréquences 
+\begin_inset Formula $a$
+\end_inset
+
+, 
+\begin_inset Formula $b$
+\end_inset
+
+ et 
+\begin_inset Formula $c$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename /Users/vlostan/GRETSI/figures/fig2/v4/gretsi_fig2.png
+	lyxscale 30
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Deux ondelettes en spirale 
+\begin_inset Formula $\psi_{\lambda_{2}}(u_{2})$
+\end_inset
+
+ étalées sur le plan temps-fréquence, présentant des 
+\begin_inset Formula $\lambda_{2}=(a,b,c)$
+\end_inset
+
+ différents et une localisation temps-fréquence différente.
+ À gauche : 
+\begin_inset Formula $a^{-1}=120\,\mathrm{ms}$
+\end_inset
+
+, 
+\begin_inset Formula $b^{-1}=-0.25\,\mathrm{octave}$
+\end_inset
+
+, 
+\begin_inset Formula $c^{-1}=+2\,\mathrm{octaves}$
+\end_inset
+
+.
+ À droite : 
+\begin_inset Formula $a^{-1}=60\,\mathrm{ms}$
+\end_inset
+
+, 
+\begin_inset Formula $b^{-1}=+0.5\,\mathrm{octave}$
+\end_inset
+
+, 
+\begin_inset Formula $c^{-1}=-4\,\mathrm{octaves}$
+\end_inset
+
+.
+ On a affiché la partie réelle des coefficients.
+ Le noir correspond à des coefficients positifs et le blanc à des coefficients
+ négatifs.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename /Users/vlostan/GRETSI/figures/fig3/gretsi_fig3.png
+	lyxscale 30
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Coefficients de scattering de 
+\begin_inset Formula $x_{2}(u_{1},\lambda_{1},\lambda_{2})$
+\end_inset
+
+ en fonction du temps 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+ et de la log-fréquence 
+\begin_inset Formula $\log_{2}\lambda_{1}$
+\end_inset
+
+, pour 
+\begin_inset Formula $\lambda_{2}=(a,b,c)$
+\end_inset
+
+ fixé avec 
+\begin_inset Formula $a^{-1}=120\,\mathrm{ms}$
+\end_inset
+
+, 
+\begin_inset Formula $b^{-1}=\pm1\,\mathrm{octave}$
+\end_inset
+
+, 
+\begin_inset Formula $c^{-1}=\pm4\,\mathrm{octaves}$
+\end_inset
+
+.
+ On constate que la syllabe /ˈlai/ active en particulier les coefficients
+ tels que 
+\begin_inset Formula $b>0$
+\end_inset
+
+, 
+\begin_inset Formula $c>0$
+\end_inset
+
+ (hauteur montante, timbre montant) tandis que /ɪən/ active les coefficients
+ tels que 
+\begin_inset Formula $b<0$
+\end_inset
+
+, 
+\begin_inset Formula $c<0$
+\end_inset
+
+ (hauteur descendante, timbre descendant).
+ La clarté est inversement proportionelle à l'amplitude des coefficients.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Déformations du modèle source-filtre
+\end_layout
+
+\begin_layout Standard
+Soient
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+e(t)=\sum_{k=1}^{K}\exp(\mathrm{i}k\xi t)
+\]
+
+\end_inset
+
+un signal harmonique 
+\begin_inset Quotes fld
+\end_inset
+
+source
+\begin_inset Quotes frd
+\end_inset
+
+ et 
+\begin_inset Formula $t\mapsto\mu(t)$
+\end_inset
+
+ un difféomorphisme du temps ; on définit 
+\begin_inset Formula $e_{\mu}(t)=(e\circ\mu)(t)$
+\end_inset
+
+ la source déformée.
+ De même, on part d'un 
+\begin_inset Quotes fld
+\end_inset
+
+filtre
+\begin_inset Quotes frd
+\end_inset
+
+ 
+\begin_inset Formula $h(t)$
+\end_inset
+
+ et d'un difféomorphisme 
+\begin_inset Formula $t\mapsto\nu(t)$
+\end_inset
+
+ pour définir 
+\begin_inset Formula $h_{\nu}(t)=(h\circ\nu)(t)$
+\end_inset
+
+.
+ Le modèle source-filtre déformé est le signal 
+\begin_inset Formula $x(t)=[e_{\mu}\ast h_{\nu}](t)$
+\end_inset
+
+.
+ Dans cette section, on note 
+\begin_inset Formula $\eta$
+\end_inset
+
+ la fréquence centrale en Hertz de l'ondelette 
+\begin_inset Formula $\psi(t)$
+\end_inset
+
+, de sorte que la résolution 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ est maintenant une grandeur sans dimension.
+\end_layout
+
+\begin_layout Lemma*
+Pour tout 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ tel que 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\Vert\ddot{\nu}/\dot{\nu}\Vert_{\infty}\ll\lambda_{1}\eta/Q$
+\end_inset
+
+ (filtre lentement variable) et
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\nu}\Vert_{\infty}\ll Q\eta^{-1}/\lambda_{1}$
+\end_inset
+
+ (profil spectral régulier),
+\end_layout
+
+\end_deeper
+\begin_layout Lemma*
+la transformée en ondelettes 
+\begin_inset Formula $[h_{\nu}\ast\psi_{\lambda_{1}}]$
+\end_inset
+
+ se factorise en
+\end_layout
+
+\begin_layout Lemma*
+\begin_inset Formula 
+\[
+[h_{\nu}\ast\psi_{\lambda_{1}}](t)\approx H(\log_{2}\lambda_{1}-\log_{2}\dot{\nu}(t))\psi_{\lambda_{1}}\left(\dfrac{\nu(t)}{\dot{\nu}(t)}\right)
+\]
+
+\end_inset
+
+où 
+\begin_inset Formula $H(\log_{2}\lambda_{1})=\lambda_{1}\hat{h}(\lambda_{1}\eta)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Grâce à la première hypothèse, on développe 
+\begin_inset Formula $\nu(t-u)\approx\nu(t)-\dot{\nu}(t)\times u$
+\end_inset
+
+ sur le support de 
+\begin_inset Formula $\psi_{\lambda_{1}}(t)$
+\end_inset
+
+.
+ Le changement de variable 
+\begin_inset Formula $u^{\prime}=\dot{\nu}(t)\times u$
+\end_inset
+
+ conduit à
+\begin_inset Formula 
+\[
+[h_{\nu}\ast\psi_{\lambda_{1}}](t)=\int_{\mathbb{R}}h(\nu(t)-u^{\prime})\psi_{\lambda_{1}}\left(\dfrac{u^{\prime}}{\dot{\nu}(t)}\right)\,\dfrac{\mathrm{d}u^{\prime}}{\dot{\nu}(t)}.
+\]
+
+\end_inset
+
+L'ondelette 
+\begin_inset Formula $\psi_{\lambda_{1}}$
+\end_inset
+
+ vérifiant 
+\begin_inset Formula $\psi_{\lambda_{1}}(\dot{\nu}(t)^{-1}u^{\prime})=\dot{\nu}(t)\psi_{\dot{\nu}(t)^{-1}\lambda_{1}}(u^{\prime})$
+\end_inset
+
+, on peut convertir le facteur de dilatation 
+\begin_inset Formula $\dot{\nu}(t)$
+\end_inset
+
+ en une transposition fréquentielle.
+ D'où 
+\begin_inset Formula $[h_{\nu}\ast\psi_{\lambda_{1}}](t)=[h\ast\psi_{\dot{\nu}(t)^{-1}\lambda_{1}}](t)$
+\end_inset
+
+, ce qui s'écrit comme un produit dans le domaine de Fourier :
+\begin_inset Formula 
+\[
+[h_{\nu}\ast\psi_{\lambda_{1}}](t)=\dfrac{1}{2\pi}\int_{\mathbb{R}}\hat{h}(\omega)\hat{\psi}_{\dot{\nu}(t)^{-1}\lambda_{1}}(\omega)\exp(\mathrm{i}\omega\nu(t))\,\mathrm{d}u^{\prime}.
+\]
+
+\end_inset
+
+Grâce à la seconde hypothèse, on approxime localement 
+\begin_inset Formula $\hat{h}(\omega)$
+\end_inset
+
+ par la constante 
+\begin_inset Formula $\hat{h}(\dot{\nu}(t)^{-1}\lambda_{1})$
+\end_inset
+
+ sur le support fréquentiel de 
+\begin_inset Formula $\hat{\psi}_{\dot{\nu}(t)^{-1}\lambda_{1}}$
+\end_inset
+
+.
+ Dès lors, l'intégrale ci-dessus peut être vue comme la transformée de Fourier
+ inverse de 
+\begin_inset Formula $\hat{\psi}_{\dot{\nu}(t)^{-1}\lambda_{1}}(\omega)$
+\end_inset
+
+ évaluée en 
+\begin_inset Formula $\nu(t)$
+\end_inset
+
+.
+ On conclut en revenant à l'ondelette 
+\begin_inset Formula $\psi_{\lambda_{1}}$
+\end_inset
+
+ avec l'équation 
+\begin_inset Formula $\dot{\nu}(t)^{-1}\psi_{\dot{\nu}(t)^{-1}\lambda_{1}}(\nu(t))=\psi_{\lambda_{1}}(\nu(t)/\dot{\nu}(t))$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proposition
+Soit 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ de la forme 
+\begin_inset Formula $k\xi\eta^{-1}$
+\end_inset
+
+, avec 
+\begin_inset Formula $k\leq K$
+\end_inset
+
+.
+ Si les conditions suivantes sont vérifiées :
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\Vert\ddot{\nu}/\dot{\nu}\Vert_{\infty}\ll\lambda_{1}\eta/Q$
+\end_inset
+
+ (filtre lentement variable),
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\nu}\Vert_{\infty}\ll Q\eta^{-1}/\lambda_{1}$
+\end_inset
+
+ (réponse fréquentielle régulière),
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\Vert\ddot{\mu}/\dot{\mu}\Vert_{\infty}\ll\lambda_{1}\eta/Q$
+\end_inset
+
+ (source lentement variable) et
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $k<Q/2$
+\end_inset
+
+ (partiel de rang faible),
+\end_layout
+
+\end_deeper
+\begin_layout Proposition
+alors le module de la transformée en ondelettes du modèle source-filtre
+ déformé
+\end_layout
+
+\begin_layout Proposition
+\begin_inset Formula 
+\[
+\vert e_{\alpha}\ast h_{\beta}\ast\psi_{\lambda_{1}}\vert(t)\approx E(\log_{2}\lambda_{1}-\log_{2}\dot{\mu}(t))H(\log_{2}\lambda_{1}-\log_{2}\dot{\nu}(t))
+\]
+
+\end_inset
+
+est localement séparable en une réponse de source 
+\begin_inset Formula $E(\log_{2}\lambda_{1})=\vert\widehat{\psi_{\lambda_{1}}}(k\xi)\vert$
+\end_inset
+
+ et une réponse de filtre 
+\begin_inset Formula $H(\log_{2}\lambda_{1})=\lambda_{1}\hat{h}(\lambda_{1}\eta)$
+\end_inset
+
+, chacune en mouvement rigide sur l'axe log-fréquentiel 
+\begin_inset Formula $\log_{2}\lambda_{1}$
+\end_inset
+
+; le mouvement de 
+\begin_inset Formula $E$
+\end_inset
+
+ (resp.
+ 
+\begin_inset Formula $H$
+\end_inset
+
+) étant régi par le signal 
+\begin_inset Formula $\log_{2}\dot{\mu}(t)$
+\end_inset
+
+ (resp.
+ 
+\begin_inset Formula $\log_{2}\dot{\nu}(t))$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+On part des hypothèses (a) et (b) pour affirmer le lemme précédent :
+\begin_inset Formula 
+\begin{flalign*}
+\left[e_{\mu}\ast h_{\nu}\ast\psi_{\lambda_{1}}\right](t)\\
+ & =H\left(\log_{2}\lambda_{1}-\log_{2}\dot{\nu}(t)\right)\times\int_{\mathbb{R}}e_{\mu}(t-u)\psi_{\lambda_{1}}\left(\dfrac{\nu(u)}{\dot{\nu}(u)}\right)\,\mathrm{d}u
+\end{flalign*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Comme dans la preuve du lemme, on pose 
+\begin_inset Formula $u^{\prime}=\dot{\mu}(t)\times(\frac{\nu(t)}{\dot{\nu}(t)}+u-t)$
+\end_inset
+
+, on développe et simplifie 
+\begin_inset Formula $\frac{\nu(u)}{\dot{\nu}(u)}\approx\frac{u^{\prime}}{\dot{\mu}(t)}$
+\end_inset
+
+, et l'on convertit la dilatation temporelle en transposition fréquentielle
+ avec l'équation 
+\begin_inset Formula $\dot{\mu}(t)^{-1}\psi_{\lambda_{1}}(\dot{\mu}(t)^{-1}u^{\prime})=\psi_{\dot{\mu}(t)^{-1}\lambda_{1}}(u^{\prime})$
+\end_inset
+
+ :
+\begin_inset Formula 
+\[
+\begin{array}{c}
+\int_{\mathbb{R}}e_{\mu}(t-u)\psi_{\lambda_{1}}\left(\frac{\nu(u)}{\dot{\nu}(u)}\right)\,\mathrm{d}u\\
+=\int_{\mathbb{R}}e_{\mu}\left(\frac{\nu(t)}{\dot{\nu}(t)}-\frac{u^{\prime}}{\dot{\mu}(t)}\right)\psi_{\dot{\mu}(t)^{-1}\lambda_{1}}(u^{\prime})\,\mathrm{d}u^{\prime}
+\end{array}
+\]
+
+\end_inset
+
+Avec l'hypothèse (3), on linéarise le difféomorphisme 
+\begin_inset Formula $\mu$
+\end_inset
+
+ autour de 
+\begin_inset Formula $\frac{\nu(t)}{\dot{\nu}(t)}$
+\end_inset
+
+, ce qui permet de voir l'intégrale ci-dessus comme la convolution 
+\begin_inset Formula $[e\ast\psi_{\dot{\mu}(t)^{-1}\lambda_{1}}]$
+\end_inset
+
+ évaluée en 
+\begin_inset Formula $\mu(\frac{\nu(t)}{\dot{\nu}(t)})$
+\end_inset
+
+.
+ Puisque le banc de filtres a un facteur de qualité constant 
+\begin_inset Formula $Q$
+\end_inset
+
+, la largeur de bande à la fréquence 
+\begin_inset Formula $k\xi\dot{\mu}(t)$
+\end_inset
+
+ est 
+\begin_inset Formula $k\xi\dot{\mu}(t)Q^{-1}$
+\end_inset
+
+.
+ L'hypothèse (4) peut se réécrire 
+\begin_inset Formula $(k+1)\xi\dot{\mu}(t)>k\xi\dot{\mu}(t)+\frac{k\xi\dot{\mu}(t)}{2Q}$
+\end_inset
+
+ ; autrement dit, le 
+\begin_inset Formula $(k+1)^{\text{ème}}$
+\end_inset
+
+ partiel est hors de la bande passante de 
+\begin_inset Formula $\psi_{\dot{\mu}(t)\lambda_{1}}$
+\end_inset
+
+.
+ Plus généralement, les partiels 
+\begin_inset Formula $k^{\prime}\neq k$
+\end_inset
+
+ ont une contribution négligeable à la transformée en ondelettes de 
+\begin_inset Formula $e(t)$
+\end_inset
+
+.
+ En l'absence d'interférences, le module 
+\begin_inset Formula $\vert e\ast\psi_{\dot{\mu}(t)^{-1}\lambda_{1}}\vert(t)$
+\end_inset
+
+ se résume au seul terme 
+\begin_inset Formula $E(\log_{2}\lambda_{1}-\log_{2}\dot{\mu}(t))$
+\end_inset
+
+ où l'on a défini 
+\begin_inset Formula $E(\log_{2}\lambda_{1})=\vert\widehat{\psi_{\lambda_{1}}}(k\xi)\vert$
+\end_inset
+
+ sur un axe log-fréquentiel.
+\end_layout
+
+\begin_layout Standard
+On peut calculer explicitement la réponse de source dans le cas d'un spectre
+ harmonique : 
+\begin_inset Formula 
+\[
+E(\log_{2}\lambda_{1})=\sum_{k=1}^{K}\delta(\log_{2}(\lambda_{1})-\log_{2}(k\xi\eta^{-1})).
+\]
+
+\end_inset
+
+Soit 
+\begin_inset Formula $n\in\mathbb{N}$
+\end_inset
+
+; pourvu que 
+\begin_inset Formula $\lambda_{1}=k\xi\eta^{-1}$
+\end_inset
+
+ soit tel que 
+\begin_inset Formula $k<2^{-n}K$
+\end_inset
+
+, on retrouve un partiel 
+\begin_inset Formula $n$
+\end_inset
+
+ octaves exactement au-dessus de la fréquence 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ : d'où 
+\begin_inset Formula $E(\log_{2}\lambda_{1}+n)=E(\log_{2}\lambda_{1})$
+\end_inset
+
+.
+ Par ailleurs, les hypothèses (b) et (c) permettent d'écrire 
+\begin_inset Formula $H(\log_{2}\lambda_{1})\approx H(\log_{2}\lambda_{1}+\Delta)$
+\end_inset
+
+ pour toute déviation de chroma 
+\begin_inset Formula $\Delta$
+\end_inset
+
+.
+ Ce résultat suggère qu'il est possible de séparer les fonctions 
+\begin_inset Formula $\log_{2}\dot{\alpha}(t)$
+\end_inset
+
+ et 
+\begin_inset Formula $\log_{2}\dot{\beta}(t)$
+\end_inset
+
+ en décomposant leurs trajectoires sur les couples de variables temps-chroma
+ et temps-octave.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "AM11"
+
+\end_inset
+
+J.
+ Andén, S.
+ Mallat.
+ Deep Scattering Spectrum.
+ 
+\emph on
+IEEE Transactions on Signal Processing
+\emph default
+, vol.
+ 62, n° 16, p.
+ 4114–4128, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Fla01"
+
+\end_inset
+
+P.
+ Flandrin.
+ Time-frequency and chirps.
+ In
+\emph on
+ Proc.
+ SPIE Meeting Wavelet Applications VIII
+\emph default
+, vol.
+ 4391, p.
+ 161–175, Orlando (FL), 2001.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Mal00"
+
+\end_inset
+
+S.
+ Mallat.
+ 
+\emph on
+Une exploration des signaux en ondelettes
+\emph default
+.
+ Les Éditions de l'École polytechnique, 2000.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Ris78"
+
+\end_inset
+
+ J.-C.
+ Risset.
+ Paradoxes de hauteur.
+ Rapport Ircam 11/78, 1978.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "PPS+12"
+
+\end_inset
+
+K.
+ Patil, D.
+ Pressnitzer, S.
+ Shamma, M.
+ Elhilali.
+ Music in our ears: the biological bases of musical timbre perception.
+ 
+\emph on
+PLoS computational biology
+\emph default
+, vol.
+ 8, n° 11, 2012.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "WUP+99"
+
+\end_inset
+
+J.
+ D.
+ Warren, S.
+ Uppenkamp, R.
+ D.
+ Patterson, T.
+ Griffiths.
+ Separating pitch chroma and pitch height in the human brain.
+ 
+\emph on
+Proceedings of the National Academy of Sciences
+\emph default
+, vol.
+ 100, n° 17, p.
+ 10038–10042, 2003.
+\end_layout
+
+\end_body
+\end_document

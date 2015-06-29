@@ -1,0 +1,361 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language french
+\language_package default
+\inputencoding ascii
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Transformée de scattering temps-chroma-octave
+\end_layout
+
+\begin_layout Standard
+Un défi majeur de la classification automatique de sons repose sur une modélisat
+ion efficace de leur structure transitoire sur des échelles temporelles
+ aussi longues que possible.
+ De par sa bonne localisation temps-fréquence et sa faculté de régularisation
+ des signaux modulés, un opérateur non-linéaire tel que le module de la
+ transformée en ondelettes est un premier pas naturel dans ce sens.
+ Cependant, celui-ci est incapable de capturer, par simple intégration temporell
+e, des éléments acoustiques plus riches tels que les variations de fréquence
+ fondamentale (
+\emph on
+chirps
+\emph default
+) ou de profil formantique (coarticulations, attaques intrumentales).
+ Or, si le cas des 
+\emph on
+chirps
+\emph default
+ et de la variabilité harmonique ont été abordés indépendamment ([Gribonval],
+ [Peeters et al.]), il n'existe pas d'approche systématique qui rende compte
+ de la dynamique jointe de ces deux facteurs.
+\end_layout
+
+\begin_layout Standard
+Dans cette communication, nous introduisons une nouvelle représentation
+ des sons, construite à partir du module de la transformée en ondelettes,
+ visant explicitement à caractériser les changements de hauteur et de timbre.
+ Dans une première partie, nous montrons comment enrouler l'axe fréquentiel
+ en une spirale des hauteurs de sorte qu'un tour complet correspond à une
+ transposition d'une octave, afin de séparer hauteur relative et registre
+ global.
+ Par la suite, nous définissons un opérateur unitaire et multi-échelles
+ sur la spirale obtenue, construit comme une cascade de trois transformées
+ en ondelettes à valeurs complexes.
+\end_layout
+
+\begin_layout Section
+Du temps-fréquence au temps-chroma-octave
+\end_layout
+
+\begin_layout Standard
+Soit 
+\begin_inset Formula $\psi(t)$
+\end_inset
+
+ un filtre passe-bande de fréquence centrale 
+\begin_inset Formula $\eta$
+\end_inset
+
+ et dont le facteur de qualité 
+\begin_inset Formula $Q$
+\end_inset
+
+ est de l'ordre de 10.
+ On suppose que 
+\begin_inset Formula $\psi$
+\end_inset
+
+ est une fonction analytique, c'est-à-dire que 
+\begin_inset Formula $\hat{\psi}(\omega)=0$
+\end_inset
+
+ pour 
+\begin_inset Formula $\omega\leq0$
+\end_inset
+
+.
+ L'analyse en ondelettes consiste à dilater 
+\begin_inset Formula $\psi(t)$
+\end_inset
+
+ par différents facteurs d'échelle 
+\begin_inset Formula $2^{\gamma}$
+\end_inset
+
+ ; les filtres obtenus s'écrivent 
+\begin_inset Formula 
+\[
+\psi_{\gamma}(t)=2^{\gamma}\psi(2^{\gamma}t)\quad\mathrm{soit}\quad\widehat{\psi_{\gamma}}(\omega)=\hat{\psi}(2^{-\gamma}\omega).
+\]
+
+\end_inset
+
+Ainsi, chaque 
+\begin_inset Formula $\psi_{\gamma}(t)$
+\end_inset
+
+ est un filtre passe-bande de fréquence centrale 
+\begin_inset Formula $2^{-\gamma}\eta$
+\end_inset
+
+ et de facteur de qualité 
+\begin_inset Formula $Q$
+\end_inset
+
+.
+ Par ailleurs, en notant 
+\begin_inset Formula $\tau$
+\end_inset
+
+ le support typique de 
+\begin_inset Formula $\psi(t)$
+\end_inset
+
+, chaque 
+\begin_inset Formula $\psi_{\gamma}(t)$
+\end_inset
+
+ a un support 
+\begin_inset Formula $2^{\gamma}\tau$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Soit 
+\begin_inset Formula $J\in\mathbb{N}^{*}$
+\end_inset
+
+ ; en discrétisant les valeurs de 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ dans l'intervalle 
+\begin_inset Formula $[0;J[$
+\end_inset
+
+ par pas de 
+\begin_inset Formula $N^{-1}$
+\end_inset
+
+ avec 
+\begin_inset Formula $N\geq Q$
+\end_inset
+
+ entier, on construit un banc de filtres couvrant les fréquences de 
+\begin_inset Formula $2^{-J}\eta$
+\end_inset
+
+ à 
+\begin_inset Formula $\eta$
+\end_inset
+
+, soit 
+\begin_inset Formula $J$
+\end_inset
+
+ octaves exactement.
+ On cherche à construire une transformée conservant l'énergie de tout signal
+ réel : par conséquent, il faut ajouter au banc 
+\begin_inset Formula $\{\psi_{\gamma}\}_{\gamma<J}$
+\end_inset
+
+ un filtre passe-bas 
+\begin_inset Formula $\phi(t)$
+\end_inset
+
+ à valeurs réelles, défini dans le domaine de Fourier par
+\begin_inset Formula 
+\[
+\forall\omega\geq0,\;\hat{\phi}(\pm\omega)=\sqrt{1-\dfrac{1}{2}\sum_{\gamma<J}\left|\widehat{\psi_{\gamma}}(\omega)\right|^{2}}.
+\]
+
+\end_inset
+
+En effet, pourvu que 
+\begin_inset Formula $\psi(t)$
+\end_inset
+
+ soit judicieusement normalisé, on peut vérifier que les filtres construits
+ couvrent l'intervalle de fréquences 
+\begin_inset Formula $[0;\,\eta]$
+\end_inset
+
+ de façon quasiment égale : 
+\begin_inset Formula 
+\begin{equation}
+\forall\omega\in[0;\,\eta],\;1-\varepsilon\leq\vert\hat{\phi}(\omega)\vert^{2}+\dfrac{1}{2}\sum_{\gamma<J}\vert\widehat{\psi_{\gamma}}(\omega)\vert^{2}\leq1.\label{eq:littlewood-paley}
+\end{equation}
+
+\end_inset
+
+Soit 
+\begin_inset Formula $W$
+\end_inset
+
+ l'opérateur associant à tout signal réel 
+\begin_inset Formula $x(t)$
+\end_inset
+
+ le vecteur de signaux
+\begin_inset Formula 
+\[
+Wx(t)=\left(\begin{array}{c}
+x\ast\psi_{\gamma}(t)\\
+x\ast\phi(t)
+\end{array}\right)_{\gamma<J}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En appliquant la formule de Plancherel [Mallat], on peut vérifier que la
+ condition 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:littlewood-paley"
+
+\end_inset
+
+ est équivalente à 
+\begin_inset Formula $(1-\varepsilon)\Vert x\Vert_{2}^{2}\leq\Vert Wx\Vert_{2}^{2}\leq\Vert x\Vert_{2}^{2}$
+\end_inset
+
+ pour 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ fixé.
+ Autrement dit, l'opérateur 
+\begin_inset Formula $W$
+\end_inset
+
+ préserve approximativement l'énergie du signal : il est dit quasi-unitaire.
+ En outre, l'inégalité triangulaire permet de vérifier que 
+\begin_inset Formula $W$
+\end_inset
+
+ est contractant : on a 
+\begin_inset Formula $\Vert Wx-Wy\Vert_{2}\leq\Vert x-y\Vert_{2}$
+\end_inset
+
+ pour tous signaux 
+\begin_inset Formula $x(t)$
+\end_inset
+
+ et 
+\begin_inset Formula $y(t)$
+\end_inset
+
+, ce qui contribue à lutter contre la 
+\begin_inset Quotes fld
+\end_inset
+
+malédiction de la dimensionnalité
+\begin_inset Quotes frd
+\end_inset
+
+ en classification.
+\end_layout
+
+\begin_layout Standard
+Dans les applications numériques qui suivent, 
+\begin_inset Formula $\psi_{\gamma}$
+\end_inset
+
+ est une ondelette de Morlet de fréquence centrale 
+\begin_inset Formula $\eta=21\,\mathrm{kHz}$
+\end_inset
+
+ et de facteur de qualité 
+\begin_inset Formula $Q=8$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Dans les applications numériques qui suivent, 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

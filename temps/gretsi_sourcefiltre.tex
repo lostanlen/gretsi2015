@@ -1,0 +1,155 @@
+%% LyX 2.1.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[oneside,french]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amsthm}
+\usepackage{amstext}
+\usepackage{amssymb}
+\usepackage{esint}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+  \theoremstyle{plain}
+  \newtheorem*{lem*}{\protect\lemmaname}
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{plain}
+  \newtheorem{prop}[thm]{\protect\propositionname}
+
+\makeatother
+
+\usepackage{babel}
+\makeatletter
+\addto\extrasfrench{%
+   \providecommand{\og}{\leavevmode\flqq~}%
+   \providecommand{\fg}{\ifdim\lastskip>\z@\unskip\fi~\frqq}%
+}
+
+\makeatother
+  \providecommand{\lemmaname}{Lemme}
+  \providecommand{\propositionname}{Proposition}
+\providecommand{\theoremname}{Théorème}
+
+\begin{document}
+Soient 
+\[
+e(u_{1})=\sum_{k=1}^{K}\exp(\mathrm{i}k\xi u_{1})
+\]
+ un signal harmonique \og source \fg{} et $u_{1}\mapsto\alpha(u_{1})$
+un difféomorphisme ; on définit $e_{\alpha}(u_{1})=(e\circ\alpha)(u_{1})$
+la source déformée. De même, on part d'un \og filtre \fg{} $h(u_{1})$
+et d'un difféomorphisme $t\mapsto\beta(u_{1})$ pour définir $h_{\beta}(u_{1})=(h\circ\beta)(u_{1})$.
+Le modèle source-filtre déformé est le signal $x(u_{1})=[e_{\alpha}\ast h_{\beta}](u_{1})$.
+\begin{lem*}
+Pour tout $\lambda_{1}$ tel que 
+\begin{enumerate}
+\item $\Vert\ddot{\beta}/\dot{\beta}\Vert_{\infty}\ll\lambda_{1}/Q$ (filtre
+lentement variable) et
+\item $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\beta}\Vert_{\infty}\ll Q/\lambda_{1}$
+(profil spectral régulier),
+\end{enumerate}
+on a
+
+\[
+[h_{\beta}\ast\psi_{\gamma}](u_{1})\approx\hat{h}(\dot{\beta}(u_{1})\lambda_{1})\psi_{\lambda_{1}}\left(\dfrac{\beta(u_{1})}{\dot{\beta}(u_{1})}\right)
+\]
+\end{lem*}
+\begin{proof}
+Grâce à la première hypothèse, on développe $\beta(u_{1}-u)\approx\beta(u_{1})-\dot{\beta}(u_{1})\times u$
+sur le support de $\psi_{\lambda_{1}}(u_{1})$. Le changement de variable
+$u^{\prime}=\dot{\beta}(t)\times u$ conduit à
+\[
+[h_{\beta}\ast\psi_{\lambda_{1}}](u_{1})=\int_{\mathbb{R}}h(\beta(u_{1})-u^{\prime})\psi_{\lambda_{1}}\left(\dfrac{u^{\prime}}{\dot{\beta}(u_{1})}\right)\,\dfrac{\mathrm{d}u^{\prime}}{\dot{\beta}(u_{1})}.
+\]
+L'ondelette $\psi_{\lambda_{1}}$ vérifiant $\psi_{\lambda_{1}}(\dot{\beta}(u_{1})^{-1}u^{\prime})=\dot{\beta}(u_{1})\psi_{\dot{\beta}(u_{1})^{-1}\lambda_{1}}(u^{\prime})$,
+on peut convertir le facteur de dilatation $\dot{\beta}(u_{1})$ en
+une transposition fréquentielle. D'où $[h_{\beta}\ast\psi_{\lambda_{1}}](u_{1})=[h\ast\psi_{\dot{\beta}(u_{1})^{-1}\lambda_{1}}](u_{1})$,
+ce qui s'écrit comme un produit dans le domaine de Fourier :
+\[
+[h_{\beta}\ast\psi_{\lambda_{1}}](u_{1})=\dfrac{1}{2\pi}\int_{\mathbb{R}}\hat{h}(\omega_{1})\hat{\psi}_{\dot{\beta}(u_{1})^{-1}\lambda_{1}}(\omega_{1})\exp(\mathrm{i}\omega_{1}\beta(u_{1}))\,\mathrm{d}u^{\prime}.
+\]
+Grâce à la seconde hypothèse, on approxime $\hat{h}(\omega_{1})$
+par la constante $\hat{h}(\lambda_{1})$ sur le support fréquentiel
+de $\hat{\psi}_{\dot{\beta}(u_{1})^{-1}\lambda_{1}}$. Dès lors, l'intégrale
+ci-dessus peut être vue comme la transformée de Fourier inverse de
+$\hat{\psi}_{\dot{\beta}(u_{1})^{-1}\lambda_{1}}(\omega_{1})$ évaluée
+en $\beta(u_{1})$. On conclut en revenant à l'ondelette $\psi_{\lambda_{1}}$
+avec l'équation $\dot{\beta}(u_{1})^{-1}\psi_{\dot{\beta}(u_{1})^{-1}\lambda_{1}}(\beta(u_{1}))=\psi_{\lambda_{1}}(\beta(u_{1})/\dot{\beta}(u_{1}))$.\end{proof}
+\begin{prop}
+Soit $\lambda_{1}$ de la forme $k\xi$, avec $k\leq K$. Si les conditions
+suivantes sont vérifiées :
+\begin{enumerate}
+\item $\Vert\ddot{\beta}/\dot{\beta}\Vert_{\infty}\ll\lambda_{1}/Q$ (filtre
+lentement variable),
+\item $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\beta}\Vert_{\infty}\ll Q/\lambda_{1}$
+(réponse fréquentielle régulière),
+\item $\Vert\ddot{\alpha}/\dot{\alpha}\Vert_{\infty}\ll\lambda_{1}/Q$ (source
+lentement variable) et
+\item $k<Q/2$ (partiel de rang faible),
+\end{enumerate}
+alors le module de la transformée en ondelettes du modèle source-filtre
+déformé
+
+\[
+\vert e_{\alpha}\ast h_{\beta}\ast\psi_{\lambda_{1}}\vert(t)\approx E(\log_{2}\lambda_{1}-\log_{2}\dot{\alpha}(t))H(\log_{2}\lambda_{1}-\log_{2}\dot{\beta}(t))
+\]
+est localement séparable en une réponse de source $E(\log_{2}\lambda_{1})=\vert\widehat{\psi_{\lambda_{1}}}(k\xi)\vert$
+et une réponse de filtre $H(\log_{2}\lambda_{1})=\hat{h}(\lambda_{1})$,
+chacune en mouvement rigide sur l'axe log-fréquentiel $\gamma=\log_{2}\lambda_{1}$;
+le mouvement de $E$ (resp. $H$) étant régi par le signal $\log_{2}\dot{\alpha}(t)$
+(resp. $\log_{2}\dot{\beta}(t))$.\end{prop}
+\begin{proof}
+On part des hypothèses (a) et (b) pour affirmer le lemme précédent
+:
+\[
+\left[e_{\alpha}\ast h_{\beta}\ast\psi_{\lambda_{1}}\right](u_{1})=H\left(\log_{2}\lambda_{1}+\log_{2}\dot{\beta}(t)\right)\times\int_{\mathbb{R}}e_{\alpha}(u_{1}-u)\psi_{\lambda_{1}}\left(\dfrac{\beta(u)}{\dot{\beta}(u)}\right)\,\mathrm{d}u.
+\]
+
+
+Comme dans la preuve du lemme, on pose $u^{\prime}=\dot{\alpha}(u_{1})\times(\frac{\beta(u_{1})}{\dot{\beta}(u_{1})}+u-u_{1})$,
+on développe et simplifie $\frac{\beta(u)}{\dot{\beta}(u)}\approx\frac{u^{\prime}}{\dot{\alpha}(u_{1})}$,
+et l'on convertit la dilatation temporelle en transposition fréquentielle
+avec l'équation $\dot{\alpha}(u_{1})^{-1}\psi_{\lambda_{1}}(\dot{\alpha}(u_{1})^{-1}u^{\prime})=\psi_{\dot{\alpha}(t)^{-1}\lambda_{1}}(u^{\prime})$
+:
+\[
+\begin{array}{c}
+\int_{\mathbb{R}}e_{\alpha}(t-u)\psi_{\lambda_{1}}\left(\frac{\beta(u)}{\dot{\beta}(u)}\right)\,\mathrm{d}u\\
+=\int_{\mathbb{R}}e_{\alpha}\left(\frac{\beta(t)}{\dot{\beta}(t)}-\frac{u^{\prime}}{\dot{\alpha}(t)}\right)\psi_{\dot{\alpha}(t)^{-1}\lambda_{1}}(u^{\prime})\,\mathrm{d}u^{\prime}
+\end{array}
+\]
+Avec l'hypothèse (3), on linéarise le difféomorphisme $\alpha$ autour
+de $\frac{\beta(t)}{\dot{\beta}(t)}$, ce qui permet de voir l'intégrale
+ci-dessus comme la convolution $[e\ast\psi_{\dot{\alpha}(u_{1})^{-1}\lambda_{1}}]$
+évaluée en $\alpha(\frac{\beta(t)}{\dot{\beta}(t)})$. Puisque le
+banc de filtres a un facteur de qualité constant $Q$, la largeur
+de bande à la fréquence $k\xi\dot{\alpha}(u_{1})$ est $k\xi\dot{\alpha}(u_{1})Q^{-1}$.
+L'hypothèse (4) peut se réécrire $(k+1)\xi\dot{\alpha}(t)>k\xi+\frac{k\xi}{2Q}$
+; autrement dit, le $(k+1)^{\text{ème}}$ partiel est hors de la bande
+passante de $\psi_{\dot{\alpha}(u_{1})\lambda_{1}}$. Plus généralement,
+les partiels $k^{\prime}\neq k$ ont une contribution négligeable
+à la transformée en ondelettes de $e(t)$. En l'absence d'interférences,
+le module $\vert e\ast\psi_{\dot{\alpha}(t)^{-1}\lambda_{1}}\vert(t)$
+se résume au seul terme $E(\log_{2}\lambda_{1}+\log_{2}\dot{\alpha}(t))$
+où l'on a défini $E(\log_{2}\lambda_{1})=\vert\widehat{\psi_{\lambda_{1}}}(k\xi)\vert$
+sur un axe log-fréquentiel.
+\end{proof}
+On peut calculer explicitement la réponse de source dans le cas d'un
+spectre harmonique : 
+\[
+E(\log_{2}\lambda_{1})=\sum_{k=1}^{K}\delta(\log_{2}(\lambda_{1})-\log_{2}(k\xi)).
+\]
+Soit $n\in\mathbb{N}$; pourvu que $\lambda_{1}=k\xi$ soit tel que
+$k<2^{-n}K$, on retrouve un partiel $n$ octaves exactement au-dessus
+de la fréquence $\lambda_{1}$ : d'où $E(\log_{2}\lambda_{1}+n)=E(\log_{2}\lambda_{1})$.
+Par ailleurs, en supposant que la déviation maximale du changement
+de hauteur induit par $\ddot{\alpha}/\dot{\alpha}$ soit petite devant
+les variations typiques de la réponse de filtre $H(\log_{2}\lambda_{1})$,
+il est possible de remplacer cette dernière par une constante sur
+des chromas voisins $H(\log_{2}\lambda_{1})\approx H(\log_{2}\lambda_{1})$.
+Ce résultat suggère qu'il est possible de séparer les fonctions $\log_{2}\dot{\alpha}(t)$
+et $\log_{2}\dot{\beta}(t)$ en décomposant leurs trajectoires sur
+les couples de variables temps-chroma et temps-octave.
+\end{document}

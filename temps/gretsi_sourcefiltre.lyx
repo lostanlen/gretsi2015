@@ -1,0 +1,511 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass amsart
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language french
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Soient 
+\begin_inset Formula 
+\[
+e(u_{1})=\sum_{k=1}^{K}\exp(\mathrm{i}k\xi u_{1})
+\]
+
+\end_inset
+
+ un signal harmonique 
+\begin_inset Quotes fld
+\end_inset
+
+source
+\begin_inset Quotes frd
+\end_inset
+
+ et 
+\begin_inset Formula $u_{1}\mapsto\alpha(u_{1})$
+\end_inset
+
+ un difféomorphisme ; on définit 
+\begin_inset Formula $e_{\alpha}(u_{1})=(e\circ\alpha)(u_{1})$
+\end_inset
+
+ la source déformée.
+ De même, on part d'un 
+\begin_inset Quotes fld
+\end_inset
+
+filtre
+\begin_inset Quotes frd
+\end_inset
+
+ 
+\begin_inset Formula $h(u_{1})$
+\end_inset
+
+ et d'un difféomorphisme 
+\begin_inset Formula $t\mapsto\beta(u_{1})$
+\end_inset
+
+ pour définir 
+\begin_inset Formula $h_{\beta}(u_{1})=(h\circ\beta)(u_{1})$
+\end_inset
+
+.
+ Le modèle source-filtre déformé est le signal 
+\begin_inset Formula $x(u_{1})=[e_{\alpha}\ast h_{\beta}](u_{1})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma*
+Pour tout 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ tel que 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\Vert\ddot{\beta}/\dot{\beta}\Vert_{\infty}\ll\lambda_{1}/Q$
+\end_inset
+
+ (filtre lentement variable) et
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\beta}\Vert_{\infty}\ll Q/\lambda_{1}$
+\end_inset
+
+ (profil spectral régulier),
+\end_layout
+
+\end_deeper
+\begin_layout Lemma*
+on a
+\end_layout
+
+\begin_layout Lemma*
+\begin_inset Formula 
+\[
+[h_{\beta}\ast\psi_{\gamma}](u_{1})\approx\hat{h}(\dot{\beta}(u_{1})\lambda_{1})\psi_{\lambda_{1}}\left(\dfrac{\beta(u_{1})}{\dot{\beta}(u_{1})}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Grâce à la première hypothèse, on développe 
+\begin_inset Formula $\beta(u_{1}-u)\approx\beta(u_{1})-\dot{\beta}(u_{1})\times u$
+\end_inset
+
+ sur le support de 
+\begin_inset Formula $\psi_{\lambda_{1}}(u_{1})$
+\end_inset
+
+.
+ Le changement de variable 
+\begin_inset Formula $u^{\prime}=\dot{\beta}(t)\times u$
+\end_inset
+
+ conduit à
+\begin_inset Formula 
+\[
+[h_{\beta}\ast\psi_{\lambda_{1}}](u_{1})=\int_{\mathbb{R}}h(\beta(u_{1})-u^{\prime})\psi_{\lambda_{1}}\left(\dfrac{u^{\prime}}{\dot{\beta}(u_{1})}\right)\,\dfrac{\mathrm{d}u^{\prime}}{\dot{\beta}(u_{1})}.
+\]
+
+\end_inset
+
+L'ondelette 
+\begin_inset Formula $\psi_{\lambda_{1}}$
+\end_inset
+
+ vérifiant 
+\begin_inset Formula $\psi_{\lambda_{1}}(\dot{\beta}(u_{1})^{-1}u^{\prime})=\dot{\beta}(u_{1})\psi_{\dot{\beta}(u_{1})^{-1}\lambda_{1}}(u^{\prime})$
+\end_inset
+
+, on peut convertir le facteur de dilatation 
+\begin_inset Formula $\dot{\beta}(u_{1})$
+\end_inset
+
+ en une transposition fréquentielle.
+ D'où 
+\begin_inset Formula $[h_{\beta}\ast\psi_{\lambda_{1}}](u_{1})=[h\ast\psi_{\dot{\beta}(u_{1})^{-1}\lambda_{1}}](u_{1})$
+\end_inset
+
+, ce qui s'écrit comme un produit dans le domaine de Fourier :
+\begin_inset Formula 
+\[
+[h_{\beta}\ast\psi_{\lambda_{1}}](u_{1})=\dfrac{1}{2\pi}\int_{\mathbb{R}}\hat{h}(\omega_{1})\hat{\psi}_{\dot{\beta}(u_{1})^{-1}\lambda_{1}}(\omega_{1})\exp(\mathrm{i}\omega_{1}\beta(u_{1}))\,\mathrm{d}u^{\prime}.
+\]
+
+\end_inset
+
+Grâce à la seconde hypothèse, on approxime 
+\begin_inset Formula $\hat{h}(\omega_{1})$
+\end_inset
+
+ par la constante 
+\begin_inset Formula $\hat{h}(\lambda_{1})$
+\end_inset
+
+ sur le support fréquentiel de 
+\begin_inset Formula $\hat{\psi}_{\dot{\beta}(u_{1})^{-1}\lambda_{1}}$
+\end_inset
+
+.
+ Dès lors, l'intégrale ci-dessus peut être vue comme la transformée de Fourier
+ inverse de 
+\begin_inset Formula $\hat{\psi}_{\dot{\beta}(u_{1})^{-1}\lambda_{1}}(\omega_{1})$
+\end_inset
+
+ évaluée en 
+\begin_inset Formula $\beta(u_{1})$
+\end_inset
+
+.
+ On conclut en revenant à l'ondelette 
+\begin_inset Formula $\psi_{\lambda_{1}}$
+\end_inset
+
+ avec l'équation 
+\begin_inset Formula $\dot{\beta}(u_{1})^{-1}\psi_{\dot{\beta}(u_{1})^{-1}\lambda_{1}}(\beta(u_{1}))=\psi_{\lambda_{1}}(\beta(u_{1})/\dot{\beta}(u_{1}))$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proposition
+Soit 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ de la forme 
+\begin_inset Formula $k\xi$
+\end_inset
+
+, avec 
+\begin_inset Formula $k\leq K$
+\end_inset
+
+.
+ Si les conditions suivantes sont vérifiées :
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $\Vert\ddot{\beta}/\dot{\beta}\Vert_{\infty}\ll\lambda_{1}/Q$
+\end_inset
+
+ (filtre lentement variable),
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\beta}\Vert_{\infty}\ll Q/\lambda_{1}$
+\end_inset
+
+ (réponse fréquentielle régulière),
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\Vert\ddot{\alpha}/\dot{\alpha}\Vert_{\infty}\ll\lambda_{1}/Q$
+\end_inset
+
+ (source lentement variable) et
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $k<Q/2$
+\end_inset
+
+ (partiel de rang faible),
+\end_layout
+
+\end_deeper
+\begin_layout Proposition
+alors le module de la transformée en ondelettes du modèle source-filtre
+ déformé
+\end_layout
+
+\begin_layout Proposition
+\begin_inset Formula 
+\[
+\vert e_{\alpha}\ast h_{\beta}\ast\psi_{\lambda_{1}}\vert(t)\approx E(\log_{2}\lambda_{1}-\log_{2}\dot{\alpha}(t))H(\log_{2}\lambda_{1}-\log_{2}\dot{\beta}(t))
+\]
+
+\end_inset
+
+est localement séparable en une réponse de source 
+\begin_inset Formula $E(\log_{2}\lambda_{1})=\vert\widehat{\psi_{\lambda_{1}}}(k\xi)\vert$
+\end_inset
+
+ et une réponse de filtre 
+\begin_inset Formula $H(\log_{2}\lambda_{1})=\hat{h}(\lambda_{1})$
+\end_inset
+
+, chacune en mouvement rigide sur l'axe log-fréquentiel 
+\begin_inset Formula $\gamma=\log_{2}\lambda_{1}$
+\end_inset
+
+; le mouvement de 
+\begin_inset Formula $E$
+\end_inset
+
+ (resp.
+ 
+\begin_inset Formula $H$
+\end_inset
+
+) étant régi par le signal 
+\begin_inset Formula $\log_{2}\dot{\alpha}(t)$
+\end_inset
+
+ (resp.
+ 
+\begin_inset Formula $\log_{2}\dot{\beta}(t))$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+On part des hypothèses (a) et (b) pour affirmer le lemme précédent :
+\begin_inset Formula 
+\[
+\left[e_{\alpha}\ast h_{\beta}\ast\psi_{\lambda_{1}}\right](u_{1})=H\left(\log_{2}\lambda_{1}+\log_{2}\dot{\beta}(t)\right)\times\int_{\mathbb{R}}e_{\alpha}(u_{1}-u)\psi_{\lambda_{1}}\left(\dfrac{\beta(u)}{\dot{\beta}(u)}\right)\,\mathrm{d}u.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Comme dans la preuve du lemme, on pose 
+\begin_inset Formula $u^{\prime}=\dot{\alpha}(u_{1})\times(\frac{\beta(u_{1})}{\dot{\beta}(u_{1})}+u-u_{1})$
+\end_inset
+
+, on développe et simplifie 
+\begin_inset Formula $\frac{\beta(u)}{\dot{\beta}(u)}\approx\frac{u^{\prime}}{\dot{\alpha}(u_{1})}$
+\end_inset
+
+, et l'on convertit la dilatation temporelle en transposition fréquentielle
+ avec l'équation 
+\begin_inset Formula $\dot{\alpha}(u_{1})^{-1}\psi_{\lambda_{1}}(\dot{\alpha}(u_{1})^{-1}u^{\prime})=\psi_{\dot{\alpha}(t)^{-1}\lambda_{1}}(u^{\prime})$
+\end_inset
+
+ :
+\begin_inset Formula 
+\[
+\begin{array}{c}
+\int_{\mathbb{R}}e_{\alpha}(t-u)\psi_{\lambda_{1}}\left(\frac{\beta(u)}{\dot{\beta}(u)}\right)\,\mathrm{d}u\\
+=\int_{\mathbb{R}}e_{\alpha}\left(\frac{\beta(t)}{\dot{\beta}(t)}-\frac{u^{\prime}}{\dot{\alpha}(t)}\right)\psi_{\dot{\alpha}(t)^{-1}\lambda_{1}}(u^{\prime})\,\mathrm{d}u^{\prime}
+\end{array}
+\]
+
+\end_inset
+
+Avec l'hypothèse (3), on linéarise le difféomorphisme 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ autour de 
+\begin_inset Formula $\frac{\beta(t)}{\dot{\beta}(t)}$
+\end_inset
+
+, ce qui permet de voir l'intégrale ci-dessus comme la convolution 
+\begin_inset Formula $[e\ast\psi_{\dot{\alpha}(u_{1})^{-1}\lambda_{1}}]$
+\end_inset
+
+ évaluée en 
+\begin_inset Formula $\alpha(\frac{\beta(t)}{\dot{\beta}(t)})$
+\end_inset
+
+.
+ Puisque le banc de filtres a un facteur de qualité constant 
+\begin_inset Formula $Q$
+\end_inset
+
+, la largeur de bande à la fréquence 
+\begin_inset Formula $k\xi\dot{\alpha}(u_{1})$
+\end_inset
+
+ est 
+\begin_inset Formula $k\xi\dot{\alpha}(u_{1})Q^{-1}$
+\end_inset
+
+.
+ L'hypothèse (4) peut se réécrire 
+\begin_inset Formula $(k+1)\xi\dot{\alpha}(t)>k\xi+\frac{k\xi}{2Q}$
+\end_inset
+
+ ; autrement dit, le 
+\begin_inset Formula $(k+1)^{\text{ème}}$
+\end_inset
+
+ partiel est hors de la bande passante de 
+\begin_inset Formula $\psi_{\dot{\alpha}(u_{1})\lambda_{1}}$
+\end_inset
+
+.
+ Plus généralement, les partiels 
+\begin_inset Formula $k^{\prime}\neq k$
+\end_inset
+
+ ont une contribution négligeable à la transformée en ondelettes de 
+\begin_inset Formula $e(t)$
+\end_inset
+
+.
+ En l'absence d'interférences, le module 
+\begin_inset Formula $\vert e\ast\psi_{\dot{\alpha}(t)^{-1}\lambda_{1}}\vert(t)$
+\end_inset
+
+ se résume au seul terme 
+\begin_inset Formula $E(\log_{2}\lambda_{1}+\log_{2}\dot{\alpha}(t))$
+\end_inset
+
+ où l'on a défini 
+\begin_inset Formula $E(\log_{2}\lambda_{1})=\vert\widehat{\psi_{\lambda_{1}}}(k\xi)\vert$
+\end_inset
+
+ sur un axe log-fréquentiel.
+\end_layout
+
+\begin_layout Standard
+On peut calculer explicitement la réponse de source dans le cas d'un spectre
+ harmonique : 
+\begin_inset Formula 
+\[
+E(\log_{2}\lambda_{1})=\sum_{k=1}^{K}\delta(\log_{2}(\lambda_{1})-\log_{2}(k\xi)).
+\]
+
+\end_inset
+
+Soit 
+\begin_inset Formula $n\in\mathbb{N}$
+\end_inset
+
+; pourvu que 
+\begin_inset Formula $\lambda_{1}=k\xi$
+\end_inset
+
+ soit tel que 
+\begin_inset Formula $k<2^{-n}K$
+\end_inset
+
+, on retrouve un partiel 
+\begin_inset Formula $n$
+\end_inset
+
+ octaves exactement au-dessus de la fréquence 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ : d'où 
+\begin_inset Formula $E(\log_{2}\lambda_{1}+n)=E(\log_{2}\lambda_{1})$
+\end_inset
+
+.
+ Par ailleurs, en supposant que la déviation maximale du changement de hauteur
+ induit par 
+\begin_inset Formula $\ddot{\alpha}/\dot{\alpha}$
+\end_inset
+
+ soit petite devant les variations typiques de la réponse de filtre 
+\begin_inset Formula $H(\log_{2}\lambda_{1})$
+\end_inset
+
+, il est possible de remplacer cette dernière par une constante sur des
+ chromas voisins 
+\begin_inset Formula $H(\log_{2}\lambda_{1})\approx H(\log_{2}\lambda_{1})$
+\end_inset
+
+.
+ Ce résultat suggère qu'il est possible de séparer les fonctions 
+\begin_inset Formula $\log_{2}\dot{\alpha}(t)$
+\end_inset
+
+ et 
+\begin_inset Formula $\log_{2}\dot{\beta}(t)$
+\end_inset
+
+ en décomposant leurs trajectoires sur les couples de variables temps-chroma
+ et temps-octave.
+\end_layout
+
+\end_body
+\end_document

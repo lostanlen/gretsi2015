@@ -1,0 +1,366 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\lang french
+C'est en raison de ses bonnes propriétés de résolution temps-fréquence,
+ de stabilité aux déformations, et de sparsité que le scalogramme 
+\begin_inset Formula $x_{1}(u_{1},\lambda_{1})$
+\end_inset
+
+ est un outil de choix pour la classification de sons.
+ Or, afin de pouvoir généraliser une classe de signaux à partir d'un nombre
+ limité d'exemples, il est nécessaire de construire une représentation invariant
+e par translation à l'échelle temporelle 
+\begin_inset Formula $T$
+\end_inset
+
+ des unités à classifier.
+ Le scalogramme est une représentation 
+\emph on
+covariante 
+\emph default
+à la translation, bien qu'on puisse le rendre invariant en appliquant une
+ moyenne glissante sur l'axe temporel.
+ L'échelle 
+\begin_inset Formula $T$
+\end_inset
+
+ vaut typiquement 
+\begin_inset Formula $200\,\mathrm{ms}$
+\end_inset
+
+ pour des notes de musique ou des syllabes ; pourtant, en raison de la nature
+ transitoire des signaux de musique et de parole, les capacités de discriminatio
+n du scalogramme chutent dès que 
+\begin_inset Formula $T$
+\end_inset
+
+ dépasse 
+\begin_inset Formula $20\,\mathrm{ms}$
+\end_inset
+
+.
+ Afin d'étendre cette limite, il s'agit de démoduler les oscillations du
+ scalogramme 
+\begin_inset Formula $x_{1}(u_{1},\lambda_{1})$
+\end_inset
+
+ dont la période est inférieure à 
+\begin_inset Formula $T$
+\end_inset
+
+ ; encore une fois, on requiert une bonne stabilité à la variabilité naturelle
+ des sons à l'intérieur d'une classe.
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+Compte tenu de ces observations, [Andén et Mallat, 2011] ont introduit la
+ transformée de scattering pour les sons, comme le 
+\begin_inset Quotes fld
+\end_inset
+
+scalogramme du scalogramme
+\begin_inset Quotes frd
+\end_inset
+
+.
+ Pour toute fréquence 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+, il s'agit de transformer 
+\begin_inset Formula $x_{1}(u_{1},\lambda_{1})$
+\end_inset
+
+ en ondelettes comme un signal unidimensionnel du temps 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+, et d'appliquer le module :
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+\begin_inset Formula 
+\begin{equation}
+x_{2}(u_{1},\lambda_{1},\lambda_{2})=\vert x_{1}(u_{1},\lambda_{1})\ast\psi_{\lambda_{2}}(u_{1})\vert,\label{eq:plain-scattering}
+\end{equation}
+
+\end_inset
+
+où 
+\begin_inset Formula $\psi_{\lambda_{2}}(u_{1})$
+\end_inset
+
+ est une ondelette de fréquence centrale 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ (en Hertz).
+ La transformée de scattering capture explicitement les modulations d'amplitude
+ du signal, ce qui a mené à des progrès considérables en classification
+ de signaux.
+ Cependant, elle n'est pas stable aux mouvement de hauteur au-delà de 
+\begin_inset Formula $Q^{-1}$
+\end_inset
+
+, soit typiquement un seizième d'octave.
+ Pour intégrer l'évolution de hauteur dans la transformée, on peut redéfinir
+ 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ comme 
+\begin_inset Formula 
+\[
+x_{2}(u_{2},\lambda_{1},\lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}\vert(u_{2}),
+\]
+
+\end_inset
+
+où 
+\begin_inset Formula $u_{2}$
+\end_inset
+
+ est une variable générique construite à partir du temps 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+ et de la fréquence 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+.
+ Il faut remarquer que cette équation est une généralisation du modèle original
+ du scattering 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:plain-scattering"
+
+\end_inset
+
+ : en écrivant 
+\begin_inset Formula $u_{2}=u_{1}$
+\end_inset
+
+ et en factorisant l'action de 
+\begin_inset Formula $\psi_{\lambda_{2}}(u_{2})$
+\end_inset
+
+ sur toutes les fréquences 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+, on parvient à 
+\begin_inset Formula $\vert x_{1}\ast\psi_{\lambda_{2}}\vert(u_{2})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\lang french
+Le modèle cortical de [Patil et al.] effectue des transformées sur les déplacemen
+ts joints en temps et en log-fréquence : 
+\begin_inset Formula $u_{2}=(u_{1},\log_{2}\lambda_{1})$
+\end_inset
+
+.
+ La variabe de Fourier correspondante s'écrit 
+\begin_inset Formula $\lambda_{2}=(a,b)$
+\end_inset
+
+ où 
+\begin_inset Formula $a$
+\end_inset
+
+ est la fréquence temporelle (en Hertz) 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+ et 
+\begin_inset Formula $b$
+\end_inset
+
+ est la fréquence log-fréquentielle (en cycles par octave).
+ 
+\begin_inset Formula 
+\[
+\psi_{\lambda_{2}}(u_{1},\log_{2}\lambda_{1})=\psi_{a}(u_{1})\ast\psi_{b}(\log_{2}\lambda_{1})
+\]
+
+\end_inset
+
+Nous proposons d'étendre ce modèle afin d'inclure la variabilité des déplacement
+s sur les octaves.
+ On pose donc 
+\begin_inset Formula $u_{2}=(u_{1},\log_{2}\lambda_{1},\lfloor\log_{2}\lambda_{1}\rfloor)$
+\end_inset
+
+ la variable de déplacement sur la spirale.
+ La fréquence correspondante s'écrit 
+\begin_inset Formula $\lambda_{2}=(a,b,c)$
+\end_inset
+
+ où 
+\begin_inset Formula $a$
+\end_inset
+
+ est la fréquence temporelle (en Hertz), 
+\begin_inset Formula $b$
+\end_inset
+
+ est la fréquence log-fréquentielle (en cycles par octave), 
+\begin_inset Formula $c$
+\end_inset
+
+ est la 
+\begin_inset Quotes fld
+\end_inset
+
+fréquence selon les octaves
+\begin_inset Quotes frd
+\end_inset
+
+ (en cycles par octave).
+ L'expérience de Shepard nous apprend que, bien les fréquences 
+\begin_inset Formula $b$
+\end_inset
+
+ et 
+\begin_inset Formula $c$
+\end_inset
+
+ soient exprimées dans la même unité, elles correspondent à des phénomènes
+ différents : avec typiquement 
+\begin_inset Formula $\vert b^{-1}\vert<1$
+\end_inset
+
+ octave et 
+\begin_inset Formula $\vert c^{-1}\vert>1$
+\end_inset
+
+ octave, 
+\begin_inset Formula $b$
+\end_inset
+
+ quantifie un déplacement angulaire sur la spirale tandis que 
+\begin_inset Formula $c$
+\end_inset
+
+ quantifie un déplacement radial.
+ On propose d'appeler 
+\begin_inset Quotes fld
+\end_inset
+
+ondelettes de Shepard
+\begin_inset Quotes frd
+\end_inset
+
+ les produits séparables d'ondelettes sur la spirale 
+\begin_inset Formula $u_{2}=(u_{1},\log_{2}\lambda_{1},\lfloor\log_{2}\lambda_{1}\rfloor)$
+\end_inset
+
+ : 
+\begin_inset Formula 
+\[
+\psi_{\lambda_{2}}(u_{1},\log_{2}\lambda_{1},\lfloor\log_{2}\lambda_{1}\rfloor)=\psi_{a}(u_{1})\ast\psi_{b}(\log_{2}\lambda_{1})\ast\psi_{c}(\lfloor\log_{2}\lambda_{1}\rfloor).
+\]
+
+\end_inset
+
+Sur la figure 2, on a représenté deux ondelettes de Shepard 
+\begin_inset Formula $\psi_{\lambda_{2}}$
+\end_inset
+
+ pour différentes valeurs de fréquences 
+\begin_inset Formula $a$
+\end_inset
+
+, 
+\begin_inset Formula $b$
+\end_inset
+
+ et 
+\begin_inset Formula $c$
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document

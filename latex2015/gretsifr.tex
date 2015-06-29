@@ -1,0 +1,277 @@
+%% ==============================================================
+%% WARNING! ENGLISH SPEAKING AUTHORS SHOULD READ gretsien.tex
+%%          FILE INSTEAD
+%% ==============================================================
+%% EXEMPLE DE CONTRIBUTION AU GRETSI
+%% POUR LES UTILISATEURS FRANCOPHONES DE LaTeX2e
+  \documentclass{gretsi}
+%% Selectionnez ensuite les paquets que vous utilisez,
+%% par suppression ou adjonction d'un caractere %
+%% en debut de ligne (mise en commentaire).
+%% --------------------------------------------------------------
+%% UTILISATION DE CARACTERES ACCENTUES AU CLAVIER ?
+%% (le codage du clavier depend du systeme d'exploitation)
+% \usepackage[applemac]{inputenc} % MacOS
+% \usepackage[ansinew]{inputenc}  % Windows ANSI
+% \usepackage[cp437]{inputenc}    % DOS, page de code 437
+% \usepackage[cp850]{inputenc}    % DOS, page de code 850
+% \usepackage[cp852]{inputenc}    % DOS, page de code 852
+% \usepackage[cp865]{inputenc}    % DOS, page de code 865
+% \usepackage[latin1]{inputenc}   % UNIX, codage ISO 8859-1
+% \usepackage[decmulti]{inputenc} % VMS
+% \usepackage[next]{inputenc}
+% \usepackage[latin2]{inputenc}
+% \usepackage[latin3]{inputenc}
+%% --------------------------------------------------------------
+%% REGLES DE TYPOGRAPHIE FRANCAISES ?
+ \usepackage[english,french]{babel}   % "babel.sty" + "french.sty"
+% \usepackage[english,francais]{babel} % "babel.sty"
+% \usepackage{french}                  % "french.sty"
+  \usepackage{times}			% ajout times le 30 mai 2003 
+%% --------------------------------------------------------------
+%% CODAGE DE POLICES ?
+%% Si votre moteur Latex est francise, il est conseille
+%% d'utiliser le codage de police T1 pour faciliter la césure,
+%% si vous disposez de ces polices (DC/EC)
+% \usepackage[T1]{fontenc}
+%% ==============================================================
+
+\titre{Instructions aux auteurs du GRETSI\\ Format \LaTeXe}
+
+\auteur{\coord{Michel}{Dupont}{1},
+        \coord{Marcel}{Dupond}{1},
+    \coord{Michelle}{Durand}{2},
+    \coord{Marcelle}{Durand}{1}}
+
+\adresse{\affil{1}{Laboratoire Traitement des Signaux \\
+         1 rue de la Parole, BP 00000, 99000 Nouvelleville Cedex 00, France}
+         \affil{2}{Laboratoire Traitement des Images \\
+         1 rue de la Vision, BP 99999, 00000 Autreville, France}}
+
+%% Si tous les auteurs ont la même adresse %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%   \auteur{\coord{Michel}{Dupont}{},                                         %
+%           \coord{Marcel}{Dupond}{},                                         %
+%           \coord{Michelle}{Durand}{},                                       %
+%           \coord{Marcelle}{Durand}{}}                                       %
+%                                                                             %
+%   \adresse{\affil{}{Laboratoire Traitement des Signaux et des Images \\     %
+%     1 rue de la Science, BP 00000, 99999 Nouvelleville Cedex 00, France}}   %
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\email{Michel.Dupont@labo.nouvelleville.fr,
+Marcel.Dupond@labo.nouvelleville.fr\\
+Michelle.Durand@ailleurs.fr, Marcelle.Durand@ailleurs.fr}
+
+\resumefrancais{Les auteurs publiant au GRETSI et utilisant le
+traitement de texte \LaTeXe\ trouveront ci-dessous quelques
+indications destin{\'e}es {\`a} leur faciliter la t{\^a}che. Le
+fichier \texttt{gretsifr.tex} qui contient le pr{\'e}sent
+document respecte les contraintes fix{\'e}es ; recopiez le, par
+exemple sous le nom \texttt{monarticle.tex}, et placez votre
+texte aux endroits appropri{\'e}s.}
+
+\resumeanglais{GRETSI authors who are \LaTeXe\ users will find
+above some informations to help them. The file
+\texttt{gretsifr.tex} which contains this document obeys the
+rules; copy it, with the name \texttt{mypaper.tex} for instance,
+and put your text in appropriate fields.}
+
+\begin{document}
+\maketitle
+
+\section{Format du document}
+\subsection{La classe \texttt{gretsi}}
+Votre article ne doit pas d\'epasser 4 pages, tableaux et figures
+inclus. Il est constitu{\'e} de deux colonnes de 88~mm,
+espac{\'e}es de 6~mm. La classe \texttt{gretsi.cls} au format
+\LaTeXe\ que nous vous recommandons d'utiliser vous permettra de
+r{\'e}aliser automatiquement la mise en page, {\`a} l'aide de la
+commande :
+\begin{verbatim}
+    \documentclass{gretsi}
+\end{verbatim}
+Dans le pr{\'e}ambule de votre fichier, vous devrez alors entrer les
+informations suivantes :
+\begin{itemize}
+
+    \item le titre de l'article :\\
+    \verb!\titre{Titre de l'article}!
+
+    \item le pr{\'e}nom et le nom de chaque auteur, suivi d'un num{\'e}ro
+    renvoyant {\`a} son adresse :\\
+    \verb!\auteur{\coord{Pierre}{Dupont}{1},!\\
+    \verb!        \coord{John}{Smith}{2}}!
+
+    \item l'adresse de chaque auteur :\\
+    \verb!\adresse{\affil{1}{Laboratoire \\! \\
+    \verb!         rue, ville, France}     ! \\
+    \verb!         \affil{2}{Laboratoire \\! \\
+    \verb!         rue, ville, France}     !
+
+    \item l'adresse {\'e}lectronique des auteurs :\\
+    \verb!\email{Prenom.Nom@labo.fr, pnom@ecole.fr}!
+
+    \item les r{\'e}sum{\'e}s en fran\c{c}ais et en anglais :\\
+    \verb!\resumefrancais{R\'esum\'e fran\c{c}ais}! \\
+    \verb!\resumeanglais{English written abstract}!
+
+    \item enfin, le texte de votre article, et votre bibliographie : \\
+    \verb!\begin{document}! \\
+    \verb!\maketitle! \\
+    \verb!Texte de l'article! \\
+    \verb!\begin{thebibliography}{99}! \\
+    \verb!Les r{\'e}f{\'e}rences! \\
+    \verb!\end{thebibliography}! \\
+    \verb!\end{document}!
+
+\end{itemize}
+
+\subsection{Titre et sous-titres}
+Ce document utilise la commande \verb!\section! et la commande
+\verb!\subsection!. Plus bas dans la hi{\'e}rarchie, voici ce qui est
+obtenu :
+\subsubsection{Sous-sous-titre}
+\`A l'aide de la commande \verb!\subsubsection!.
+\paragraph{Sous-sous-sous-titre}
+\`A l'aide de \verb!\paragraph!.
+
+\section{Langue et typographie}
+Votre article {\'e}tant sans doute r{\'e}dig{\'e} en fran\c{c}ais, il
+est pr{\'e}f{\'e}rable d'utiliser les r{\`e}gles de typographie
+fran\c{c}aises. Si votre moteur \LaTeX\ est francis{\'e}, nous vous
+conseillons d'utiliser le paquet \texttt{babel}, ou le paquet
+\texttt{french}. 
+\newpage
+\subsection{Le paquet \texttt{french}}
+Il suffit d'ins{\'e}rer dans le pr{\'e}ambule de votre fichier la commande :
+\begin{verbatim}
+    \usepackage{french}
+\end{verbatim}
+Si vous utilisez d'autres paquets (par exemple pour l'insertion de
+graphiques), l'auteur du paquet \texttt{french.sty} conseille de faire
+appara{\^\i}tre la commande ci-dessus en dernier dans la liste des
+commandes \verb!\usepackage!.
+
+\subsection{Le paquet \texttt{babel}}
+Moins d{\'e}velopp{\'e} que le pr{\'e}c{\'e}dent, il s'utilise en
+ins{\'e}rant dans le pr{\'e}ambule de votre fichier la commande :
+\begin{verbatim}
+    \usepackage[english,francais]{babel}
+\end{verbatim}
+Ceci indique que le language par d{\'e}faut est le fran\c{c}ais.
+L'anglais est n{\'e}cessaire pour le texte de votre r{\'e}sum{\'e} en
+anglais. Il est {\'e}galement possible d'entrer :
+\begin{verbatim}
+    \usepackage[english,french]{babel}
+\end{verbatim}
+Dans ce cas, si vous disposez aussi du paquet \texttt{french}, il sera
+charg{\'e} automatiquement.
+
+\subsection{Saisie}
+La ponctuation haute (\verb&; : ? !&) doit {\^e}tre
+pr{\'e}c{\'e}d{\'e}e d'un espace, comme sur une machine {\`a}
+{\'e}crire. Les guillemets {\`a} la fran\c{c}aise sont entr{\'e}s de
+la fa\c{c}on suivante :
+\begin{itemize}
+    \item \verb!\og{}texte entre guillemets\fg{}! avec \texttt{babel};
+    \item \verb!<< texte entre guillemets >>!, ou encore \\
+    \verb!\leftguillemets{}texte\rightguillemets{}! \\
+    avec \texttt{french} 
+\end{itemize}
+Enfin, les majuscules doivent {\^e}tre accentu{\'e}es.
+
+\section{Tableaux, figures \\ et math{\'e}matiques}
+Les tableaux doivent {\^e}tre pr{\'e}c{\'e}d{\'e}s par leur
+l{\'e}gende, comme cela est fait pour le tableau
+\ref{puissancededeux}.
+\begin{table}[htb]
+    \legende{\label{puissancededeux}puissance de 2}
+    \begin{center}
+    \begin{tabular}{||c||*{8}{c|}|}
+        \hline\hline
+        $n$   & 1 & 2 & 3 &  4 &  5 &  6 &   7 &   8 \\ \hline
+        $2^n$ & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256 \\
+        \hline\hline
+    \end{tabular}
+    \end{center}
+\end{table}
+La l{\'e}gende est entr{\'e}e {\`a} l'aide de la commande
+\verb!\legende!, qui remplace la commande \verb!\caption! habituelle
+de \LaTeXe\ (de fa\c{c}on {\`a} harmoniser le r{\'e}sultat produit par
+les paquets \texttt{french} et \texttt{babel}).
+
+\`A l'inverse, les figures doivent {\^e}tre suivies par leur titre,
+comme c'est le cas de la figure \ref{cercle}.
+\begin{figure}[htb]
+    \begin{center}
+    \setlength{\unitlength}{0.5cm}
+    \begin{picture}(5,5)
+        \put(2.5,2.5){\oval(5,5)}
+        \put(1,1){\line(1,0){3}}
+        \put(4,1){\line(0,1){3}}
+        \put(1,4){\line(1,0){3}}
+        \put(1,1){\line(0,1){3}}
+    \end{picture}
+    \end{center}
+    \legende{\label{cercle}un carr{\'e} dans un ovale}
+\end{figure}
+
+L'insertion de figure \texttt{PostScript} peut {\^e}tre faite
+efficacement {\`a} l'aide des paquets \texttt{graphics},
+\texttt{graphicx} ou \texttt{epsfig}. Pour ins{\'e}rer le fichier
+\texttt{fig.eps}, si l'on veut que la largeur de la figure s'adapte
+{\`a} la largeur de la colonne, il faut entrer, pour le paquet
+\texttt{graphics}, les commandes suivantes :
+\begin{verbatim}
+    \begin{figure}[htb]
+    \begin{center}
+    \resizebox{88mm}{!}{
+    \includegraphics{fig.eps}}
+    \end{center}
+    \legende{titre de la figure}
+    \end{figure}
+\end{verbatim}
+Avec \texttt{graphicx}, il faut entrer :
+\begin{verbatim}
+    \begin{figure}[htb]
+    \begin{center}
+    \includegraphics[width=88mm]{fig.eps}
+    \end{center}
+    \legende{titre de la figure}
+    \end{figure}
+\end{verbatim}
+Avec \texttt{epsfig}, il faut entrer :
+\begin{verbatim}
+    \begin{figure}[htb]
+    \begin{center}
+    \epsfig{file=fig.eps,width=88mm}
+    \end{center}
+    \legende{titre de la figure}
+    \end{figure}
+\end{verbatim}
+Quant aux formules math{\'e}matiques, leur aspect pourra {\^e}tre
+am{\'e}lior{\'e} en utilisant le paquet \texttt{amsmath} de la
+librairie $\mathcal{AMS}$-\LaTeX. Elles seront num\'erot\'ees, comme c'est
+le cas de la formule \ref{formule} :
+\begin{equation}
+   \label{formule}
+   F(x) = \int_{-\infty}^x f(u)\,du
+\end{equation}
+
+\begin{thebibliography}{99}
+
+\bibitem{companion}
+M.~Goossens, F~Mittelbach et A.~Samarin.
+\emph{The \LaTeX{} Companion}.
+Addison-Wesley, 1994.
+
+\bibitem{lamport94a}
+L.~Lamport.
+\emph{\LaTeX{} User's Guide and Reference Manual}.
+Addison-Wesley, 1994.
+
+\end{thebibliography}
+
+\end{document}

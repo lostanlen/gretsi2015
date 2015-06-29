@@ -1,0 +1,185 @@
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2007.3.10)  5 MAR 2015 17:49
+entering extended mode
+\write18 enabled.
+ %&-line parsing enabled.
+**gretsien.tex
+(./gretsien.tex
+LaTeX2e <2005/12/01>
+Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, arabic, basque, bulgarian, coptic, welsh, czech, slovak, german, ng
+erman, danish, esperanto, spanish, catalan, galician, estonian, farsi, finnish,
+ french, greek, monogreek, ancientgreek, croatian, hungarian, interlingua, ibyc
+us, indonesian, icelandic, italian, latin, mongolian, dutch, norsk, polish, por
+tuguese, pinyin, romanian, russian, slovenian, uppersorbian, serbian, swedish, 
+turkish, ukenglish, ukrainian, loaded.
+(./gretsi.cls Classe LaTeX du GRETSI
+Document Class: gretsi 2008/12/15 v1.2
+(/usr/local/texlive/2007/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
+(/usr/local/texlive/2007/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+))
+(/usr/local/texlive/2007/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2005/11/23 v3.8h The Babel package
+
+(/usr/local/texlive/2007/texmf-dist/tex/generic/babel/english.ldf
+Language: english 2005/03/30 v3.3o English support from the babel system
+
+(/usr/local/texlive/2007/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2005/11/23 v3.8h Babel common definitions
+\babel@savecnt=\count87
+\U@D=\dimen103
+)
+\l@british = a dialect from \language\l@english 
+\l@UKenglish = a dialect from \language\l@english 
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+)
+(/usr/local/texlive/2007/texmf-dist/tex/generic/babel/frenchb.ldf
+Language: french 2005/02/06 v1.6g French support from the babel system
+Package babel Info: Making : an active character on input line 219.
+Package babel Info: Making ; an active character on input line 220.
+Package babel Info: Making ! an active character on input line 221.
+Package babel Info: Making ? an active character on input line 222.
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 299.
+\parindentFFN=\dimen104
+\std@mcc=\count88
+\dec@mcc=\count89
+
+*************************************
+* Local config file frenchb.cfg used
+*
+(/usr/local/texlive/2007/texmf-dist/tex/generic/babel/frenchb.cfg)))
+(/usr/local/texlive/2007/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+) (./gretsien.aux)
+\openout1 = `gretsien.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T1/lmr/m/n on input line 67.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 67.
+ (/usr/local/texlive/2007/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2007/01/14 v1.3 Font defs for Latin Modern
+)
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 67.
+
+(/usr/local/texlive/2007/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+LaTeX Info: Redefining \dots on input line 67.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 68.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <17.28> on input line 68.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 68.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 68.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 68.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 68.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 68.
+
+(/usr/local/texlive/2007/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 68.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 68.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 68.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 70.
+LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <12> not available
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 71.
+
+Overfull \hbox (15.61577pt too wide) in paragraph at lines 97--99
+[]\OT1/pcr/m/n/10 \email{First.Name@labo.fr, smith@univ.fr} 
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 101.
+
+Overfull \hbox (9.61577pt too wide) in paragraph at lines 100--104
+[]\OT1/pcr/m/n/10 \frenchabstract{R\'esum\'e fran\c{c}ais} 
+ []
+
+
+Overfull \hbox (21.61577pt too wide) in paragraph at lines 100--104
+[]\OT1/pcr/m/n/10 \englishabstract{English written abstract} 
+ []
+
+
+LaTeX Warning: \oval, \circle, or \line size unavailable on input line 144.
+
+
+Overfull \hbox (2.68336pt too wide) in paragraph at lines 154--158
+\OT1/ptm/m/n/10 To in-sert \OT1/pcr/m/n/10 fig.eps \OT1/ptm/m/n/10 file, with a
+u-to-ma-tic width ad-just-ment, using
+ []
+
+[1{/usr/local/texlive/2007/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+Overfull \hbox (1.72133pt too wide) in paragraph at lines 185--188
+\OT1/ptm/m/n/10 of \OT1/pcr/m/n/10 amsmath \OT1/ptm/m/n/10 pa-ckage from $[]$-L
+[]T[]X. They have to be num-
+ []
+
+[2
+
+] (./gretsien.aux) ) 
+Here is how much of TeX's memory you used:
+ 1021 strings out of 94073
+ 12934 string characters out of 1162984
+ 70380 words of memory out of 1500000
+ 4325 multiletter control sequences out of 10000+50000
+ 32472 words of font info for 70 fonts, out of 1200000 for 2000
+ 645 hyphenation exceptions out of 8191
+ 29i,11n,24p,211b,297s stack positions out of 5000i,500n,6000p,200000b,5000s
+{/usr/local/texlive/2007/texmf-dist/fonts/enc/dvips/base/8r
+.enc}</usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmex10.pfb></us
+r/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmmi10.pfb></usr/local/t
+exlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmmi7.pfb></usr/local/texlive/200
+7/texmf-dist/fonts/type1/bluesky/cm/cmmi9.pfb></usr/local/texlive/2007/texmf-di
+st/fonts/type1/bluesky/cm/cmmib10.pfb></usr/local/texlive/2007/texmf-dist/fonts
+/type1/bluesky/cm/cmr10.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/blu
+esky/cm/cmsy10.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/c
+msy7.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/latex-fonts/lc
+ircle1.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/courier/ucrb8a.p
+fb></usr/local/texlive/2007/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr
+/local/texlive/2007/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/tex
+live/2007/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2007/
+texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on gretsien.pdf (2 pages, 94588 bytes).
+PDF statistics:
+ 66 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 131072)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

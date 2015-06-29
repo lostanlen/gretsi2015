@@ -1,0 +1,444 @@
+%% ==============================================================
+%% WARNING! ENGLISH SPEAKING AUTHORS SHOULD READ gretsien.tex
+%%          FILE INSTEAD
+%% ==============================================================
+%% EXEMPLE DE CONTRIBUTION AU GRETSI
+%% POUR LES UTILISATEURS FRANCOPHONES DE LaTeX2e
+  \documentclass{gretsi}
+\usepackage{amssymb,amsmath,amsthm, mathtools}
+
+\newtheorem{lem*}{Lemme}
+\newtheorem{prop*}{Th\'{e}or\`{e}me}
+\renewcommand\[{\begin{equation}}
+\renewcommand\]{\end{equation}}
+\renewcommand{\labelenumi}{\emph{(\alph{enumi})}}
+\renewcommand{\thefootnote}{\*} 
+
+
+%% Selectionnez ensuite les paquets que vous utilisez,
+%% par suppression ou adjonction d'un caractere %
+%% en debut de ligne (mise en commentaire).
+%% --------------------------------------------------------------
+%% UTILISATION DE CARACTERES ACCENTUES AU CLAVIER ?
+%% (le codage du clavier depend du systeme d'exploitation)
+% \usepackage[applemac]{inputenc} % MacOS
+% \usepackage[ansinew]{inputenc}  % Windows ANSI
+% \usepackage[cp437]{inputenc}    % DOS, page de code 437
+% \usepackage[cp850]{inputenc}    % DOS, page de code 850
+% \usepackage[cp852]{inputenc}    % DOS, page de code 852
+% \usepackage[cp865]{inputenc}    % DOS, page de code 865
+ \usepackage[latin1]{inputenc}   % UNIX, codage ISO 8859-1
+% \usepackage[decmulti]{inputenc} % VMS
+% \usepackage[next]{inputenc}
+% \usepackage[latin2]{inputenc}
+% \usepackage[latin3]{inputenc}
+%% --------------------------------------------------------------
+%% REGLES DE TYPOGRAPHIE FRANCAISES ?
+ \usepackage[english,french]{babel}   % "babel.sty" + "french.sty"
+% \usepackage[english,francais]{babel} % "babel.sty"
+% \usepackage{french}                  % "french.sty"
+  \usepackage{times}			% ajout times le 30 mai 2003
+ 
+%% --------------------------------------------------------------
+%% CODAGE DE POLICES ?
+%% Si votre moteur Latex est francise, il est conseille
+%% d'utiliser le codage de police T1 pour faciliter la cï¿½sure,
+%% si vous disposez de ces polices (DC/EC)
+ \usepackage[T1]{fontenc}
+%% ==============================================================
+
+\titre{Transform\'{e}e de scattering en spirale temps-chroma-octave}
+
+%% Si tous les auteurs ont la mï¿½me adresse %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+   \auteur{\coord{Vincent}{Lostanlen}{}, \coord{St{\'e}phane}{Mallat}{}}  
+                                                                            %
+  \adresse{\affil{}{D{\'e}partement d'Informatique, {\'E}cole normale sup{\'e}rieure \\     %
+     45 rue d'Ulm, Paris}}   %
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\email{vincent.lostanlen@ens.fr}
+
+\resumefrancais{
+Dans le cadre de la repr\'{e}sentation temps-fr\'{e}quence
+des sons harmoniques, on montre l'int\'{e}r\^{e}t de remplacer l'axe
+fr\'{e}quentiel par une spirale faisant un tour \`{a} chaque octave.
+On montre que les d\'{e}formations m\'{e}lodiques et harmoniques du
+mod\`{e}le source-filtre sont naturellement s\'{e}par\'{e}es dans
+ce mod\`{e}le. On construit une transform\'{e}e de scattering multivariable
+tirant parti de ces r\'{e}sultats.}
+
+\resumeanglais{
+In the framework of time-frequency representation of harmonic sounds, we motivate the idea of replacing the frequency axis by a spiral which makes a full turn at each octave. We show that melodic and harmonic deformations of the source-filter model are naturally disentangled in this model. We capitalize on these results to build a multivariable scattering transform.}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+Un d\'{e}fi majeur de la classification automatique de sons repose
+sur une mod\'{e}lisation efficace de leur structure transitoire sur
+des \'{e}chelles temporelles aussi longues que possible. De par sa
+bonne localisation temps-fr\'{e}quence et sa facult\'{e} de r\'{e}gularisation
+des signaux modul\'{e}s, un op\'{e}rateur non-lin\'{e}aire tel que
+le module de la transform\'{e}e en ondelettes est un premier pas naturel
+dans ce sens. Cependant, celui-ci est incapable de capturer, par simple
+int\'{e}gration temporelle, des \'{e}l\'{e}ments acoustiques plus
+riches tels que les variations de fr\'{e}quence fondamentale (\emph{chirps})
+ou de profil formantique (coarticulations, attaques intrumentales).
+Or, si le cas des \emph{chirps} et de la variabilit\'{e} harmonique
+ont \'{e}t\'{e} abord\'{e}s ind\'{e}pendamment ({[}Flandrin{]}, {[}Peeters
+et al.{]}), il n'existe pas d'approche syst\'{e}matique qui rende
+compte de la dynamique jointe de ces deux facteurs.
+
+Dans cet article, nous introduisons une nouvelle repr\'{e}sentation
+des sons, construite \`{a} partir du module de la transform\'{e}e
+en ondelettes, visant explicitement \`{a} caract\'{e}riser les changements
+de hauteur et de timbre. Dans une premi\`{e}re partie, nous montrons
+comment enrouler l'axe fr\'{e}quentiel en une spirale des hauteurs
+de sorte qu'un tour complet correspond \`{a} une transposition d'une
+octave, afin de s\'{e}parer hauteur tonale (chroma) et hauteur spectrale
+(octave). Nous d\'{e}montrons l'int\'{e}r\^{e}t de cette approche
+\`{a} travers une formulation transitoire du mod\`{e}le source-filtre.
+Par la suite, nous d\'{e}finissons un op\'{e}rateur unitaire et multi-\'{e}chelles
+sur la spirale obtenue, construit comme une cascade de trois transform\'{e}es
+en ondelettes \`{a} valeurs complexes. Nous illustrons le comportement
+de cet op\'{e}rateur sur un signal de parole.
+
+\footnote{Ce travail est financ\'{e} par la bourse ERC InvariantClass 32095.
+Le code source des exp\'{e}riences et figures est en libre acc\`{e}s
+à l'adresse \texttt{www.github.com/lostanlen/scattering.m}.}
+
+\section{Du temps-fr\'{e}quence au temps-chroma-octave}
+
+Les paradoxes de hauteur synth\'{e}tis\'{e}s par Shepard et Risset
+{[}Risset{]} montrent que la perception de la hauteur n'est pas r\'{e}ductible
+au continuum grave-aigu des fr\'{e}quences physiques. En effet, en
+sommant des sinuso\"{\i}des de fr\'{e}quence $2^{n}f_{0}$ avec $n\in\mathbb{Z}$,
+on obtient une note que l'on peut nommer sur une gamme musicale, bien
+qu'elle ne puisse \^{e}tre localis\'{e}e dans le grave ou l'aigu.
+D\`{e}s lors, en faisant progressivement cro\^{\i}tre $f_{0}$ jusqu'\`{a}
+$2f_{0}$, on peut construire un \emph{glissando} qui semble monter
+ind\'{e}finiment lorsqu'il est r\'{e}p\'{e}t\'{e}. Par ailleurs, en
+filtrant les sinuso\"{\i}des dans une bande dont la fr\'{e}quence
+centrale diminue, on peut donner l'impression de passer du registre
+aigu au registre grave tout en restant sur la m\^{e}me note. La composition
+de ces deux op\'{e}rations produit un son paradoxal qui monte localement
+tout en descendant globalement. Cette exp\'{e}rience met en lumi\`{e}re
+le fait qu'il y a en fait deux attributs perceptifs associ\'{e}s \`{a}
+la fr\'{e}quence. Le premier, appel\'{e} hauteur tonale ou \emph{chroma},
+encode la m\'{e}lodie musicale et l'intonation de la voix ; le second,
+appel\'{e} hauteur spectrale ou simplement \emph{octave}, est une
+composante essentielle du timbre.
+
+Afin de prendre en compte ces propri\'{e}t\'{e}s, on choisit de remplacer
+l'axe rectilin\'{e}aire des hauteurs par un sch\'{e}ma en spirale,
+\`{a} raison d'un tour par octave : un changement de chroma est alors
+analogue \`{a} une rotation, tandis qu'un changement d'octave est
+une dilatation par rapport au centre de la spirale. Cette id\'{e}e
+a \'{e}t\'{e} confirm\'{e}e par de nombreuses exp\'{e}riences en psychoacoustique,
+mais aussi en neurologie de l'audition {[}Warren{]}.
+
+Soit $\psi(t)$ un filtre passe-bande de fr\'{e}quence centrale $\eta>0$
+et dont le facteur de qualit\'{e} $Q$ est de l'ordre de 10. On suppose
+que $\psi$ est une fonction analytique, c'est-\`{a}-dire que $\hat{\psi}(\omega)=0$
+pour $\omega\leq0$. L'analyse en ondelettes consiste \`{a} dilater
+$\psi(t)$ par diff\'{e}rents facteurs d'\'{e}chelle $2^{\gamma}$
+; les filtres obtenus s'\'{e}crivent 
+\begin{equation}
+\psi_{\gamma}(t)=2^{\gamma}\psi(2^{\gamma}t),\;\text{c'est-\`{a}-dire}\;\;\widehat{\psi_{\gamma}}(\omega)=\hat{\psi}(2^{-\gamma}\omega).\label{eq:wavelets}
+\end{equation}
+Ainsi, chaque $\psi_{\gamma}(t)$ est un filtre passe-bande de fr\'{e}quence
+centrale $2^{-\gamma}\eta$ et de facteur de qualit\'{e} $Q$. Par
+ailleurs, en notant $\tau$ le support typique de $\psi(t)$, chaque
+$\psi_{\gamma}(t)$ a un support $2^{\gamma}\tau$.
+
+Soit $J\in\mathbb{N}^{*}$ ; en discr\'{e}tisant les valeurs de $\gamma$
+dans l'intervalle $[0;J[$ par pas de $N^{-1}$ avec $N\geq Q$ entier,
+on construit un banc de filtres couvrant les fr\'{e}quences de $2^{-J}\eta$
+\`{a} $\eta$, soit $J$ octaves exactement. Afin de constuire une
+transform\'{e}e qui conserve l'\'{e}nergie de tout signal r\'{e}el,
+il faut ajouter au banc $\{\psi_{\gamma}\}_{\gamma<J}$ un filtre
+passe-bas $\phi(t)$ \`{a} valeurs r\'{e}elles, d\'{e}fini dans le
+domaine de Fourier par : $\forall\omega\geq0,\;\hat{\phi}(\pm\omega)=\sqrt{1-\frac{1}{2}\sum_{\gamma<J}\vert\widehat{\psi_{\gamma}}(\omega)^{2}\vert^{2}}.$
+Pourvu que $\psi(t)$ soit judicieusement normalis\'{e}, on peut v\'{e}rifier
+que les filtres construits couvrent l'intervalle de fr\'{e}quences
+$[0;\,\eta]$ de fa\c{c}on quasiment \'{e}gale : 
+\begin{equation}
+\forall\omega\in[0;\,\eta],\;1-\varepsilon\leq\vert\hat{\phi}(\omega)\vert^{2}+\dfrac{1}{2}\sum_{\gamma<J}\vert\widehat{\psi_{\gamma}}(\omega)\vert^{2}\leq1.\label{eq:littlewood-paley}
+\end{equation}
+Soit $W$ l'op\'{e}rateur associant \`{a} tout signal r\'{e}el $x(t)$
+le vecteur de signaux
+\[
+Wx(t)=\left(\begin{array}{c}
+x\ast\psi_{\gamma}(t)\\
+x\ast\phi(t)
+\end{array}\right)_{\gamma<J}.
+\]
+
+
+En appliquant la formule de Plancherel {[}Mallat{]}, on peut v\'{e}rifier
+que l'\'{e}quation \ref{eq:littlewood-paley} est \'{e}quivalente
+\`{a} $(1-\varepsilon)\Vert x\Vert_{2}^{2}\leq\Vert Wx\Vert_{2}^{2}\leq\Vert x\Vert_{2}^{2}$
+pour $\varepsilon\ll1$ fix\'{e} ; ce que l'on propose de noter $\Vert Wx\Vert_{2}\lesssim\Vert x\Vert_{2}$.
+En outre, l'in\'{e}galit\'{e} triangulaire permet de v\'{e}rifier
+que $W$ est contractant : on a $\Vert Wx-Wy\Vert_{2}\leq\Vert x-y\Vert_{2}$
+pour tous signaux $x(t)$ et $y(t)$, ce qui contribue \`{a} lutter
+contre la \og mal\'{e}diction de la dimensionnalit\'{e} \fg{} en
+classification.
+
+On appelle \emph{scalogramme }$U_{1}x\left(t,\gamma\right)=\vert x\ast\psi_{\gamma}\vert(t)$
+le module de la transform\'{e}e en ondelettes du signal $x(t)$. Afin
+de faire appara\^{\i}tre la structure en spirale de la variable d'\'{e}chelle
+$\gamma$, on d\'{e}compose $\gamma=j+\frac{\chi}{N}$, o\`{u} les
+entiers $j<J$ et $\chi<N$ sont respectivement la variable d'octave
+et de chroma. Sur la figure 1, on a repr\'{e}sent\'{e} le scalogramme
+d'un signal de parole et le \og spiralogramme \fg{} correspondant,
+que l'on continue de noter $U_{1}x(t,\chi,j)$.
+
+\begin{figure}
+\hfill{}\hfill{}
+
+\protect\caption{\`{A} gauche, un scalogramme du mot anglais \emph{lion}. \`{A} droite,
+le spiralogramme correspondant : le temps est la coordonn\'{e}e longitudinale,
+le chroma la coordonn\'{e}e angulaire, l'octave la coordonn\'{e}e
+radiale.}
+
+
+\end{figure}
+
+
+
+\section{D\'{e}formations du mod\`{e}le source-filtre}
+
+Soient $e(t)=\sum_{k=1}^{K}\exp(\mathrm{i}kf_{0}t)$ un signal harmonique
+\og source \fg{} et $t\mapsto\alpha(t)$ un diff\'{e}omorphisme
+; on d\'{e}finit $e_{\alpha}(t)=(e\circ\alpha)(t)$ la source d\'{e}form\'{e}e.
+De m\^{e}me, on part d'un \og filtre \fg{} $h(t)$ et d'un diff\'{e}omorphisme
+$t\mapsto\beta(t)$ pour d\'{e}finir $h_{\beta}(t)=(h\circ\beta)(t)$.
+Le mod\`{e}le source-filtre d\'{e}form\'{e} est le signal $x(t)=[e_{\alpha}\ast h_{\beta}](t)$.
+\begin{lem*}
+Pour tout $\gamma$ tel que 
+\begin{enumerate}
+\item $\Vert\ddot{\beta}/\dot{\beta}\Vert_{\infty}\ll2^{-\gamma}\eta/Q$
+(filtre lentement variable) et
+\item $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\beta}\Vert_{\infty}\ll2^{\gamma}Q/\eta$
+(r\'{e}ponse fr\'{e}quentielle r\'{e}guli\`{e}re)
+\end{enumerate}
+on a
+
+\[
+[h_{\beta}\ast\psi_{\gamma}](t)\approx H\left(\gamma+\log_{2}\dot{\beta}(t)\right)\psi_{\gamma}\left(\dfrac{\beta(t)}{\dot{\beta}(t)}\right)
+\]
+o\`{u} $H(\gamma)=\hat{h}(2^{-\gamma}\eta)$.\end{lem*}
+\begin{proof}
+Gr\^{a}ce \`{a} la premi\`{e}re hypoth\`{e}se, on d\'{e}veloppe $\beta(t-u)\approx\beta(t)-\dot{\beta}(t)\times u$
+sur le support de $\psi_{\gamma}(t)$. Le changement de variable $u^{\prime}=\dot{\beta}(t)\times u$
+conduit \`{a}
+\[
+[h_{\beta}\ast\psi_{\gamma}](t)=\int_{\mathbb{R}}h(\beta(t)-u^{\prime})\psi_{\gamma}\left(\dfrac{u^{\prime}}{\dot{\beta}(t)}\right)\,\dfrac{\mathrm{d}u^{\prime}}{\dot{\beta}(t)}.
+\]
+L'ondelette $\psi_{\gamma}$ v\'{e}rifiant $\psi_{\gamma}(\dot{\beta}(t)^{-1}u^{\prime})=\dot{\beta}(t)\psi_{\gamma+\log_{2}\dot{\beta}(t)}(u^{\prime})$,
+on peut convertir le facteur de dilatation $\dot{\beta}(t)$ en une
+transposition fr\'{e}quentielle. D'o\`{u} $[h_{\beta}\ast\psi_{\gamma}](t)=[h\ast\psi_{\gamma+\log_{2}\dot{\beta}(t)}](t)$,
+ce qui s'\'{e}crit comme un produit dans le domaine de Fourier :
+\[
+[h_{\beta}\ast\psi_{\gamma}](t)=\dfrac{1}{2\pi}\int_{\mathbb{R}}\hat{h}(\omega)\hat{\psi}_{\gamma+\log_{2}\dot{\beta}(t)}(\omega)\exp(\mathrm{i}\omega\beta(t))\,\dfrac{\mathrm{d}u^{\prime}}{\dot{\beta}(t)}.
+\]
+Gr\^{a}ce \`{a} la seconde hypoth\`{e}se, on approxime $\hat{h}(\omega)$
+par la constante $H(\gamma)=\hat{h}(2^{-\gamma}\eta)$ sur le support
+de $\hat{\psi}_{\gamma+\log_{2}\dot{\beta}(t)}$. D\`{e}s lors, l'int\'{e}grale
+ci-dessus peut \^{e}tre vue comme la transform\'{e}e de Fourier inverse
+de $\hat{\psi}_{\gamma+\log_{2}\dot{\beta}(t)}(\omega)$ \'{e}valu\'{e}e
+en $\beta(t)$. On conclut en revenant \`{a} l'ondelette $\psi_{\gamma}$
+avec l'\'{e}quation $\dot{\beta}(t)^{-1}\psi_{\gamma+\log_{2}\dot{\beta}(t)}(\beta(t))=\psi_{\gamma}(\beta(t)/\dot{\beta}(t))$.\end{proof}
+\begin{prop*}
+Soit, pour un partiel fix\'{e} $k$, l'\'{e}chelle correspondante
+$\gamma=\log_{2}(kf_{0}\eta^{-1})$. Si les conditions suivantes sont
+v\'{e}rifi\'{e}es :
+\begin{enumerate}
+\item $\Vert\ddot{\beta}/\dot{\beta}\Vert_{\infty}\ll2^{-\gamma}\eta/Q$
+(filtre lentement variable),
+\item $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\beta}\Vert_{\infty}\ll2^{\gamma}Q/\eta$
+(r\'{e}ponse fr\'{e}quentielle r\'{e}guli\`{e}re),
+\item $\Vert\ddot{\alpha}/\dot{\alpha}\Vert_{\infty}\ll2^{-\gamma}\eta/Q$
+(source lentement variable) et
+\item $k<Q/2$ (partiel de rang faible),
+\end{enumerate}
+alors le module de la transform\'{e}e en ondelettes du mod\`{e}le
+source-filtre d\'{e}form\'{e}
+
+\[
+\vert e_{\alpha}\ast h_{\beta}\ast\psi_{\gamma}\vert(t)\approx E(\gamma+\log_{2}\dot{\alpha}(t))H(\gamma+\log_{2}\dot{\beta}(t))
+\]
+est localement s\'{e}parable en une r\'{e}ponse de source $E(\gamma)=\vert\widehat{\psi_{\gamma}}(kf_{0})\vert$
+et une r\'{e}ponse de filtre $H(\gamma)=\hat{h}(2^{-\gamma}\eta)=\hat{h}(kf_{0})$,
+chacune en mouvement rigide sur l'axe $\gamma$, celui-ci \'{e}tant
+r\'{e}gi par le signal $\log_{2}\dot{\alpha}(t)$ (resp. $\log_{2}\dot{\beta}(t))$.\end{prop*}
+\begin{proof}
+On part des hypoth\`{e}ses (a) et (b) pour affirmer le lemme pr\'{e}c\'{e}dent
+:
+\[
+\left[e_{\alpha}\ast h_{\beta}\ast\psi_{\gamma}\right](t)=H\left(\gamma+\log_{2}\dot{\beta}(t)\right)\times\int_{\mathbb{R}}e_{\alpha}(t-u)\psi_{\gamma}\left(\dfrac{\beta(u)}{\dot{\beta}(u)}\right)\,\mathrm{d}u.
+\]
+
+
+Comme dans la preuve du lemme, on pose $u^{\prime}=\dot{\alpha}(t)\times(\frac{\beta(t)}{\dot{\beta}(t)}+u-t)$,
+on d\'{e}veloppe et simplifie $\frac{\beta(u)}{\dot{\beta}(u)}\approx\frac{u^{\prime}}{\dot{\alpha}(t)}$,
+et l'on convertit la dilatation temporelle en transposition fr\'{e}quentielle
+avec l'\'{e}quation $\dot{\alpha}(t)^{-1}\psi_{\gamma}(\dot{\alpha}(t)^{-1}u^{\prime})=\psi_{\gamma+\log_{2}\dot{\alpha}(t)}(u^{\prime})$
+:
+\[
+\begin{array}{c}
+\int_{\mathbb{R}}e_{\alpha}(t-u)\psi_{\gamma}\left(\frac{\beta(u)}{\dot{\beta}(u)}\right)\,\mathrm{d}u\\
+=\int_{\mathbb{R}}e_{\alpha}\left(\frac{\beta(t)}{\dot{\beta}(t)}-\frac{u^{\prime}}{\dot{\alpha}(t)}\right)\psi_{\gamma+\log_{2}\dot{\alpha}(t)}(u^{\prime})\,\mathrm{d}u^{\prime}
+\end{array}
+\]
+Avec l'hypoth\`{e}se (3), on lin\'{e}arise le diff\'{e}omorphisme
+$\alpha$ autour de $\frac{\beta(t)}{\dot{\beta}(t)}$, ce qui permet
+de voir l'int\'{e}grale ci-dessus comme la convolution $[e\ast\psi_{\gamma+\log_{2}\dot{\alpha}(t)}]$
+\'{e}valu\'{e}e en $\alpha(\frac{\beta(t)}{\dot{\beta}(t)})$. Puisque
+le banc de filtres a un facteur de qualit\'{e} constant $Q$, la largeur
+de bande \`{a} la fr\'{e}quence $kf_{0}\dot{\alpha}(t)$ est $kf_{0}\dot{\alpha}(t)Q^{-1}$.
+L'hypoth\`{e}se (4) peut se r\'{e}\'{e}crire $(k+1)f_{0}\dot{\alpha}(t)>kf_{0}+\frac{kf_{0}}{2Q}$
+; autrement dit, le $(k+1)^{\text{\`{e}me}}$ partiel est hors de
+la bande passante de $\psi_{\gamma+\log_{2}\dot{\alpha}}$. Plus g\'{e}n\'{e}ralement,
+les partiels $k^{\prime}\neq k$ ont une contribution n\'{e}gligeable
+\`{a} la transform\'{e}e en ondelettes de $e(t)$. En l'absence d'interf\'{e}rences,
+le module $\vert e\ast\psi_{\gamma+\log_{2}\dot{\alpha}(t)}\vert(t)$
+se r\'{e}sume au seul terme $E(\gamma+\log_{2}\dot{\alpha}(t))$ o\`{u}
+l'on a d\'{e}fini $E(\gamma)=\vert\widehat{\psi_{\gamma}}(kf_{0})\vert$.
+\end{proof}
+On peut calculer explicitement $E(\gamma)=\sum_{k=1}^{K}\delta(\gamma-\log_{2}(kf_{0}\eta^{-1}))$,
+ce qui montre que $E(\gamma+\Delta_{j})=E(\gamma)$ pour tout $\Delta_{j}\in\mathbb{N}$.
+Par ailleurs, pourvu que la d\'{e}viation maximale $\Delta_{\nu}$
+du chirp soit petite devant les variations typiques de $H$, il est
+possible d'\'{e}crire $H(\gamma+\Delta\!\nu)\approx H(\gamma)$. Ce
+r\'{e}sultat sugg\`{e}re qu'il est possible de s\'{e}parer les fonctions
+$\log_{2}\dot{\alpha}(t)$ et $\log_{2}\dot{\beta}(t)$ \`{a} partir
+du spiralogramme $U_{1}x(t,\nu,j)$, en d\'{e}composant leur trajectoire
+temporelle selon les variables $t$, $\gamma$ et $j$.
+
+
+\section{Transform\'{e}es en ondelettes sur la spirale}
+
+L'id\'{e}e d'effectuer une nouvelle transform\'{e}e en ondelettes
+sur $U_{1}x(t,\gamma)$ est due \`{a} {[}And\'{e}n{]}. Avec le m\^{e}me
+proc\'{e}d\'{e} qu'\`{a} la section 1, on construit un second banc
+de filtres $\psi_{\gamma_{2}}^{\mathrm{temps}}(t)=2^{\gamma_{2}}\psi^{\mathrm{temps}}(2^{\gamma_{2}}t)$
+pour diff\'{e}rents $\gamma_{2}<J$ \`{a} partir d'une ondelette $\psi^{\mathrm{temps}}$
+de fr\'{e}quence centrale $\eta$ et de facteur de qualit\'{e} $Q_{2}$
+; le filtre passe-bas correspondant est not\'{e} $\phi^{\mathrm{temps}}(t)$.
+On d\'{e}finit le spectre de modulation d'amplitude $Y_{2}^{\mathrm{temps}}x(t,\gamma,\gamma_{2})=[U_{1}x\overset{t}{\ast}\psi_{\gamma_{2}}^{\mathrm{temps}}](t,\gamma)$
+et le spectre acoustique moyen $S_{1}x(t,\gamma)=[U_{1}x\overset{t}{\ast}\phi](t)$,
+de sorte que l'\'{e}nergie du scalogramme est conserv\'{e}e : $\Vert S_{1}x\Vert_{2}^{2}+\Vert Y_{2}^{\mathrm{temps}}x\Vert_{2}^{2}\lesssim\Vert U_{1}x\Vert_{2}^{2}$.
+Bien que cette seconde transform\'{e}e apporte de l'information sur
+la dynamique temporelle de chaque canal fr\'{e}quentiel, son module
+$U_{2}x=\vert Y_{2}x\vert$ ne suffit pas \`{a} caract\'{e}riser les
+chirps, car il ne pr\'{e}serve pas leur coh\'{e}rence temporelle \`{a}
+travers des chromas voisins. Pour rem\'{e}dier \`{a} ce probl\`{e}me,
+on peut penser \`{a} effectuer une transform\'{e}e selon la variable
+$\gamma$ avant d'appliquer le module : cette id\'{e}e se rapproche
+du mod\`{e}le \emph{Spectro-Temporal Receptive Fields }ou STRF {[}Patil{]}.
+Les coefficients qui en r\'{e}sultent sont bien adapt\'{e}s aux modulations
+d'amplitude et de fr\'{e}quence ; mais, dans le cas d'un signal harmonique,
+ils ne rendent pas compte de la r\'{e}gularit\'{e} de $U_{1}x$ \`{a}
+travers des octaves voisines, \`{a} chroma fix\'{e}. Pour tirer parti
+de cette r\'{e}gularit\'{e}, nous proposons de transformer les variables
+$t$, $\gamma$ et $j$ avant d'appliquer le module.
+
+On part d'une ondelette analytique $\psi^{\mathrm{chroma}}(\gamma)$
+de fr\'{e}quence centrale $\eta^{\mathrm{chroma}}$, que l'on dilate
+par des facteurs $2^{\gamma::\gamma}$ \textemdash{} la variable $\gamma::\gamma$,
+prononc\'{e}e \og $\gamma$ selon $\gamma$ \fg{}, est construite
+avec l'op\'{e}rateur infixe $::$ de construction de liste cha\^{\i}n\'{e}e,
+en analogie avec les langages ML. Il faut remarquer que, puisque le
+signal $Y_{2}^{\mathrm{temps}}x$ est complexe, l'intervalle de fr\'{e}quences
+\`{a} couvrir n'est plus $[0;\,\eta]$ mais $[-\eta;\,\eta]$. Les
+fr\'{e}quences centrales sont donc de la forme $(\theta::\text{\ensuremath{\gamma}})2^{-\gamma::\gamma}\eta^{\mathrm{chroma}}$,
+o\`{u} $(\theta::\text{\ensuremath{\gamma}})=\pm1$ est une variable
+de signe. L'\'{e}quation \ref{eq:wavelets} devient dans ce cas
+
+\begin{equation}
+\psi_{\gamma::\gamma,\theta::\gamma}^{\mathrm{chroma}}(\gamma)=(\theta::\gamma)2^{\gamma::\gamma}\psi^{\mathrm{chroma}}((\theta::\gamma)2^{\gamma::\gamma}\gamma).\label{eq:spinned}
+\end{equation}
+Enfin, on fait de m\^{e}me avec la variable d'octave : un banc de
+filtres discret $\text{\{}\psi_{\gamma::j,\theta::j}^{\mathrm{octave}}\}$
+prenant ses valeurs dans les entiers $j<J$ est cr\'{e}\'{e}, ainsi
+que le filtre passe-bas correspondant $\phi^{\mathrm{octave}}$.
+
+\begin{figure}
+\hfill{}\hfill{}
+
+\protect\caption{}
+\end{figure}
+\[
+\Vert U_{2}x\Vert_{2}^{2}\lesssim\Vert Y_{2}^{\mathrm{temps}}x\Vert_{2}^{2}
+\]
+\[
+W_{2}U_{1}x=\left(\begin{array}{c}
+U_{2}x\\
+S_{1}x
+\end{array}\right)
+\]
+\[
+\Vert W_{2}U_{1}x\Vert_{2}\lesssim\Vert U_{1}x\Vert\lesssim\Vert x\Vert.
+\]
+
+
+
+\subsection{Bancs de filtres}
+
+
+\subsection{Op\'{e}rateur non-lin\'{e}aire}
+
+\[
+W_{2}U_{1}x(t,\gamma)=\left(\begin{array}{c}
+U_{1}x\overset{t}{\ast}\psi_{\gamma_{2}}^{\mathrm{temps}}\overset{\gamma}{\ast}\psi_{\gamma::\gamma,\theta::\gamma}^{\mathrm{chroma}}\overset{j}{\ast}\psi_{\gamma::j,\theta::j}^{\mathrm{octave}}\\
+U_{1}x\overset{t}{\ast}\psi_{\gamma_{2}}^{\mathrm{temps}}\overset{\gamma}{\ast}\phi^{\mathrm{chroma}}\overset{j}{\ast}\psi_{\gamma::j,\theta::j}^{\mathrm{octave}}\\
+U_{1}x\overset{t}{\ast}\psi_{\gamma_{2}}^{\mathrm{temps}}\overset{\gamma}{\ast}\psi_{\gamma::\gamma,\theta::\gamma}^{\mathrm{chroma}}\overset{j}{\ast}\phi^{\mathrm{octave}}\\
+U_{1}x\overset{t}{\ast}\psi_{\gamma_{2}}^{\mathrm{temps}}\overset{\gamma}{\ast}\phi^{\mathrm{chroma}}\overset{j}{\ast}\phi^{\mathrm{octave}}\\
+U_{1}x\overset{t}{\ast}\phi^{\mathrm{temps}}
+\end{array}\right)_{\begin{array}{c}
+\gamma_{2}<J\\
+\gamma::\gamma<J::\gamma\\
+\theta::\gamma=\pm1\\
+\gamma::j<J::j\\
+\theta::j=\pm1
+\end{array}}
+\]
+
+
+\begin{figure}
+\hfill{}\hfill{}
+
+\protect\caption{}
+\end{figure}
+
+
+\begin{thebibliography}{1}
+\bibitem{AM11}J. And\'{e}n, S. Mallat. Deep Scattering Spectrum.
+\emph{IEEE Transactions on Signal Processing}, vol. 62, n\textdegree{}
+16, p. 4114\textendash 4128, 2014.
+
+\bibitem{Fla01}P. Flandrin. Time-frequency and chirps. In\emph{ Proc.
+SPIE Meeting Wavelet Applications VIII}, vol. 4391, p. 161\textendash 175,
+Orlando (FL), 2001.
+
+\bibitem{Mal00}S. Mallat. \emph{Une exploration des signaux en ondelettes}.
+Les \'{E}ditions de l'\'{E}cole polytechnique, 2000.
+
+\bibitem{Ris78} J.-C. Risset. Paradoxes de hauteur. Rapport Ircam
+11/78, 1978.
+
+\bibitem{PPS+12}K. Patil, D. Pressnitzer, S. Shamma, M. Elhilali.
+Music in our ears: the biological bases of musical timbre perception.
+\emph{PLoS computational biology}, vol. 8, n\textdegree{} 11, 2012.
+
+\bibitem{WUP+99}J. D. Warren, S. Uppenkamp, R. D. Patterson, T. Griffiths.
+Separating pitch chroma and pitch height in the human brain. \emph{Proceedings
+of the National Academy of Sciences}, vol. 100, n\textdegree{} 17,
+p. 10038\textendash 10042, 2003.\end{thebibliography}
+
+\end{document}

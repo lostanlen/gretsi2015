@@ -1,0 +1,207 @@
+%% ==============================================================
+%% WARNING! FRENCH SPEAKING AUTHORS SHOULD READ gretsifr.tex
+%%          FILE INSTEAD
+%% ATTENTION ! LES AUTEURS FRANCOPHONES DOIVENT SE REFERER AU
+%%             FICHIER gretsifr.tex
+%% ==============================================================
+%% GRETSI'99 EXAMPLE FILE FOR ENGLISH SPEAKING LaTeX2e USERS
+  \documentclass{gretsi}
+  
+  
+   \usepackage[english,french]{babel}   % "babel.sty" + "french.sty"
+% \usepackage[english,francais]{babel} % "babel.sty"
+% \usepackage{french}                  % "french.sty"
+  \usepackage{times}			% ajout times le 30 mai 2003
+ 
+ 
+%% --------------------------------------------------------------
+%% FONTS CODING ?
+% \usepackage[OT1]{fontenc} % Old fonts
+% \usepackage[T1]{fontenc}  % New fonts (preferred)
+%% ==============================================================
+
+\title{Instructions to authors for GRETSI\\  \LaTeXe\ format}
+
+\author{\coord{Michel}{Dupont}{1},
+        \coord{Marcel}{Dupond}{1},
+    \coord{Michelle}{Durand}{2},
+    \coord{Marcelle}{Durand}{1}}
+
+\address{\affil{1}{Laboratoire Traitement des Signaux \\
+         1 rue de la Parole, BP 00000, 99000 Nouvelleville Cedex 00, France}
+         \affil{2}{Laboratoire Traitement des Images \\
+         1 rue de la Vision, BP 99999, 00000 Autreville, France}}
+
+%% If all authors have the same address %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%   \auteur{\coord{Michel}{Dupont}{},                                         %
+%           \coord{Marcel}{Dupond}{},                                         %
+%           \coord{Michelle}{Durand}{},                                       %
+%           \coord{Marcelle}{Durand}{}}                                       %
+%                                                                             %
+%   \adress{\affil{}{Laboratoire Traitement des Signaux et des Images \\      %
+%     1 rue de la Science, BP 00000, 99999 Nouvelleville Cedex 00, France}}   %
+%                                                                             %
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\email{Michel.Dupont@labo.nouvelleville.fr,
+Marcel.Dupond@labo.nouvelleville.fr\\
+Michelle.Durand@ailleurs.fr, Marcelle.Durand@ailleurs.fr}
+
+
+\frenchabstract{Les auteurs publiant au GRETSI et utilisant le
+traitement de texte \LaTeXe\ trouveront ci-dessous quelques
+indications destin{\'e}es {\`a} leur faciliter la t{\^a}che. Le
+fichier \texttt{gretsien.tex} qui contient le pr{\'e}sent
+document respecte les contraintes fix{\'e}es ; recopiez le, par
+exemple sous le nom \texttt{monarticle.tex}, et placez votre
+texte aux endroits appropri{\'e}s.}
+
+\englishabstract{GRETSI authors who are \LaTeXe\ users will find
+above some informations to help them. The file
+\texttt{gretsien.tex} which contains this document obeys the
+rules; copy it, with the name \texttt{mypaper.tex} for instance,
+and put your text in appropriate fields.}
+
+\begin{document}
+\maketitle
+
+\section{Document format}
+\subsection{\texttt{gretsi} class}
+Your paper should not exceed 4 pages, including tables and
+figures. It should consist of 2 columns each measuring 88mm wide,
+with a gap of 6mm between the columns. We advise you to use the
+\texttt{gretsi.cls} \LaTeXe\ class file to perform automatic page
+setting:
+\begin{verbatim}
+    \documentclass{gretsi}
+\end{verbatim}
+In your file preamble, you have to enter the following informations:
+\begin{itemize}
+
+    \item paper title:\\
+    \verb!\title{Paper title}!
+
+    \item Christian and first names of each author, with a number
+    linking to its address:\\
+    \verb!\author{\coord{Pierre}{Dupont}{1},!\\
+    \verb!        \coord{John}{Smith}{2}}!
+
+    \item authors' addresses:\\
+    \verb!\adresse{\affil{1}{Laboratory \\! \\
+    \verb!         street, town, country}     ! \\
+    \verb!         \affil{2}{University \\! \\
+    \verb!         street, town, country}     !
+
+    \item e-mail addresses:\\
+    \verb!\email{First.Name@labo.fr, smith@univ.fr}!
+
+    \item french and english written abstracts:\footnote{French
+    written abstract is optional, but highly recommended.}\\
+    \verb!\frenchabstract{R\'esum\'e fran\c{c}ais}! \\
+    \verb!\englishabstract{English written abstract}!
+
+    \item then, your text, and the bibliography: \\
+    \verb!\begin{document}! \\
+    \verb!\maketitle! \\
+    \verb!Paper text! \\
+    \verb!\begin{thebibliography}{99}! \\
+    \verb!The references! \\
+    \verb!\end{thebibliography}! \\
+    \verb!\end{document}!
+
+\end{itemize}
+
+\subsection{Section and subsection}
+This example file uses \verb!\section! and \verb!\subsection!. For
+lower level sectioning commands, you obtain:
+\subsubsection{Subsubsection}
+By means of \verb!\subsubsection!.
+\paragraph{Subsubsubsection}
+By means of \verb!\paragraph!.
+
+\section{Tables, figures and mathematics}
+The title of tables should appear at the top, as in table
+\ref{power}.
+\begin{table}[htb]
+    \caption{\label{power}2 to the power}
+    \begin{center}
+    \begin{tabular}{||c||*{8}{c|}|}
+        \hline\hline
+        $n$   & 1 & 2 & 3 &  4 &  5 &  6 &   7 &   8 \\ \hline
+        $2^n$ & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256 \\
+        \hline\hline
+    \end{tabular}
+    \end{center}
+\end{table}
+
+Captions should appear below graphical objects, as in figure \ref{circle}.
+\begin{figure}[htb]
+    \begin{center}
+    \setlength{\unitlength}{0.5cm}
+    \begin{picture}(5,5)
+        \put(2.5,2.5){\oval(5,5)}
+        \put(1,1){\line(1,0){3}}
+        \put(4,1){\line(0,1){3}}
+        \put(1,4){\line(1,0){3}}
+        \put(1,1){\line(0,1){3}}
+    \end{picture}
+    \end{center}
+    \caption{\label{circle}a square in an oval}
+\end{figure}
+
+Including \texttt{Postscript} graphics files is easily performed by
+means of \texttt{graphics}, \texttt{graphicx} or \texttt{epsfig}
+packages. To insert \texttt{fig.eps} file, with automatic width
+adjustment, using \texttt{graphics} package, you have to enter:
+\begin{verbatim}
+    \begin{figure}[htb]
+    \begin{center}
+    \resizebox{88mm}{!}{
+    \includegraphics{fig.eps}}
+    \end{center}
+    \legende{title}
+    \end{figure}
+\end{verbatim}
+With \texttt{graphicx} package, you have to enter:
+\begin{verbatim}
+    \begin{figure}[htb]
+    \begin{center}
+    \includegraphics[width=88mm]{fig.eps}
+    \end{center}
+    \legende{title}
+    \end{figure}
+\end{verbatim}
+With \texttt{epsfig}, you have to enter:
+\begin{verbatim}
+    \begin{figure}[htb]
+    \begin{center}
+    \epsfig{file=fig.eps,width=88mm}
+    \end{center}
+    \legende{title}
+    \end{figure}
+\end{verbatim}
+Mathematical formulas appearence can be improved by means of
+\texttt{amsmath} package from $\mathcal{AMS}$-\LaTeX. They
+have to be numbered as formula \ref{formula}:
+\begin{equation}
+   \label{formula}
+   F(x) = \int_{-\infty}^x f(u)\,du
+\end{equation}
+
+\begin{thebibliography}{99}
+
+\bibitem{companion}
+M.~Goossens, F~Mittelbach et A.~Samarin.
+\emph{The \LaTeX{} Companion}.
+Addison-Wesley, 1994.
+
+\bibitem{lamport94a}
+L.~Lamport.
+\emph{\LaTeX{} User's Guide and Reference Manual}.
+Addison-Wesley, 1994.
+
+\end{thebibliography}
+
+\end{document}

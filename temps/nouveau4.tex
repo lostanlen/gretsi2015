@@ -1,0 +1,25 @@
+%% LyX 2.1.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[french,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{esint}
+\usepackage{babel}
+\makeatletter
+\addto\extrasfrench{%
+   \providecommand{\og}{\leavevmode\flqq~}%
+   \providecommand{\fg}{\ifdim\lastskip>\z@\unskip\fi~\frqq}%
+}
+
+\makeatother
+\begin{document}
+\selectlanguage{french}%
+\begin{flalign*}
+\left[e_{\mu}\ast h_{\nu}\ast\psi_{\lambda_{1}}\right](t)\\
+ & =H\left(\log_{2}\lambda_{1}-\log_{2}\dot{\nu}(t)\right)\times\int_{\mathbb{R}}e_{\mu}(t-u)\psi_{\lambda_{1}}\left(\dfrac{\nu(u)}{\dot{\nu}(u)}\right)\,\mathrm{d}u
+\end{flalign*}
+\selectlanguage{english}%
+
+\end{document}

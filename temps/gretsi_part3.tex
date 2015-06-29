@@ -1,0 +1,88 @@
+%% LyX 2.1.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[french,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{babel}
+\makeatletter
+\addto\extrasfrench{%
+   \providecommand{\og}{\leavevmode\flqq~}%
+   \providecommand{\fg}{\ifdim\lastskip>\z@\unskip\fi~\frqq}%
+}
+
+\makeatother
+\begin{document}
+\selectlanguage{french}%
+C'est en raison de ses bonnes propriétés de résolution temps-fréquence,
+de stabilité aux déformations, et de sparsité que le scalogramme $x_{1}(u_{1},\lambda_{1})$
+est un outil de choix pour la classification de sons. Or, afin de
+pouvoir généraliser une classe de signaux à partir d'un nombre limité
+d'exemples, il est nécessaire de construire une représentation invariante
+par translation à l'échelle temporelle $T$ des unités à classifier.
+Le scalogramme est une représentation \emph{covariante }à la translation,
+bien qu'on puisse le rendre invariant en appliquant une moyenne glissante
+sur l'axe temporel. L'échelle $T$ vaut typiquement $200\,\mathrm{ms}$
+pour des notes de musique ou des syllabes ; pourtant, en raison de
+la nature transitoire des signaux de musique et de parole, les capacités
+de discrimination du scalogramme chutent dès que $T$ dépasse $20\,\mathrm{ms}$.
+Afin d'étendre cette limite, il s'agit de démoduler les oscillations
+du scalogramme $x_{1}(u_{1},\lambda_{1})$ dont la période est inférieure
+à $T$ ; encore une fois, on requiert une bonne stabilité à la variabilité
+naturelle des sons à l'intérieur d'une classe.
+
+Compte tenu de ces observations, {[}Andén et Mallat, 2011{]} ont introduit
+la transformée de scattering pour les sons, comme le \og scalogramme
+du scalogramme \fg{}. Pour toute fréquence $\lambda_{1}$, il s'agit
+de transformer $x_{1}(u_{1},\lambda_{1})$ en ondelettes comme un
+signal unidimensionnel du temps $u_{1}$, et d'appliquer le module
+:
+
+\begin{equation}
+x_{2}(u_{1},\lambda_{1},\lambda_{2})=\vert x_{1}(u_{1},\lambda_{1})\ast\psi_{\lambda_{2}}(u_{1})\vert,\label{eq:plain-scattering}
+\end{equation}
+où $\psi_{\lambda_{2}}(u_{1})$ est une ondelette de fréquence centrale
+$\lambda_{2}$ (en Hertz). La transformée de scattering capture explicitement
+les modulations d'amplitude du signal, ce qui a mené à des progrès
+considérables en classification de signaux. Cependant, elle n'est
+pas stable aux mouvement de hauteur au-delà de $Q^{-1}$, soit typiquement
+un seizième d'octave. Pour intégrer l'évolution de hauteur dans la
+transformée, on peut redéfinir $x_{2}$ comme 
+\[
+x_{2}(u_{2},\lambda_{1},\lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}\vert(u_{2}),
+\]
+où $u_{2}$ est une variable générique construite à partir du temps
+$u_{1}$ et de la fréquence $\lambda_{1}$. Il faut remarquer que
+cette équation est une généralisation du modèle original du scattering
+\ref{eq:plain-scattering} : en écrivant $u_{2}=u_{1}$ et en factorisant
+l'action de $\psi_{\lambda_{2}}(u_{2})$ sur toutes les fréquences
+$\lambda_{1}$, on parvient à $\vert x_{1}\ast\psi_{\lambda_{2}}\vert(u_{2})$. 
+
+Le modèle cortical de {[}Patil et al.{]} effectue des transformées
+sur les déplacements joints en temps et en log-fréquence : $u_{2}=(u_{1},\log_{2}\lambda_{1})$.
+La variabe de Fourier correspondante s'écrit $\lambda_{2}=(a,b)$
+où $a$ est la fréquence temporelle (en Hertz) $u_{1}$ et $b$ est
+la fréquence log-fréquentielle (en cycles par octave). 
+\[
+\psi_{\lambda_{2}}(u_{1},\log_{2}\lambda_{1})=\psi_{a}(u_{1})\ast\psi_{b}(\log_{2}\lambda_{1})
+\]
+Nous proposons d'étendre ce modèle afin d'inclure la variabilité des
+déplacements sur les octaves. On pose donc $u_{2}=(u_{1},\log_{2}\lambda_{1},\lfloor\log_{2}\lambda_{1}\rfloor)$
+la variable de déplacement sur la spirale. La fréquence correspondante
+s'écrit $\lambda_{2}=(a,b,c)$ où $a$ est la fréquence temporelle
+(en Hertz), $b$ est la fréquence log-fréquentielle (en cycles par
+octave), $c$ est la \og fréquence selon les octaves \fg{} (en cycles
+par octave). L'expérience de Shepard nous apprend que, bien les fréquences
+$b$ et $c$ soient exprimées dans la même unité, elles correspondent
+à des phénomènes différents : avec typiquement $\vert b^{-1}\vert<1$
+octave et $\vert c^{-1}\vert>1$ octave, $b$ quantifie un déplacement
+angulaire sur la spirale tandis que $c$ quantifie un déplacement
+radial. On propose d'appeler \og ondelettes de Shepard \fg{} les
+produits séparables d'ondelettes sur la spirale $u_{2}=(u_{1},\log_{2}\lambda_{1},\lfloor\log_{2}\lambda_{1}\rfloor)$
+: 
+\[
+\psi_{\lambda_{2}}(u_{1},\log_{2}\lambda_{1},\lfloor\log_{2}\lambda_{1}\rfloor)=\psi_{a}(u_{1})\ast\psi_{b}(\log_{2}\lambda_{1})\ast\psi_{c}(\lfloor\log_{2}\lambda_{1}\rfloor).
+\]
+Sur la figure 2, on a représenté deux ondelettes de Shepard $\psi_{\lambda_{2}}$
+pour différentes valeurs de fréquences $a$, $b$ et $c$.\selectlanguage{english}%
+
+\end{document}
