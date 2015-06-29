@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  30 JUN 2015 01:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  30 JUN 2015 01:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -254,32 +254,32 @@ Package: lipsum 2011/04/14 v1.2 150 paragraphs of Lorem Ipsum dummy text
 (./gretsifr.aux)
 \openout1 = `gretsifr.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 94.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 94.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 93.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 93.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 94.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 93.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-LaTeX Info: Redefining \degres on input line 94.
-LaTeX Info: Redefining \dots on input line 94.
-LaTeX Info: Redefining \up on input line 94.
+LaTeX Info: Redefining \degres on input line 93.
+LaTeX Info: Redefining \dots on input line 93.
+LaTeX Info: Redefining \up on input line 93.
 
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -343,43 +343,43 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 95.
-LaTeX Font Info:    Try loading font information for U+msa on input line 95.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 94.
+LaTeX Font Info:    Try loading font information for U+msa on input line 94.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 95.
+LaTeX Font Info:    Try loading font information for U+msb on input line 94.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 95.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 94.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 95.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 94.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 97.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 96.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (0.83693pt too wide) in paragraph at lines 120--129
-[]\T1/ptm/m/n/10 La va-riable $\OML/cmm/m/it/10 ^^U[]$ \T1/ptm/m/n/10 est ho-mo
--gène à une fré-quence en Hertz. Ainsi,
- []
-
-
-Underfull \hbox (badness 2050) in paragraph at lines 140--140
+Underfull \hbox (badness 2050) in paragraph at lines 106--106
 \T1/ptm/m/n/8 code source des ex-pé-riences et fi-gures est en libre ac-cès a l
 'adresse
  []
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 144.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 110.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (0.83693pt too wide) in paragraph at lines 127--136
+[]\T1/ptm/m/n/10 La va-riable $\OML/cmm/m/it/10 ^^U[]$ \T1/ptm/m/n/10 est ho-mo
+-gène à une fré-quence en Hertz. Ainsi,
+ []
+
 
 Overfull \hbox (8.38521pt too wide) in paragraph at lines 145--148
 \T1/ptm/m/n/10 se re-portent au sca-lo-gramme $\OML/cmm/m/it/10 x[]$\T1/ptm/m/n
@@ -412,14 +412,14 @@ $\T1/ptm/m/n/10 .
  []
 
 [2]
-Overfull \hbox (1.39923pt too wide) in paragraph at lines 256--258
+Overfull \hbox (1.14693pt too wide) in paragraph at lines 256--258
 []$\OMS/cmsy/m/n/10 k[]\OML/cmm/m/it/10 h=[]\OMS/cmsy/m/n/10 k[]k\OT1/cmr/m/n/1
 0 1\OML/cmm/m/it/10 =[]\OMS/cmsy/m/n/10 k[] ^^\ \OML/cmm/m/it/10 Q^^Q[]=^^U[]$ 
 \T1/ptm/m/it/10 (ré-ponse fré-quen-tielle ré-
  []
 
 
-Overfull \hbox (5.80014pt too wide) detected at line 267
+Overfull \hbox (3.55215pt too wide) detected at line 267
 \OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 e[] \OMS/cmsy/m/n/10 ^^C \OML/cmm/m/it/10 h[
 ] \OMS/cmsy/m/n/10 ^^C \OML/cmm/m/it/10  []\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 (\
 OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^Y \OML/cmm/m/it/10 E\OT1/
@@ -489,7 +489,7 @@ Here is how much of TeX's memory you used:
  8717 multiletter control sequences out of 15000+600000
  47482 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,11n,26p,1466b,272s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,11n,26p,1474b,272s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.e
 nc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pf
 b></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
@@ -507,7 +507,7 @@ live/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/
 texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist
 /fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/ty
 pe1/public/tipa/xipa10.pfb>
-Output written on gretsifr.pdf (4 pages, 638359 bytes).
+Output written on gretsifr.pdf (4 pages, 638396 bytes).
 PDF statistics:
  89 PDF objects out of 1000 (max. 8388607)
  60 compressed objects within 1 object stream
