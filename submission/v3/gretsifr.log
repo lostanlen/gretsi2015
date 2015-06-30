@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  30 JUN 2015 01:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  30 JUN 2015 23:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -372,22 +372,23 @@ Underfull \hbox (badness 2050) in paragraph at lines 106--106
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 110.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (0.83693pt too wide) in paragraph at lines 127--136
-[]\T1/ptm/m/n/10 La va-riable $\OML/cmm/m/it/10 ^^U[]$ \T1/ptm/m/n/10 est ho-mo
--gène à une fré-quence en Hertz. Ainsi,
+Overfull \hbox (2.19858pt too wide) in paragraph at lines 112--119
+\T1/ptm/m/n/10 cou-vrant les fré-quences au-dibles. Soit $\OML/cmm/m/it/10  \OT
+1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )$ \T1/ptm/m/n/10 un filtre pas
+se-bande
  []
 
 
-Overfull \hbox (8.38521pt too wide) in paragraph at lines 145--148
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.38521pt too wide) in paragraph at lines 139--142
 \T1/ptm/m/n/10 se re-portent au sca-lo-gramme $\OML/cmm/m/it/10 x[]$\T1/ptm/m/n
 /10 , on peut en-vi-sa-ger d'ité-rer l'étape
  []
 
 
-Overfull \hbox (1.5281pt too wide) in paragraph at lines 145--148
+Overfull \hbox (1.5281pt too wide) in paragraph at lines 139--142
 \T1/ptm/m/n/10 quence $\OML/cmm/m/it/10 ^^U[]$\T1/ptm/m/n/10 , il s'agit de tra
 ns-for-mer $\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t; [][] ^^U[]
 \OT1/cmr/m/n/10 )$ \T1/ptm/m/n/10 par une convo-
@@ -398,28 +399,28 @@ ns-for-mer $\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t; [][] ^^U[]
 
 
 ]
-Overfull \hbox (11.33624pt too wide) in paragraph at lines 159--162
+Overfull \hbox (11.33624pt too wide) in paragraph at lines 153--156
 \T1/ptm/m/n/10 tions, on construit une on-de-lette bi-di-men-sion-nelle $\OML/c
 mm/m/it/10  []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t; [][] ^^U[]\OT1/cmr/m/n/10 )$
 \T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (8.02534pt too wide) in paragraph at lines 175--177
+Overfull \hbox (8.02534pt too wide) in paragraph at lines 169--171
 []\T1/ptm/m/n/10 l'indice as-so-cié à l'on-de-lette bi-di-men-sion-nelle $\OML/
 cmm/m/it/10  []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t; [][] ^^U[]\OT1/cmr/m/n/10 )
 $\T1/ptm/m/n/10 .
  []
 
 [2]
-Overfull \hbox (1.14693pt too wide) in paragraph at lines 256--258
+Overfull \hbox (1.14693pt too wide) in paragraph at lines 250--252
 []$\OMS/cmsy/m/n/10 k[]\OML/cmm/m/it/10 h=[]\OMS/cmsy/m/n/10 k[]k\OT1/cmr/m/n/1
 0 1\OML/cmm/m/it/10 =[]\OMS/cmsy/m/n/10 k[] ^^\ \OML/cmm/m/it/10 Q^^Q[]=^^U[]$ 
 \T1/ptm/m/it/10 (ré-ponse fré-quen-tielle ré-
  []
 
 
-Overfull \hbox (3.55215pt too wide) detected at line 267
+Overfull \hbox (3.55215pt too wide) detected at line 261
 \OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 e[] \OMS/cmsy/m/n/10 ^^C \OML/cmm/m/it/10 h[
 ] \OMS/cmsy/m/n/10 ^^C \OML/cmm/m/it/10  []\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 (\
 OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^Y \OML/cmm/m/it/10 E\OT1/
@@ -430,47 +431,47 @@ n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ))\OML/cmm/m/it/10 H\OT1/cmr/m/n/10 ([]
  []
 
 
-Overfull \hbox (6.04451pt too wide) in paragraph at lines 267--272
+Overfull \hbox (6.04451pt too wide) in paragraph at lines 261--266
 \T1/ptm/m/it/10 est lo-ca-le-ment sé-pa-rable en une ré-ponse de source $\OML/c
 mm/m/it/10 E\OT1/cmr/m/n/10 ([][] \OML/cmm/m/it/10 ^^U[]\OT1/cmr/m/n/10 ) =
  []
 
 
-Overfull \hbox (1.44963pt too wide) in paragraph at lines 267--272
+Overfull \hbox (1.44963pt too wide) in paragraph at lines 261--266
 \T1/ptm/m/it/10 cha-cune en mou-ve-ment ri-gide sur l'axe log-fréquentiel $[][]
  \OML/cmm/m/it/10 ^^U[]$\T1/ptm/m/it/10 ;
  []
 
 
-Overfull \hbox (6.10274pt too wide) in paragraph at lines 315--326
+Overfull \hbox (6.10274pt too wide) in paragraph at lines 309--320
 \T1/ptm/m/n/10 toires sur les couples de va-riables temps-chroma et temps-octav
 e.
  []
 
 
-Overfull \hbox (0.1541pt too wide) in paragraph at lines 315--326
+Overfull \hbox (0.1541pt too wide) in paragraph at lines 309--320
 \T1/ptm/m/n/10 La fi-gure 3 pré-sente un exemple de si-gnal de pa-role dont cha
 que
  []
 
-<gretsi_fig1.png, id=21, 250.1847pt x 241.65282pt>
+<gretsi_fig1.png, id=22, 250.1847pt x 241.65282pt>
 File: gretsi_fig1.png Graphic file (type png)
  <use gretsi_fig1.png>
-Package pdftex.def Info: gretsi_fig1.png used on input line 329.
+Package pdftex.def Info: gretsi_fig1.png used on input line 323.
 (pdftex.def)             Requested size: 250.18407pt x 241.65222pt.
 
-<gretsi_fig2.png, id=23, 250.1847pt x 341.275pt>
+<gretsi_fig2.png, id=24, 250.1847pt x 341.275pt>
 File: gretsi_fig2.png Graphic file (type png)
  <use gretsi_fig2.png>
-Package pdftex.def Info: gretsi_fig2.png used on input line 337.
+Package pdftex.def Info: gretsi_fig2.png used on input line 331.
 (pdftex.def)             Requested size: 184.9429pt x 252.28958pt.
 
-<gretsi_fig3.png, id=24, 250.1847pt x 398.23781pt>
+<gretsi_fig3.png, id=25, 250.1847pt x 398.23781pt>
 File: gretsi_fig3.png Graphic file (type png)
  <use gretsi_fig3.png>
-Package pdftex.def Info: gretsi_fig3.png used on input line 345.
+Package pdftex.def Info: gretsi_fig3.png used on input line 339.
 (pdftex.def)             Requested size: 250.18407pt x 398.23683pt.
-LaTeX Font Info:    Try loading font information for T3+ptm on input line 359.
+LaTeX Font Info:    Try loading font information for T3+ptm on input line 353.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/tipa/t3ptm.fd
 File: t3ptm.fd 2001/12/31 TIPA font definitions
@@ -478,10 +479,14 @@ File: t3ptm.fd 2001/12/31 TIPA font definitions
 
 Package frenchb.ldf Warning: Degrees would look better in TS1-encoding: 
 (frenchb.ldf)                add \usepackage{textcomp} to the preamble. 
-(frenchb.ldf)                Degrees used on input line 367.
+(frenchb.ldf)                Degrees used on input line 361.
 
 [3] [4 <./gretsi_fig1.png> <./gretsi_fig2.png> <./gretsi_fig3.png>]
-(./gretsifr.aux) ) 
+(./gretsifr.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
  5380 strings out of 493117
  72857 string characters out of 6135433
@@ -490,24 +495,24 @@ Here is how much of TeX's memory you used:
  47482 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,11n,26p,1474b,272s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.e
-nc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pf
-b></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
-/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
-sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/
-local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/loc
-al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
-l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/
-texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/te
-xlive/2014/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/loca
-l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/l
-ocal/texlive/2014/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/tex
-live/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/
-texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist
-/fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/ty
-pe1/public/tipa/xipa10.pfb>
-Output written on gretsifr.pdf (4 pages, 638396 bytes).
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
+xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
+live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texli
+ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
+/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/20
+14/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2014/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/texmf
+-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2014/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/texlive/201
+4/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2014/texmf-
+dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts
+/type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw
+/times/utmri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/tipa/
+xipa10.pfb>
+Output written on gretsifr.pdf (4 pages, 639640 bytes).
 PDF statistics:
  89 PDF objects out of 1000 (max. 8388607)
  60 compressed objects within 1 object stream

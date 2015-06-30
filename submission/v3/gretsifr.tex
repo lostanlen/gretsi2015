@@ -110,36 +110,30 @@ a l'adresse \texttt{www.github.com/lostanlen/scattering.m}.}
 \subsection{Scalogramme et scattering temporel}
 
 On commence par construire une transform\'{e}e en ondelettes couvrant
-les fr\'{e}quences audibles : soit $\psi(t)$ un filtre passe-bande
-\`{a} valeurs complexes, de fr\'{e}quence centrale r\'{e}duite $1$
-et de largeur de bande $1/Q$. L'analyse en ondelettes consiste \`{a}
-dilater la transform\'{e}e de Fourier $\hat{\psi}(\omega)$ de
-$\psi(t)$ par des facteurs de r\'{e}solution $\lambda_{1}>0$
-: 
-
+les fr\'{e}quences audibles. Soit $\psi(t)$ un filtre passe-bande
+\`{a} de fr\'{e}quence centrale r\'{e}duite $1$
+et de largeur de bande $1/Q$. On dilate la transform\'{e}e de Fourier
+$\hat{\psi}(\omega)$ de
+$\psi(t)$ par des facteurs de r\'{e}solution
+$\lambda_1 = 2^{j_1 + \chi_1}$ où $j_1 \in \mathbb{Z}$ et $\chi_1 \in \{1 \ldots Q\}$ : 
 \begin{equation}
-\widehat{\psi_{\lambda_{1}}}(\omega) = \hat{\psi}({\lambda_1}^{-1} \omega),
+\widehat{\psi}_{\lambda_{1}}(\omega) = \widehat{\psi}({\lambda_1}^{-1} \omega),
 \text{ soit }
 \psi_{\lambda_{1}}(t)=\lambda_{1}\psi(\lambda_{1}t).
 \end{equation}
-
-
-La variable $\lambda_{1}$ est homog\`{e}ne \`{a} une fr\'{e}quence en Hertz. Ainsi, chaque
-ondelette $\psi_{\lambda_{1}}(t)$ est un filtre passe-bande de
+Chaque ondelette $\psi_{\lambda_{1}}(t)$ est un filtre passe-bande de
 fr\'{e}quence centrale $\lambda_{1}$, de largeur de bande $\lambda_{1}/Q$
 et de support temporel $Q/\lambda_{1}$. Son facteur de qualit\'{e},
 d\'{e}fini comme le rapport de la fr\'{e}quence centrale sur la largeur
 de bande, reste \'{e}gal \`{a} $Q$.
-On construit donc un banc de filtres à Q constant, capable de produire une représentation temps-fréquence à la fois sparse et stable \cite{AM11, PPS+12}.
+On construit donc un banc de filtres à Q constant, capable de produire une représentation temps-fréquence stable et parcimonieuse \cite{AM11, PPS+12}.
 On choisit $Q=16$ dans les figures
 de cet article.
 
-On appelle scalogramme le module de la transformée en ondelettes résultant de la construction
-du banc de filtres $\psi_{\lambda_{1}}$, indexé par le logarithme en base $2$ de la fréquence.
-Le scalogramme de la figure 3 illustre la richesse de l'information géométrique transitoire révélée par cette opération, information qu'il s'agit de capturer sur une échelle d'environ $200\,\mathrm{ms}$ par l'application d'une seconde transformée.
+Étant donné un signal audio $x(t)$, on appelle scalogramme le module de la transformée en ondelettes $x \ast \psi_{\lambda_{1}}(t)$, indexé par le logarithme en base $2$ de la fréquence acoustique $\lambda_1$ :
 
 \[
-x_{1}(t,\log_{2}\lambda_{1})=\vert x\ast\psi_{\lambda_{1}}\vert(t)
+x_{1}(t,\log_{2}\lambda_{1})=\vert x\ast\psi_{\lambda_{1}}\vert(t).
 \]
 
 Puisque les mêmes exigences de stabilité aux déformations se reportent au scalogramme $x_1$, on peut envisager d'itérer l'étape précédente, c'est-à-dire d'appliquer une nouvelle transformée en ondelettes sur $x_1$ lui-même ; c'est ainsi qu'Andén et Mallat \cite{AM11} ont introduit la transformée de scattering pour les sons, comme le \og scalogramme du scalogramme \fg{}.
