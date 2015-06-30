@@ -123,7 +123,7 @@ $\lambda_1 = 2^{j_1 + \chi_1}$ où $j_1 \in \mathbb{Z}$ et $\chi_1 \in \{1 \ldots
 \end{equation}
 Chaque ondelette $\psi_{\lambda_{1}}(t)$ est un filtre passe-bande de
 fr\'{e}quence centrale $\lambda_{1}$, de largeur de bande $\lambda_{1}/Q$
-et de support temporel $Q/\lambda_{1}$. Son facteur de qualit\'{e},
+et de support temporel $2Q/\lambda_{1}$. Son facteur de qualit\'{e},
 d\'{e}fini comme le rapport de la fr\'{e}quence centrale sur la largeur
 de bande, reste \'{e}gal \`{a} $Q$.
 On construit donc un banc de filtres à Q constant, capable de produire une représentation temps-fréquence stable et parcimonieuse \cite{AM11, PPS+12}.
@@ -131,20 +131,18 @@ On choisit $Q=16$ dans les figures
 de cet article.
 
 Étant donné un signal audio $x(t)$, on appelle scalogramme le module de la transformée en ondelettes $x \ast \psi_{\lambda_{1}}(t)$, indexé par le logarithme en base $2$ de la fréquence acoustique $\lambda_1$ :
-
 \[
-x_{1}(t,\log_{2}\lambda_{1})=\vert x\ast\psi_{\lambda_{1}}\vert(t).
+x_{1}(t,\log\lambda_{1})=\vert x\ast\psi_{\lambda_{1}}\vert(t).
 \]
-
-Puisque les mêmes exigences de stabilité aux déformations se reportent au scalogramme $x_1$, on peut envisager d'itérer l'étape précédente, c'est-à-dire d'appliquer une nouvelle transformée en ondelettes sur $x_1$ lui-même ; c'est ainsi qu'Andén et Mallat \cite{AM11} ont introduit la transformée de scattering pour les sons, comme le \og scalogramme du scalogramme \fg{}.
-Pour toute fréquence $\lambda_{1}$, il s'agit de transformer $x_{1}(t,\log_2 \lambda_{1})$ par une convolution avec
-des ondelettes  $\psi_{\lambda_{2}}(t)$ le long de la variable de temps $t$ :
-\begin{equation}
-x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2})=\vert
-x_{1}(.,\log_2\lambda_{1})\ast\psi_{\lambda_{2}}(t)\vert.\label{eq:plain-scattering}
-\end{equation}
-L'index $\lambda_2$ est la fréquence centrale relativement à $t$.
-L'échelle de cette ondelette, qui donne la taille de son support, est donc $|\lambda_2|^{-1}$.
+La transformée à Q constant (CQT) $S_1 x$ correspond à un filtrage passe-bas de $x_1$ par une fenêtre $\phi(t)$ de support $T$:
+\[
+S_1 x(t,\log\lambda_1) = x_1 \overset{t}{\ast} \phi_T = \vert x \overset{t}{\ast} \psi_{\lambda_1} \vert \ast \phi_T.
+\]
+Lors de ce fitlrage passe-bas, les modulations d'amplitude dans $x_1$ de fréquence supérieure à $1/T$ sont détruites. Afin de les restaurer, Andén et Mallat \cite{AM11} ont introduit la transformée de scattering comme le \og scalogramme du scalogramme \fg{}:
+\[
+x_2(t,\log \lambda_1,\log \lambda_2) = \vert x_1 \overset{t}{\ast} \psi_{\lambda_2} \vert = \left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert
+\]
+Les ondelettes $\psi_{\lambda_2}(t)$ ont un facteur de qualité égal à $1$, mais nous choisissons de conserver la notation $\psi$ par souci de simplicité. Chaque ondelette $\psi_{\lambda_2}(t)$ a pour fréquence centrale $\lambda_2$ et pour support temporel $2 / \lambda_2$.
 
 Le tenseur obtenu $x_2$, qui quantifie explicitement les modulations d'amplitude du signal pour des périodes atteignant $200$ ms,
  est notablement plus performant sur des problèmes de classification de genre musical ou de reconnaissance de phonèmes \cite{AM11} que les représentations issues du scalogramme moyenné, telles que les descripteurs cepstraux (MFCC).
