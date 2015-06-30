@@ -121,7 +121,7 @@ $\lambda_1 = 2^{j_1 + \chi_1}$ où $j_1 \in \mathbb{Z}$ et $\chi_1 \in \{1 \ldots
 \text{ soit }
 \psi_{\lambda_{1}}(t)=\lambda_{1}\psi(\lambda_{1}t).
 \end{equation}
-Chaque ondelette $\psi_{\lambda_{1}}(t)$ est un filtre passe-bande de
+Chaque $\psi_{\lambda_{1}}(t)$ est un filtre passe-bande de
 fr\'{e}quence centrale $\lambda_{1}$, de largeur de bande $\lambda_{1}/Q$
 et de support temporel $2Q/\lambda_{1}$. Son facteur de qualit\'{e},
 d\'{e}fini comme le rapport de la fr\'{e}quence centrale sur la largeur
@@ -130,24 +130,30 @@ On construit donc un banc de filtres à Q constant, capable de produire une repré
 On choisit $Q=16$ dans les figures
 de cet article.
 
-Étant donné un signal audio $x(t)$, on appelle scalogramme le module de la transformée en ondelettes $x \ast \psi_{\lambda_{1}}(t)$, indexé par le logarithme en base $2$ de la fréquence acoustique $\lambda_1$ :
+On appelle scalogramme de $x(t)$ le module de la transformée en ondelettes $(x \ast \psi_{\lambda_{1}})$, indexé par le logarithme en base $2$ de la fréquence acoustique $\lambda_1$ :
 \[
 x_{1}(t,\log\lambda_{1})=\vert x\ast\psi_{\lambda_{1}}\vert(t).
 \]
-La transformée à Q constant (CQT) $S_1 x$ correspond à un filtrage passe-bas de $x_1$ par une fenêtre $\phi(t)$ de support $T$:
+La transformée à Q constant (CQT) $S_1 x$ correspond à un filtrage passe-bas de $x_1$ par une fenêtre $\phi_T$ de support $T$:
 \[
 S_1 x(t,\log\lambda_1) = x_1 \overset{t}{\ast} \phi_T = \vert x \overset{t}{\ast} \psi_{\lambda_1} \vert \ast \phi_T.
+\label{eq:S1-plain}
 \]
-Lors de ce fitlrage passe-bas, les modulations d'amplitude dans $x_1$ de fréquence supérieure à $1/T$ sont détruites. Afin de les restaurer, Andén et Mallat \cite{AM11} ont introduit la transformée de scattering comme le \og scalogramme du scalogramme \fg{}:
+$S_1 x$ est ainsi rendu invariant à toute translation inférieure à $T$. Toutefois, lors de ce fittrage passe-bas, les modulations d'amplitude dans $x_1$ de fréquence supérieure à $1/T$ sont détruites. Afin de les restaurer, Andén et Mallat \cite{AM11} ont introduit la transformée de scattering comme le scalogramme du scalogramme:
 \[
-x_2(t,\log \lambda_1,\log \lambda_2) = \vert x_1 \overset{t}{\ast} \psi_{\lambda_2} \vert = \left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert
+x_2(t,\log \lambda_1,\log \lambda_2) = \vert x_1 \overset{t}{\ast} \psi_{\lambda_2} \vert = \left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert.
+\label{eq:x2-plain}
 \]
 Les ondelettes $\psi_{\lambda_2}(t)$ ont un facteur de qualité égal à $1$, mais nous choisissons de conserver la notation $\psi$ par souci de simplicité. Chaque ondelette $\psi_{\lambda_2}(t)$ a pour fréquence centrale $\lambda_2$ et pour support temporel $2 / \lambda_2$.
-
-Le tenseur obtenu $x_2$, qui quantifie explicitement les modulations d'amplitude du signal pour des périodes atteignant $200$ ms,
- est notablement plus performant sur des problèmes de classification de genre musical ou de reconnaissance de phonèmes \cite{AM11} que les représentations issues du scalogramme moyenné, telles que les descripteurs cepstraux (MFCC).
+Comme dans l'équation \ref{eq:S1-plain}, le filtrage de $x_2$ par $\phi_T(t)$ crée une représentation $S_2 x$ invariante à la translation jusqu'à $T$:
+\[
+S_2 x(t,\log \lambda_1,\log \lambda_2) = x_2 \overset{t}{\ast} \phi = \left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert \overset{t}{\ast} \phi_T.
+\]
+%Le tenseur obtenu $x_2$, qui quantifie explicitement les modulations d'amplitude du signal pour des périodes atteignant $200$ ms,
+% est notablement plus performant sur des problèmes de classification de genre musical ou de reconnaissance de phonèmes \cite{AM11} que les représentations issues du scalogramme moyenné, telles que les descripteurs cepstraux (MFCC).
 
 \subsection{Transformée jointe temps-fréquence}
+
 Il faut toutefois remarquer que la transformée de scattering définie à l'équation précédente n'est pas stable aux mouvements de hauteur au-delà de $Q^{-1}$, soit un seizième d'octave.
 Pour stabiliser la représentation $x_2$ relativement à ces variations, on construit une ondelette bidimensionnelle $\psi_{\lambda_2} (t,\log_2 \lambda_1)$, fonction du temps et de la log-fréquence \cite{And14}. 
 Cette ondelette est indexée par  $\lambda_{2}=(\alpha,\beta)$, o\`u $\alpha$ est une variable de fréquence relativement a un d\'eplacement en temps, et $\beta$ est une variable cepstrale de  \og{}quéfrence \fg{}, c'est-à-dire de fréquence sur les déplacements en log-fréquence :
