@@ -97,17 +97,19 @@ La variabilité des signaux acoustiques naturels peut se modéliser comme une acti
 Ainsi, la classification de sons repose essentiellement sur la construction de représentations qui demeurent stables à ces déformations, tout en offrant une bonne discriminabilité entre signaux de classes différentes.
 En cascadant convolutions locales et non-linéarités, les représentations en réseaux de neurones parviennent à combiner ces deux qualités ; mais elles sont entièrement adaptées aux données, et requièrent par conséquent une vaste base d'entraînement pour atteindre des performances satisfaisantes.
 
-Dans cet article, nous proposons une représentation en cascade, dite transformée de scattering, dont l'architecture est similaire à un réseau de neurones, mais sans besoin d'optimiser les unités de convolution. On tire parti de la géométrie naturelle des sons pour construire une description stable aux déformations, mais qui préserve l'information discriminante autant que possible.
+Dans cet article, nous proposons une représentation en cascade, dite transformée de scattering, dont l'architecture est similaire à un réseau de neurones, mais sans besoin d'optimiser les unités de convolution. On tire parti de la géométrie naturelle des sons pour construire une description stable aux déformations et qui préserve l'information transitoire autant que possible.
 
-Un enjeu fondamental de cette approche réside dans la préservation de la structure harmonique des partiels, y compris lorsque celle-ci est sujette à des variations d'amplitude, de hauteur et de timbre.
+Un enjeu important de cette approche réside dans la préservation de la structure harmonique des partiels, y compris lorsque celle-ci est sujette à des variations d'amplitude, de hauteur et de timbre.
 Cette structure harmonique en peigne est très irrégulière sur un axe log-fréquentiel, et donc particulièrement difficile à caractériser dans un contexte polyphonique.
-Pourtant, en enroulant l'axe log-fréquentiel en une spirale, de sorte que les partiels sur des octaves consécutives se trouvent alignés, on fait apparaître la régularité de l'enveloppe spectrale sur un axe radial. La représentation en scattering consiste alors en une cascade de trois décompositions en ondelettes selon les trois variables introduites : temps, chroma et octave.
+Pourtant, en enroulant l'axe log-fréquentiel en une spirale, de sorte que les partiels sur des octaves consécutives se trouvent alignés, on fait apparaître la régularité de l'enveloppe spectrale sur une dimension radiale. La représentation en scattering consiste alors en une cascade de trois décompositions en ondelettes selon les trois variables introduites : temps, chroma et octave.
 
 \blfootnote{Ce travail est financ\'{e} par la bourse ERC InvariantClass 320959.
 Le code source des exp\'{e}riences et figures est en libre acc\`{e}s
 a l'adresse \texttt{www.github.com/lostanlen/scattering.m}.}
 
 \section{Transformées sur le scalogramme}
+
+Dans cette section, on définit progressivement la transformée en scattering sur la spirale comme une extension de la transformée en scattering temporelle et de la transformée en scattering jointe temps-fréquence. Les trois transformées partagent le même formalisme.
 
 \subsection{Scalogramme et scattering temporel}
 
