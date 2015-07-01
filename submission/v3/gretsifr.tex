@@ -111,7 +111,7 @@ Pourtant, en enroulant l'axe log-fréquentiel en une spirale, de sorte que les pa
 \begin{figure}
 \label{spirale}
     \begin{center}
-	\includegraphics[width=65mm]{gretsi_fig0.png}
+	\includegraphics[width=80mm]{gretsi_fig0.png}
     \end{center}
     \legende{L'ondelette en spirale est un produit d'ondelettes en temps, log-fréquence, et octave. Les oscillations bleues et vertes représentent la partie réelle et la partie imaginaire. L'enveloppe rouge représente le module complexe. Les partiels d'un son harmonique, représentés en gris, suivent un motif d'alignement radial.}
 \end{figure}
@@ -143,7 +143,7 @@ On construit donc un banc de filtres à Q constant, capable de produire une repré
 On choisit $Q=16$ dans les figures
 de cet article.
 
-On appelle scalogramme de $x(t)$ le module de la transformée en ondelettes $(x \ast \psi_{\lambda_{1}})$, indexé par le logarithme en base $2$ de la fréquence acoustique $\lambda_1$ :
+Soit \overset{t}{\ast} l'opérateur de convolution sur la variable temporelle $t$. On appelle scalogramme de $x(t)$ le module de la transformée en ondelettes $(x \ast \psi_{\lambda_{1}})$, indexé par le logarithme en base $2$ de la fréquence acoustique $\lambda_1$ :
 \[
 x_{1}(t,\log_2\lambda_{1})=\vert x\ast\psi_{\lambda_{1}}\vert(t).
 \]
@@ -212,7 +212,7 @@ Il se trouve que l'idée consistant à enrouler les hauteurs en spirale est bien c
 
 \section{Déformations du modèle source-filtre}
 
-Un modèle de production sonore classique consiste en la convolution d'un signal de source glottique $e(t)$ avec un filtre de conduit vocal $h(t)$. Dans cette section, on introduit une variabilité de hauteur et d'enveloppe spectrale par des déformations temporelles de $e$ et $h$. On montre comment les propriétés d'harmonicité de $e(t)$ et de régularité spectrale de $h(t)$ permettent de séparer et linéariser ces deux vitesses de déformation.
+Un modèle de production sonore classique consiste en la convolution d'un signal de source glottique $e(t)$ avec un filtre de conduit vocal $h(t)$. Dans cette section, on introduit une variabilité de hauteur et d'enveloppe spectrale par des déformations temporelles de $e$ et $h$. On montre comment les propriétés d'harmonicité de $e(t)$ et de régularité spectrale de $h(t)$ permettent de séparer et linéariser ces deux vitesses de déformation, sans étape de détection préalable.
 
 \subsection{Résultat principal}
 Soit $\sum_{n}\delta(t-2 \pi n)$
