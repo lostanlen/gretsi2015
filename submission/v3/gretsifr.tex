@@ -95,12 +95,13 @@ We introduce a scattering representation for the analysis and classification of 
 
 La variabilité des signaux acoustiques naturels peut se modéliser comme une action de déformation localisée en temps et en fréquence.
 Ainsi, la classification de sons repose essentiellement sur la construction de représentations qui demeurent stables à ces déformations, tout en offrant une bonne discriminabilité entre signaux de classes différentes.
-En cascadant convolutions locales et non-linéarités, les représentations en réseaux de neurones parviennent à combiner ces deux qualités ; mais elles sont entièrement adaptées aux données, et requièrent par conséquent une vaste base d'entraînement pour atteindre des performances de classification élevée.
-Dans cet article, nous proposons une représentation en cascade, dite transformée de scattering, dont l'architecture est similaire à un réseau de neurones, mais sans besoin d'optimiser les unités de convolution. On tire parti de la géométrie naturelle des sons pour construire une description stable aux déformations, mais qui préserve l'information discriminante autant que possible.
-Un enjeu fondamental de cette approche réside dans la préservation de la structure harmonique des partiels, y compris lorsque celle-ci est sujette à des variations d'amplitude, de hauteur et de timbre. 
-En enroulant l'axe log-fréquentiel en une spirale, de sorte que des partiels sur des octaves consécutives se trouvent alignés, on fait apparaître la régularité de l'enveloppe spectrale sur un axe radial. La représentation en scattering consiste alors en une cascade de trois décompositions en ondelettes selon les trois variables introduites : temps, chroma et octave.
+En cascadant convolutions locales et non-linéarités, les représentations en réseaux de neurones parviennent à combiner ces deux qualités ; mais elles sont entièrement adaptées aux données, et requièrent par conséquent une vaste base d'entraînement pour atteindre des performances satisfaisantes.
 
-Cette idée nous conduira à réorganiser l'axe fréquentiel en spirale, 
+Dans cet article, nous proposons une représentation en cascade, dite transformée de scattering, dont l'architecture est similaire à un réseau de neurones, mais sans besoin d'optimiser les unités de convolution. On tire parti de la géométrie naturelle des sons pour construire une description stable aux déformations, mais qui préserve l'information discriminante autant que possible.
+
+Un enjeu fondamental de cette approche réside dans la préservation de la structure harmonique des partiels, y compris lorsque celle-ci est sujette à des variations d'amplitude, de hauteur et de timbre.
+Cette structure harmonique en peigne est très irrégulière sur un axe log-fréquentiel, et donc particulièrement difficile à caractériser dans un contexte polyphonique.
+Pourtant, en enroulant l'axe log-fréquentiel en une spirale, de sorte que les partiels sur des octaves consécutives se trouvent alignés, on fait apparaître la régularité de l'enveloppe spectrale sur un axe radial. La représentation en scattering consiste alors en une cascade de trois décompositions en ondelettes selon les trois variables introduites : temps, chroma et octave.
 
 \blfootnote{Ce travail est financ\'{e} par la bourse ERC InvariantClass 320959.
 Le code source des exp\'{e}riences et figures est en libre acc\`{e}s
@@ -224,7 +225,6 @@ mod\`{e}le source-filtre d\'{e}form\'{e} est le signal $x_{\theta,\eta}(t)=(e_{\
 
 où l'entier $p$ est tel que $p \dot{\theta}(t) \approx \lambda_1$.
 
-%\begin{prop*}
 On peut calculer explicitement la r\'{e}ponse de source dans le cas
 d'un spectre harmonique : 
 \[
@@ -253,7 +253,7 @@ La figure 3 présente un exemple de signal de parole dont chaque syllabe peut êtr
     \begin{center}
 	\includegraphics[width=65mm]{gretsi_fig2.png}
     \end{center}
-    \legende{Spirale des log-fréquences}
+    \legende{Hélice des log-fréquences}
 \end{figure}
 
 
