@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  1 JUL 2015 23:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  1 JUL 2015 23:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -430,11 +430,11 @@ LaTeX Font Info:    Try loading font information for T3+ptm on input line 303.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/tipa/t3ptm.fd
 File: t3ptm.fd 2001/12/31 TIPA font definitions
 )
-<gretsi_fig3.png, id=28, 250.89735pt x 398.4486pt>
+<gretsi_fig3.png, id=28, 250.89735pt x 410.4936pt>
 File: gretsi_fig3.png Graphic file (type png)
  <use gretsi_fig3.png>
 Package pdftex.def Info: gretsi_fig3.png used on input line 311.
-(pdftex.def)             Requested size: 250.89674pt x 398.44762pt.
+(pdftex.def)             Requested size: 250.89674pt x 410.4926pt.
 
 Overfull \hbox (0.5125pt too wide) in paragraph at lines 311--312
  [] 
@@ -478,7 +478,7 @@ r8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
 usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/
 texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2
 014/texmf-dist/fonts/type1/public/tipa/xipa10.pfb>
-Output written on gretsifr.pdf (4 pages, 1620939 bytes).
+Output written on gretsifr.pdf (4 pages, 1619473 bytes).
 PDF statistics:
  80 PDF objects out of 1000 (max. 8388607)
  54 compressed objects within 1 object stream
