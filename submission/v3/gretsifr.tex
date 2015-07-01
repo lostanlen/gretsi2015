@@ -143,7 +143,7 @@ On construit donc un banc de filtres à Q constant, capable de produire une repré
 On choisit $Q=16$ dans les figures
 de cet article.
 
-Soit \overset{t}{\ast} l'opérateur de convolution sur la variable temporelle $t$. On appelle scalogramme de $x(t)$ le module de la transformée en ondelettes $(x \ast \psi_{\lambda_{1}})$, indexé par le logarithme en base $2$ de la fréquence acoustique $\lambda_1$ :
+Soit $\overset{t}{\ast}$ l'opérateur de convolution sur la variable temporelle $t$. On appelle scalogramme de $x(t)$ le module de la transformée en ondelettes $(x \ast \psi_{\lambda_{1}})$, indexé par le logarithme en base $2$ de la fréquence acoustique $\lambda_1$ :
 \[
 x_{1}(t,\log_2\lambda_{1})=\vert x\ast\psi_{\lambda_{1}}\vert(t).
 \]
@@ -177,7 +177,7 @@ La variable $\beta$ est mesurée en cycles par octave ; elle peut prendre des val
 Le support temporel de $\psi_{\lambda_2}$ est maintenant $2/\alpha$, tandis que son support log-fréquentiel est $2/\beta$.
 On note $\overset{\chi_1}{\ast}$ les convolutions selon l'axe log-fréquentiel, c'est-à-dire le long des chromas. La transformée en scattering est étendu au cadre \og{}joint\fg{} temps-échelle en remplaçant $\psi_{\lambda_2}$ par $(\psi_{\alpha}\times\psi_{\beta})$ dans l'équation (\ref{eq:x2-plain}):
 \[
-x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}(t,\log_2 \lambda_1)\vert .
+x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}\vert  = \vert x_1 \overset{t}{\ast} \psi_{\alpha} \overset{\chi_1}{\ast} \psi_{\beta} \vert.
 \]
 
 Le modèle joint temps-fréquence correspond \`a la transform\'ee \og{}corticale\fg{} introduite par
@@ -194,12 +194,10 @@ Dans cet article, on a choisi une ondelette gammatone (profil asymétrique) selon
 %Bien que le modèle précédent soit efficace pour modéliser la variabilité de la hauteur en fonction du temps, il reste agnostique à la structure harmonique du signal, omniprésente dans les sons naturels. L'évolution temporelle de cette structure recèle de l'information sur les formants en parole, ou sur les attaques instrumentales en musique par exemple. On peut mesurer cette évolution en comparant des partiels voisins sur des échelles allant de une à quatre octaves.
 La figure 1 illustre la structure géométrique de l'ondelette en spirale $\psi_{\lambda_{2}}$ dans le plan $(t,\log_2 \lambda_1)$, pour différentes valeurs de $\lambda_2 = (\alpha,\beta,\gamma)$.
 Nous définissons la transformée en spirale comme une convolution séparable entre le scalogramme et $\psi_{\lambda_2}$, selon les trois variables de temps $t$, log-fréquence $\log_2 \lambda_1$ et octave $\lfloor \log_2 \lambda_1 \rfloor$ :
-
 \[
 x_{2}(t,\log\lambda_{1},\log\lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}
 (t,\log \lambda_1,\lfloor \log \lambda_1 \rfloor)\vert .
 \]
-
 Il se trouve que l'idée consistant à enrouler les hauteurs en spirale est bien connue en théorie de la musique, ne serait-ce que par la circularité des noms de notes. Elle a notamment été étudiée par Shepard et Risset pour construire des paradoxes de hauteurs \cite{Ris78} et a été validée par des imageries fonctionnelles du cortex auditif \cite{WUP+99}.
 
 \begin{figure}
