@@ -132,46 +132,37 @@ de cet article.
 
 On appelle scalogramme de $x(t)$ le module de la transformée en ondelettes $(x \ast \psi_{\lambda_{1}})$, indexé par le logarithme en base $2$ de la fréquence acoustique $\lambda_1$ :
 \[
-x_{1}(t,\log\lambda_{1})=\vert x\ast\psi_{\lambda_{1}}\vert(t).
+x_{1}(t,\log_2\lambda_{1})=\vert x\ast\psi_{\lambda_{1}}\vert(t).
 \]
 La transformée à Q constant (CQT) $S_1 x$ correspond à un filtrage passe-bas de $x_1$ par une fenêtre $\phi_T$ de support $T$:
 \[
-S_1 x(t,\log\lambda_1) = x_1 \overset{t}{\ast} \phi_T = \vert x \overset{t}{\ast} \psi_{\lambda_1} \vert \ast \phi_T.
+S_1 x(t,\log_2\lambda_1) = x_1 \overset{t}{\ast} \phi_T = \vert x \overset{t}{\ast} \psi_{\lambda_1} \vert \ast \phi_T.
 \label{eq:S1-plain}
 \]
-$S_1 x$ est ainsi rendu invariant à toute translation inférieure à $T$. Toutefois, lors de ce fittrage passe-bas, les modulations d'amplitude dans $x_1$ de fréquence supérieure à $1/T$ sont détruites. Afin de les restaurer, Andén et Mallat \cite{AM11} ont introduit la transformée de scattering comme le scalogramme du scalogramme:
+$S_1 x$ est ainsi rendu invariant à toute translation inférieure à $T$. Toutefois, lors de ce filtrage passe-bas, les modulations d'amplitude dans $x_1$ de fréquence supérieure à $1/T$ sont détruites. Afin de les restaurer, Andén et Mallat \cite{AM11} ont introduit la transformée de scattering comme le scalogramme du scalogramme:
 \[
-x_2(t,\log \lambda_1,\log \lambda_2) = \vert x_1 \overset{t}{\ast} \psi_{\lambda_2} \vert = \left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert.
+x_2(t,\log_2 \lambda_1,\log_2 \lambda_2) = \vert x_1 \overset{t}{\ast} \psi_{\lambda_2} \vert = \left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert.
 \label{eq:x2-plain}
 \]
 Les ondelettes $\psi_{\lambda_2}(t)$ ont un facteur de qualité égal à $1$, mais nous choisissons de conserver la notation $\psi$ par souci de simplicité. Chaque ondelette $\psi_{\lambda_2}(t)$ a pour fréquence centrale $\lambda_2$ et pour support temporel $2 / \lambda_2$.
-Comme dans l'équation \ref{eq:S1-plain}, le filtrage de $x_2$ par $\phi_T(t)$ crée une représentation $S_2 x$ invariante à la translation jusqu'à $T$:
+Comme dans l'équation (\ref{eq:S1-plain}), le filtrage de $x_2$ par $\phi_T(t)$ crée une représentation $S_2 x$ invariante à la translation jusqu'à $T$:
 \[
-S_2 x(t,\log \lambda_1,\log \lambda_2) = x_2 \overset{t}{\ast} \phi = \left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert \overset{t}{\ast} \phi_T.
+S_2 x(t,\log_2 \lambda_1,\log_2 \lambda_2) = x_2 \overset{t}{\ast} \phi = \left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert \overset{t}{\ast} \phi_T.
 \]
 %Le tenseur obtenu $x_2$, qui quantifie explicitement les modulations d'amplitude du signal pour des périodes atteignant $200$ ms,
 % est notablement plus performant sur des problèmes de classification de genre musical ou de reconnaissance de phonèmes \cite{AM11} que les représentations issues du scalogramme moyenné, telles que les descripteurs cepstraux (MFCC).
 
-\subsection{Transformée jointe temps-fréquence}
+\subsection{Transformée jointe temps-échelle}
 
-Il faut toutefois remarquer que la transformée de scattering définie à l'équation précédente n'est pas stable aux mouvements de hauteur au-delà de $Q^{-1}$, soit un seizième d'octave.
-Pour stabiliser la représentation $x_2$ relativement à ces variations, on construit une ondelette bidimensionnelle $\psi_{\lambda_2} (t,\log_2 \lambda_1)$, fonction du temps et de la log-fréquence \cite{And14}. 
-Cette ondelette est indexée par  $\lambda_{2}=(\alpha,\beta)$, o\`u $\alpha$ est une variable de fréquence relativement a un d\'eplacement en temps, et $\beta$ est une variable cepstrale de  \og{}quéfrence \fg{}, c'est-à-dire de fréquence sur les déplacements en log-fréquence :
+La transformée de scattering définie à l'équation (\ref{eq:x2-plain}) décompose chaque bande de fréquence $\lambda_1$ indépendamment, et ne peut donc pas capturer la cohérence de structures sonores temps-fréquence, telle que les variations de hauteur.
+Pour y remédier, Andén \cite{And14} a redéfini les ondelettes $\psi_{\lambda_2}$'s comme des fonctions du temps et de la log-fréquence, indexées par la paire $\lambda_{2}=(\alpha,\beta)$, o\`u $\alpha$ est une fréquence de modulation en Hertz et $\beta$ est une fréquence sur les déplacements en log-fréquence :
 \[
-\psi_{\lambda_{2}}(t,\log_2\lambda_{1})=\psi_{\alpha}(t)\,
+\psi_{\lambda_{2}}(t,\log_2\lambda_{1})=\psi_{\alpha}(t)\times
 \psi_{\beta}(\log_2\lambda_{1}).
 \]
-
-La quéfrence $\beta$ peut prendre des valeurs positives ou négatives, ce qui permet de détecter des changements de hauteur montants ou descendants.
-Le support temporel de $\psi_{\lambda_2}$ est proportionnel à $|\alpha|^{-1}$, tandis que son support log-fréquentiel est proportionel à $|\beta|^{-1}$.
-Afin de préserver cette information de signe pour la paire $\lambda_2 = (\alpha,\beta)$, on choisit de noter
-
-\[
-\log_2 \lambda_2 = (\log_2 \alpha, \log_2 |\beta| , {\mathrm{signe}}(\beta))
-\]
-
-l'indice associé à l'ondelette bidimensionnelle $\psi_{\lambda_{2}}(t,\log_2 \lambda_{1})$.
-La transform\'ee de scattering jointe en temps-fréquence $x_2$ se red\'efinit comme une convolution bidimensionelle dans le plan $(t, \log_2 \lambda_1)$ avec cette nouvelle ondelette \cite{And14} : 
+La variable $\beta$ est mesurée en cycles par octave ; elle peut prendre des valeurs positives ou négatives, ce qui permet de représenter des changements de hauteur montants ou descendants.
+Le support temporel de $\psi_{\lambda_2}$ est maintenant $2/\alpha$, tandis que son support log-fréquentiel est $2/\beta$.
+On note $\overset{\chi_1}{\ast}$ les convolutions selon l'axe log-fréquentiel, c'est-à-dire le long des chromas. La transformée en scattering est étendu au cadre \og{}joint\fg{} temps-échelle en remplaçant $\psi_{\lambda_2}$ par $(\psi_{\alpha}\times\psi_{\beta})$ dans l'équation (\ref{eq:x2-plain}):
 \[
 x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}(t,\log_2 \lambda_1)\vert .
 \]
@@ -180,14 +171,15 @@ Le modèle joint temps-fréquence correspond \`a la transform\'ee \og{}corticale\f
 Shamma \cite{PPS+12} afin de formaliser ses découvertes en neurologie de l'audition.
 
 \subsection{Transformée sur la spirale}
-Bien que le modèle précédent soit efficace pour modéliser la variabilité de la hauteur en fonction du temps, il reste agnostique à la structure harmonique du signal, omniprésente dans les sons naturels. L'évolution temporelle de cette structure recèle de l'information sur les formants en parole, ou sur les attaques instrumentales en musique par exemple. On peut mesurer cette évolution en comparant des partiels voisins sur des échelles allant de une à quatre octaves. Nous proposons donc d'étendre la transformée jointe temps-fréquence afin d'incorporer les déplacements sur les octaves en conjonction avec les déplacements sur les log-fréquences voisines. Pour ce faire, on enroule la variable de log-fréquence $\log_2 \lambda _1$  selon la spirale des hauteurs (voir figure 2) : on révèle ainsi la variable d'octave $\lfloor log_2 \lambda_1 \rfloor$ (partie entière de $\log_2 \lambda_1$) et la variable de chroma $\{ log_2 \lambda_1 \}$ (partie fractionnaire de  $\log_2 \lambda_1$).
+
+La transformée jointe temps-échelle décrit la variabilité temporelle de hauteur sans recourir à une segmentation préalable. Cependant, elle est agnostique à la structure harmonique des sons voisés. L'évolution de cette structure recèle de l'information sur les formants en parole, ou sur les attaques instrumentales en musique par exemple. On peut la mesurer en comparant des partiels voisins sur des échelles en log-fréquence allant de une à quatre octaves, et ce à chroma fixé. Nous proposons donc d'étendre la transformée jointe temps-fréquence afin d'incorporer les déplacements sur les octaves en conjonction avec les déplacements sur les log-fréquences voisines. Conceptuellement, cela revient à enrouler la variable de log-fréquence $\log_2 \lambda _1$ selon la spirale des hauteurs (voir figure 2) : on révèle ainsi la variable d'octave $\lfloor \log_2 \lambda_1 \rfloor$ (partie entière de $\log_2 \lambda_1$) et la variable de chroma $\{ \log_2 \lambda_1 \}$ (partie fractionnaire de  $\log_2 \lambda_1$).
+Nous proposons donc d'étendre la transformée jointe temps-fréquence afin d'incorporer les déplacements sur les octaves en conjonction avec les déplacements sur les log-fréquences voisines. Pour ce faire, on enroule la variable de log-fréquence $\log_2 \lambda _1$  selon la spirale des hauteurs (voir figure 2) : on révèle ainsi la variable d'octave $\lfloor log_2 \lambda_1 \rfloor$ (partie entière de $\log_2 \lambda_1$) et la variable de chroma $\{ log_2 \lambda_1 \}$ (partie fractionnaire de  $\log_2 \lambda_1$).
 En suivant le même procédé que dans les deux transformées définies auparavant, on commence par définir une ondelette $\psi_{\lambda_2}$ comme un produit séparable d'ondelettes sur chacune des variables à transformer.
 Dans cet article, on a choisi une ondelette gammatone (profil asymétrique) selon le temps, une ondelette de Morlet (profil symétrique) selon les chromas et une ondelette gammatone selon les octaves.
-
 \[
 \psi_{\lambda_{2}}(t,\log\lambda_{1},\lfloor\log\lambda_{1}\rfloor)=\psi_{\alpha}(t)\,\psi_{\beta}(\log\lambda_{1})\,\psi_{\gamma}(\lfloor\log\lambda_{1}\rfloor).
 \]
-
+%Bien que le modèle précédent soit efficace pour modéliser la variabilité de la hauteur en fonction du temps, il reste agnostique à la structure harmonique du signal, omniprésente dans les sons naturels. L'évolution temporelle de cette structure recèle de l'information sur les formants en parole, ou sur les attaques instrumentales en musique par exemple. On peut mesurer cette évolution en comparant des partiels voisins sur des échelles allant de une à quatre octaves.
 La figure 1 illustre la structure géométrique de l'ondelette en spirale $\psi_{\lambda_{2}}$ dans le plan $(t,\log_2 \lambda_1)$, pour différentes valeurs de $\lambda_2 = (\alpha,\beta,\gamma)$.
 Nous définissons la transformée en spirale comme une convolution séparable entre le scalogramme et $\psi_{\lambda_2}$, selon les trois variables de temps $t$, log-fréquence $\log_2 \lambda_1$ et octave $\lfloor \log_2 \lambda_1 \rfloor$ :
 
@@ -199,21 +191,21 @@ x_{2}(t,\log\lambda_{1},\log\lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}
 Il se trouve que l'idée consistant à enrouler les hauteurs en spirale est bien connue en théorie de la musique, ne serait-ce que par la circularité des noms de notes. Elle a notamment été étudiée par Shepard et Risset pour construire des paradoxes de hauteurs \cite{Ris78} et a été validée par des imageries fonctionnelles du cortex auditif \cite{WUP+99}.
 
 \section{Déformations du modèle source-filtre}
-Soit $\sum_{n}\delta(t-2 \pi \xi^{-1} n)$
+
+Un modèle de production sonore classique consiste en la convolution d'un signal de source glottique $e(t)$ avec un filtre de conduit vocal $h(t)$. Dans cette section, on introduit une variabilité de hauteur et d'enveloppe spectrale par des déformations temporelles de $e$ et $h$. On étudie la décomposition du modèle déformé dans la transformée en scattering.
+
+Soit $\sum_{n}\delta(t-2 \pi n)$
 un signal harmonique \og source \fg{} et soit $t\mapsto\theta(t)$ un diff\'{e}omorphisme
 du temps ; on d\'{e}finit $e_{\theta}(t)=(e\circ\theta)(t)$ la source d\'{e}form\'{e}e.
 De m\^{e}me, on compose un \og filtre \fg{} $h(t)$ et un diff\'{e}omorphisme
 $t\mapsto\eta(t)$ pour d\'{e}finir $h_{\eta}(t)=(h\circ\eta)(t)$. Le
 mod\`{e}le source-filtre d\'{e}form\'{e} est le signal $x(t)=[e_{\theta}\ast h_{\eta}](t)$.
-Dans cette section, on note $\eta$ la fr\'{e}quence centrale en Hertz
-de l'ondelette $\psi(t)$, de sorte que la r\'{e}solution $\lambda_{1}$
-est maintenant une grandeur sans dimension.
 \begin{lem*}
 Pour tout $\lambda_{1}$ tel que 
 \begin{enumerate}
-\item $\Vert\ddot{\eta}/\dot{\eta}\Vert_{\infty}\ll\lambda_{1}\eta/Q$ (filtre
+\item $\Vert\ddot{\eta}/\dot{\eta}\Vert_{\infty}\ll\lambda_{1}/Q$ (filtre
 lentement variable) et
-\item $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\eta}\Vert_{\infty}\ll Q\eta^{-1}/\lambda_{1}$
+\item $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\eta}\Vert_{\infty}\ll Q/\lambda_{1}$
 (profil spectral r\'{e}gulier),
 \end{enumerate}
 la transform\'{e}e en ondelettes $[h_{\eta}\ast\psi_{\lambda_{1}}]$
