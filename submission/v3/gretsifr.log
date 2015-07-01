@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  1 JUL 2015 22:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  1 JUL 2015 22:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -419,37 +419,48 @@ Overfull \hbox (8.9806pt too wide) in alignment at lines 265--270
  [][][] []
  []
 
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 292.
+
+
+Overfull \hbox (14.85442pt too wide) in alignment at lines 285--293
+ [][][] []
+ []
+
 <gretsi_fig1.png, id=22, 250.1847pt x 241.65282pt>
 File: gretsi_fig1.png Graphic file (type png)
  <use gretsi_fig1.png>
-Package pdftex.def Info: gretsi_fig1.png used on input line 275.
+Package pdftex.def Info: gretsi_fig1.png used on input line 297.
 (pdftex.def)             Requested size: 250.18407pt x 241.65222pt.
 
 <gretsi_fig3.png, id=24, 250.1847pt x 398.23781pt>
 File: gretsi_fig3.png Graphic file (type png)
  <use gretsi_fig3.png>
-Package pdftex.def Info: gretsi_fig3.png used on input line 282.
+Package pdftex.def Info: gretsi_fig3.png used on input line 304.
 (pdftex.def)             Requested size: 250.18407pt x 398.23683pt.
-LaTeX Font Info:    Try loading font information for T3+ptm on input line 296.
+LaTeX Font Info:    Try loading font information for T3+ptm on input line 318.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/tipa/t3ptm.fd
 File: t3ptm.fd 2001/12/31 TIPA font definitions
-)
+) [3]
 
 Package frenchb.ldf Warning: Degrees would look better in TS1-encoding: 
 (frenchb.ldf)                add \usepackage{textcomp} to the preamble. 
-(frenchb.ldf)                Degrees used on input line 304.
+(frenchb.ldf)                Degrees used on input line 326.
 
-[3] [4 <./gretsi_fig1.png> <./gretsi_fig3.png>] (./gretsifr.aux)
+[4 <./gretsi_fig1.png>] [5
+
+ <./gretsi_fig3.png>] (./gretsifr.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 5378 strings out of 493117
- 72849 string characters out of 6135433
- 239835 words of memory out of 5000000
- 8715 multiletter control sequences out of 15000+600000
+ 5379 strings out of 493117
+ 72869 string characters out of 6135433
+ 242844 words of memory out of 5000000
+ 8716 multiletter control sequences out of 15000+600000
  47482 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,17n,26p,1474b,274s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -468,10 +479,10 @@ ist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/
 type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/tipa/x
 ipa10.pfb>
-Output written on gretsifr.pdf (4 pages, 1147318 bytes).
+Output written on gretsifr.pdf (5 pages, 1150177 bytes).
 PDF statistics:
- 80 PDF objects out of 1000 (max. 8388607)
- 54 compressed objects within 1 object stream
+ 83 PDF objects out of 1000 (max. 8388607)
+ 56 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

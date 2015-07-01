@@ -271,7 +271,26 @@ x_{\theta,\nu}\overset{t,\chi_{1},j_{1}}{\ast}\psi_{\lambda_{2}}  \mkern-72mu \\
 où les opérateurs $\overset{t}{\ast}$, $\overset{\chi_1}{\ast}$, et $\overset{j_1}{\ast}$ désignent des convolutions en temps, log-fréquence, et octave respectivement.
 
 \subsection{Extraction de fréquences instantanées}
-Afin de conclure, on constate que la phase de $\vert e_\theta \overset{t}{\ast} \psi_{\lambd_1} \vert \overset{\chi_1}{\ast} \psi_{\beta}$ est $\beta \times (\log_2 {\lambda_1} - \log_2 {p \dot{\theta}(t)).
+Pour terminer, on constate que la phase du scalogramme de la source $\vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{\chi_1}{\ast} \psi_{\beta}$ est $\beta \times (\log_2 {\lambda_1} - \log_2 (p \dot{\theta}(t))$. En dérivant cette quantité à $\log_2 \lambda_1$ fixé, on trouve une fréquence instantanée égale à $-\beta \ddot{\theta}(t)/\dot{\theta}(t)$. De même, la fréquence instantanée du scalogramme du filtre après convolution selon les octaves est $- \gamma \ddot{\eta}(t) / \dot{\eta}(t)$. En supposant que
+\[
+\alpha \geq \left\vert \dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta \right\vert
+\quad
+\text{et}
+\quad
+\alpha \geq \left\vert \dfrac{\ddot{\eta}(t)}{\dot{\eta}(t)} \gamma \right\vert,
+\]
+
+les enveloppes de ces deux convolutions sont approximativement constantes sur le support de $\psi_{\alpha}(t)$. On conclut avec la formule approchée suivante pour les coefficients de scattering en spirale du modèle source-filtre déformé :
+
+\begin{eqnarray}
+\begin{split}
+x_2(t,\log \lambda_1, \log \lambda_2)  \mkern-126mu \\
+= & \vert e_{\theta,1} \overset{\chi}{\ast} \psi_\beta \vert \times
+\vert h_{\nu,1} \overset{j_{1}}{\ast} \psi_\gamma \vert \times
+\left \vert \widehat{\psi}_{\alpha} \left( -\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \dfrac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right) \right \vert.
+\label{eq:x2-sourcefilter}
+\end{split}
+\end{eqnarray}
 
 \begin{figure}[fig2]
     \begin{center}
