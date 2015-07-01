@@ -114,7 +114,7 @@ Pourtant, en enroulant l'axe log-fréquentiel en une spirale, de sorte que les pa
 	\includegraphics[width=80mm]{gretsi_fig0.png}
     \end{center}
     \legende{L'ondelette en spirale est un produit d'ondelettes en temps, log-fréquence, et octave. Les oscillations bleues et vertes représentent la partie réelle et la partie imaginaire. L'enveloppe rouge représente le module complexe. Les partiels d'un son harmonique, représentés en gris, suivent un motif d'alignement radial.}
-    \ref{eq:spiral-wavelets-3d}
+    \label{fig:spiral-wavelets-3d}
 \end{figure}
 
 \section{Transformées sur le scalogramme}
@@ -186,15 +186,17 @@ Shamma \cite{PPS+12} afin de formaliser ses découvertes en neurologie de l'audit
 
 \subsection{Transformée sur la spirale}
 
-\begin{figure}[fig2]
+\begin{figure}
     \begin{center}
-	\includegraphics{gretsi_fig1.png}
+	\includegraphics[height=7cm]{gretsi_fig1.png}
     \end{center}
     \legende{Deux ondelettes en spirale $\psi_{\lambda_{2}}$ \'{e}tal\'{e}es sur le plan temps-fr\'{e}quence, pr\'{e}sentant des $\lambda_{2}=(\alpha,\beta,\gamma)$ diff\'{e}rents et une localisation diff\'{e}rente sur le scalogramme. \`{A} gauche : $\alpha^{-1}=120\,\mathrm{ms}$, $\beta^{-1}=-0.25\,\mathrm{octave}$, $\gamma^{-1}=+2\ \mathrm{octaves}$. \`{A} droite : $\alpha^{-1}=60\,\mathrm{ms}$, $\beta^{-1}=+0.5\,\mathrm{octave}$, $\gamma^{-1}=-4\,\mathrm{octaves}$. On a affich\'{e} la partie r\'{e}elle des coefficients. Le noir correspond \`{a} des coefficients positifs et le blanc \`{a} des coefficients n\'{e}gatifs.}
-    \ref{fig:spiral-wavelets-tfplane}
+    \label{fig:spiral-wavelets-tfplane}
 \end{figure}
 
-La transformée jointe temps-échelle décrit la variabilité temporelle de hauteur sans recourir à une segmentation préalable. Cependant, elle est agnostique à la structure harmonique des sons voisés. L'évolution de cette structure recèle de l'information sur les formants en parole, ou sur les attaques instrumentales en musique par exemple. On peut la mesurer en comparant des partiels voisins sur des échelles en log-fréquence allant de une à quatre octaves, et ce à chroma fixé. Nous proposons donc d'étendre la transformée jointe temps-fréquence afin d'incorporer les déplacements sur les octaves en conjonction avec les déplacements sur les log-fréquences voisines. Conceptuellement, cela revient à enrouler la variable de log-fréquence $\log_2 \lambda _1$ selon la spirale des hauteurs (voir figure \ref{fig:spiral-wavelets-3d}) : on révèle ainsi la variable radiale d'octave $\lfloor \log_2 \lambda_1 \rfloor$ (partie entière de $\log_2 \lambda_1$) et la variable angulaire de chroma $\{ \log_2 \lambda_1 \}$ (partie fractionnaire de  $\log_2 \lambda_1$).
+La transformée jointe temps-échelle décrit la variabilité temporelle de hauteur sans recourir à une segmentation préalable. Cependant, elle est agnostique à la structure harmonique des sons voisés. L'évolution de cette structure recèle de l'information sur les formants en parole, ou sur les attaques instrumentales en musique par exemple. On peut la mesurer en comparant des partiels voisins sur des échelles en log-fréquence allant de une à quatre octaves, et ce à chroma fixé. Nous proposons donc d'étendre la transformée jointe temps-fréquence afin d'incorporer les déplacements sur les octaves en conjonction avec les déplacements sur les log-fréquences voisines.
+
+Conceptuellement, cela revient à enrouler la variable de log-fréquence $\log_2 \lambda _1$ selon la spirale des hauteurs (voir figure \ref{fig:spiral-wavelets-3d}) : on révèle ainsi la variable radiale d'octave $\lfloor \log_2 \lambda_1 \rfloor$ (partie entière de $\log_2 \lambda_1$) et la variable angulaire de chroma $\{ \log_2 \lambda_1 \}$ (partie fractionnaire de  $\log_2 \lambda_1$).
 En suivant le même procédé que dans les deux transformées définies auparavant, on commence par définir une ondelette $\psi_{\lambda_2}$ comme un produit séparable d'ondelettes sur chacune des variables à transformer.
 Dans cet article, on a choisi une ondelette gammatone (profil asymétrique) selon le temps, une ondelette de Morlet (profil symétrique) selon les chromas et une ondelette gammatone selon les octaves.
 \[
