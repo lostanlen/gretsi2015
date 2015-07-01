@@ -284,13 +284,22 @@ les enveloppes de ces deux convolutions sont approximativement constantes sur le
 
 \begin{eqnarray}
 \begin{split}
-x_2(t,\log \lambda_1, \log \lambda_2)  \mkern-126mu \\
+x_2(t,\log \lambda_1, \log \lambda_2)  \mkern-108mu \\
 = & \vert e_{\theta,1} \overset{\chi}{\ast} \psi_\beta \vert \times
 \vert h_{\nu,1} \overset{j_{1}}{\ast} \psi_\gamma \vert \times
 \left \vert \widehat{\psi}_{\alpha} \left( -\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \dfrac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right) \right \vert.
 \label{eq:x2-sourcefilter}
 \end{split}
 \end{eqnarray}
+
+Le spectre $\vert\widehat{\psi}_{\alpha}(\omega)\vert$ de $\psi_{\alpha}(t)$ est une bosse centrée en $\alpha$. L'équation \ref{eq:cartesian-equation} est une conséquence immédiate de la formule ci-dessus. Ce résultat reste vrai après filtrage passe-bas par $\phi_T$ à condition que les vitesses $\ddot{\theta}/\dot{\theta}(t)$ et $\ddot{\eta}(t)/\dot{\eta}(t)$ aient des variations relatives lentes devant $T$ :
+
+\begin{equation}
+\left \vert \frac{\dddot{\theta}(t)}{\ddot{\theta}(t)} - \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \right \vert \ll T^{-1}
+\quad \text{and} \quad
+\left \vert \frac{\dddot{\nu}(t)}{\ddot{\nu}(t)} - \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \right \vert \ll T^{-1}.
+\end{equation}
+
 
 \begin{figure}[fig2]
     \begin{center}
