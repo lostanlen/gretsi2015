@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  1 JUL 2015 21:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  1 JUL 2015 21:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -251,11 +251,7 @@ LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 Package: lipsum 2011/04/14 v1.2 150 paragraphs of Lorem Ipsum dummy text
 \c@lips@count=\count109
 )
-(./gretsifr.aux
-
-LaTeX Warning: Label `spirale' multiply defined.
-
-)
+(./gretsifr.aux)
 \openout1 = `gretsifr.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 91.
@@ -413,39 +409,30 @@ Overfull \hbox (4.6617pt too wide) in paragraph at lines 188--191
 cmm/m/it/10 ^^U[]$\T1/ptm/m/n/10 ).
  []
 
-<gretsi_fig2.png, id=10, 250.1847pt x 341.275pt>
-File: gretsi_fig2.png Graphic file (type png)
- <use gretsi_fig2.png>
-Package pdftex.def Info: gretsi_fig2.png used on input line 206.
-(pdftex.def)             Requested size: 184.9429pt x 252.28958pt.
-
-
-LaTeX Warning: Reference `fig:helix' on page 2 undefined on input line 208.
-
 [2]
-Overfull \hbox (6.10274pt too wide) in paragraph at lines 258--269
+Overfull \hbox (6.10274pt too wide) in paragraph at lines 268--279
 \T1/ptm/m/n/10 toires sur les couples de va-riables temps-chroma et temps-octav
 e.
  []
 
 
-Overfull \hbox (0.1541pt too wide) in paragraph at lines 258--269
+Overfull \hbox (0.1541pt too wide) in paragraph at lines 268--279
 \T1/ptm/m/n/10 La fi-gure 3 pré-sente un exemple de si-gnal de pa-role dont cha
 que
  []
 
-<gretsi_fig1.png, id=24, 250.1847pt x 241.65282pt>
+<gretsi_fig1.png, id=22, 250.1847pt x 241.65282pt>
 File: gretsi_fig1.png Graphic file (type png)
  <use gretsi_fig1.png>
-Package pdftex.def Info: gretsi_fig1.png used on input line 272.
+Package pdftex.def Info: gretsi_fig1.png used on input line 282.
 (pdftex.def)             Requested size: 250.18407pt x 241.65222pt.
 
-<gretsi_fig3.png, id=25, 250.1847pt x 398.23781pt>
+<gretsi_fig3.png, id=24, 250.1847pt x 398.23781pt>
 File: gretsi_fig3.png Graphic file (type png)
  <use gretsi_fig3.png>
-Package pdftex.def Info: gretsi_fig3.png used on input line 279.
+Package pdftex.def Info: gretsi_fig3.png used on input line 289.
 (pdftex.def)             Requested size: 250.18407pt x 398.23683pt.
-LaTeX Font Info:    Try loading font information for T3+ptm on input line 293.
+LaTeX Font Info:    Try loading font information for T3+ptm on input line 303.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/tipa/t3ptm.fd
 File: t3ptm.fd 2001/12/31 TIPA font definitions
@@ -453,23 +440,19 @@ File: t3ptm.fd 2001/12/31 TIPA font definitions
 
 Package frenchb.ldf Warning: Degrees would look better in TS1-encoding: 
 (frenchb.ldf)                add \usepackage{textcomp} to the preamble. 
-(frenchb.ldf)                Degrees used on input line 301.
+(frenchb.ldf)                Degrees used on input line 311.
 
-[3 <./gretsi_fig2.png>] [4 <./gretsi_fig1.png> <./gretsi_fig3.png>]
-(./gretsifr.aux)
+[3] [4 <./gretsi_fig1.png> <./gretsi_fig3.png>] (./gretsifr.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 5382 strings out of 493117
- 72937 string characters out of 6135433
- 236876 words of memory out of 5000000
- 8719 multiletter control sequences out of 15000+600000
- 46404 words of font info for 54 fonts, out of 8000000 for 9000
+ 5378 strings out of 493117
+ 72849 string characters out of 6135433
+ 238835 words of memory out of 5000000
+ 8715 multiletter control sequences out of 15000+600000
+ 47482 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,11n,26p,1474b,274s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -487,10 +470,10 @@ ist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/
 type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/tipa/x
 ipa10.pfb>
-Output written on gretsifr.pdf (4 pages, 1258487 bytes).
+Output written on gretsifr.pdf (4 pages, 1150247 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
+ 80 PDF objects out of 1000 (max. 8388607)
  54 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

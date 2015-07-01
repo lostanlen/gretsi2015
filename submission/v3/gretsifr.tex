@@ -200,15 +200,6 @@ x_{2}(t,\log\lambda_{1},\log\lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}
 \]
 Il se trouve que l'idée consistant à enrouler les hauteurs en spirale est bien connue en théorie de la musique, ne serait-ce que par la circularité des noms de notes. Elle a notamment été étudiée par Shepard et Risset pour construire des paradoxes de hauteurs \cite{Ris78} et a été validée par des imageries fonctionnelles du cortex auditif \cite{WUP+99}.
 
-\begin{figure}
-\label{spirale}
-    \begin{center}
-	\includegraphics[width=65mm]{gretsi_fig2.png}
-    \end{center}
-    \ref{fig:helix}
-    \legende{Hélice des log-fréquences}
-\end{figure}
-
 \section{Déformations du modèle source-filtre}
 
 Un modèle de production sonore classique consiste en la convolution d'un signal de source glottique $e(t)$ avec un filtre de conduit vocal $h(t)$. Dans cette section, on introduit une variabilité de hauteur et d'enveloppe spectrale par des déformations temporelles de $e$ et $h$. On montre comment les propriétés d'harmonicité de $e(t)$ et de régularité spectrale de $h(t)$ permettent de séparer et linéariser ces deux vitesses de déformation, sans étape de détection préalable.
@@ -230,16 +221,35 @@ La dérivée $\dot{\theta}(t)$ de $\theta(t)$ induit un changement de hauteur, tan
 \]
 Dans un contexte polyphonique, ce résultat signifie que des sons se chevauchant en temps et en fréquence pourraient être distingués par leurs vitesses respectives de source et de filtre.
 Les deux propriétés essentielles qui le sous-tendent sont l'harmonicité de $\hat{e}(\omega)$ et la régularité spectrale de $\hat{h}(\omega)$.
-\begin{enumerate}
-\item $\Vert\ddot{\eta}/\dot{\eta}\Vert_{\infty}\ll\lambda_{1}\eta/Q$
-(filtre lentement variable),
-\item $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\eta}\Vert_{\infty}\ll Q\eta^{-1}/\lambda_{1}$
-(r\'{e}ponse fr\'{e}quentielle r\'{e}guli\`{e}re),
-\item $\Vert\ddot{\theta}/\dot{\theta}\Vert_{\infty}\ll\lambda_{1}\eta/Q$
-(source lentement variable) et
-\item $k<Q/2$ (partiel de rang faible),
-\end{enumerate}
 
+\subsection{Factorisation du scalogramme}
+On s'intéresse au comportement du modèle autour du $p^\text{ième}$ partiel : soient $t$ et $\lambda_1$ tels que $\lambda_1$ est proche de $p \dot{\theta}(t)$. Afin de pouvoir linéariser $\theta(t)$ et $\nu(t)$ sur le support de $\psi_{\lambda_1}$, on travaille sous les hypothèses suivantes :
+\begin{enumerate}
+\item $\Vert\ddot{\eta}/\dot{\eta}\Vert_{\infty}\ll\lambda_{1}/Q$
+(filtre lentement variable),
+\item $\Vert\mathrm{d}(\log \vert \hat{h}\vert)/ \mathrm{d}\omega\Vert_{\infty}\Vert1/\dot{\eta}\Vert_{\infty}\ll Q/\lambda_{1}$
+(régularité spectrale),
+\item $\Vert\ddot{\theta}/\dot{\theta}\Vert_{\infty}\ll\lambda_{1}/Q$
+(source lentement variable) et
+\item $p<Q/2$ (partiel de rang faible).
+\end{enumerate}
+Les égalités (13) à (15) sont des approximations de Taylor qui ne sont valables que dans ce contexte.
+
+Avec (a), on peut négliger la contribution des partiels $p^{\prime} \neq p$ dans le scalogramme de $e_\theta$. Avec (b), la localisation temporelle de l'ondelette $\psi_{\lambda_1}(t)$ permet de remplacer l'action du difféomorphisme $\theta(t)$ est remplacée par une homothétie d'un facteur $\dot{\theta}(t)$ :
+\[
+\vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert (t) = \vert \widehat{\psi}_{\lambda_1}(p \dot{\theta}(t)) \vert.
+\]
+De même, avec (c), l'action de $\eta(t)$ est remplacée par une homothétie d'un facteur $\dot{\eta}(t)$. Par ailleurs, avec (d), la localisation fréquentielle de cette même ondelette permet de remplacer l'enveloppe spectrale $\hat{h}(\omega)$ par une constante autour de la fréquence $\lambda_1 / \dot{\eta}(t)$ :
+\[
+\vert h_\eta \overset{t}{\ast} \psi_{\lambda_1} \vert (t) = \hat{h}\left(\frac{\lambda_1}{\dot{\eta}(t)}\right) \times \psi_{\lambda_1}\left(\frac{\nu(t)}{\dot{\nu}(t)} \right).
+\]
+En menant les deux linéarisations ci-dessus conjointement, on aboutit à
+\[
+\vert x_{\theta,\eta} \overset{t}{\ast} \vert (t) =
+\vert \widehat{\psi}_{\lambda_1}(p \dot{\theta}(t)) \vert
+\times
+\hat{h}\left(\frac{\lambda_1}{\dot{\eta}(t)}\right).
+\]
 
 \[
 \vert x_{\theta,\eta}\ast\psi_{\lambda_1} \vert (t)
