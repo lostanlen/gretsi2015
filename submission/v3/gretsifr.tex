@@ -245,37 +245,22 @@ De même, avec (c), l'action de $\eta(t)$ est remplacée par une homothétie d'un f
 \]
 En menant les deux linéarisations ci-dessus conjointement, on aboutit à
 \[
-\vert x_{\theta,\eta} \overset{t}{\ast} \vert (t) =
+\vert x_{\theta,\eta} \overset{t}{\ast} \psi_{\lambda_1} \vert (t) =
 \vert \widehat{\psi}_{\lambda_1}(p \dot{\theta}(t)) \vert
 \times
 \hat{h}\left(\frac{\lambda_1}{\dot{\eta}(t)}\right).
 \]
 
+\subsection{Harmonicité et régularité spectrale}
+Les ondelettes $\psi_\beta$ et $\psi_\gamma$ sont conçues pour être orthogonales aux fonctions affines. Or l'harmonicité de $e_{\theta(t)}$ implique que son scalogramme est une constante le long de la variable d'octave $j$, et ce pour tout difféomorphisme $\theta(t)$. De plus, la régularité spectrale de $h_{\eta}(t)$ implique que son scalogramme est quasi linéaire le long de la variable de chroma $\chi_1$. Ces deux propriétés s'écrivent
 \[
-\vert x_{\theta,\eta}\ast\psi_{\lambda_1} \vert (t)
-\approx
-\widehat{\psi}_{\lambda_1}(p\dot{\theta}(t))
-\times
-\hat{h}\left(\frac{\lambda_1}{\dot{\eta}(t)}\right),
+\vert e_\theta \overset{j_1}{\ast} \psi_{\gamma} \vert \approx 0
+\quad
+\text{ et }
+\quad
+\vert h_\eta \overset{\chi_1}{\ast} \psi_{\beta} \vert \approx 0.
 \]
 
-où l'entier $p$ est tel que $p \dot{\theta}(t) \approx \lambda_1$.
-
-On peut calculer explicitement la r\'{e}ponse de source dans le cas
-d'un spectre harmonique : 
-\[
-E(\log_{2}\lambda_{1})=\sum_{k=1}^{K}\delta(\log_{2}(\lambda_{1})-\log_{2}(k\xi\eta^{-1})).
-\]
-Soit $n\in\mathbb{N}$; pourvu que $\lambda_{1}=k\xi\eta^{-1}$ soit
-tel que $k<2^{-n}K$, on retrouve un partiel $n$ octaves exactement
-au-dessus de la fr\'{e}quence $\lambda_{1}$ : d'o\`{u} $E(\log_{2}\lambda_{1}+n)=E(\log_{2}\lambda_{1})$.
-Par ailleurs, les hypoth\`{e}ses (b) et (c) permettent d'\'{e}crire
-$H(\log_{2}\lambda_{1})\approx H(\log_{2}\lambda_{1}+\Delta)$ pour
-toute d\'{e}viation de chroma $\Delta$ relative à $\log_{2} \dot{\theta}$. Ce r\'{e}sultat sugg\`{e}re
-qu'il est possible de s\'{e}parer les fonctions $\log_{2}\dot{\theta}(t)$
-et $\log_{2}\dot{\eta}(t)$ en d\'{e}composant leurs trajectoires
-sur les couples de variables temps-chroma et temps-octave.
-La figure 3 présente un exemple de signal de parole dont chaque syllabe peut être modélisée par un source-filtre déformé. On constate que la transformée de scattering en spirale parvient correctement à distinguer les deux syllabes d'après leurs vitesses de déformation respectives.
 
 \begin{figure}[fig2]
     \begin{center}
