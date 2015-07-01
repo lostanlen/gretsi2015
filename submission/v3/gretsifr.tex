@@ -105,7 +105,7 @@ a l'adresse \texttt{www.github.com/lostanlen/scattering.m}.}
 Un enjeu important de cette approche réside dans la préservation de la structure harmonique des partiels, y compris lorsque celle-ci est sujette à des variations d'amplitude, de hauteur et de timbre.
 Cette structure harmonique en peigne est très irrégulière sur un axe log-fréquentiel, et donc particulièrement difficile à caractériser dans un contexte polyphonique.
 
-Pourtant, en enroulant l'axe log-fréquentiel en une spirale, de sorte que les partiels sur des octaves consécutives se trouvent alignés, on fait apparaître la régularité de l'enveloppe spectrale comme une dimension radiale. Une fois spécifiées les variables de temps, de chroma, et d'octave, le scattering en spirale consiste à cascader trois décompositions en ondelettes selon chacune de ces variables, puis à appliquer le module.
+Pourtant, en enroulant l'axe log-fréquentiel en une spirale, de sorte que les partiels sur des octaves consécutives se trouvent alignés, on fait apparaître la régularité de l'enveloppe spectrale comme une dimension radiale. Une fois spécifiées les variables de temps, de chroma, et d'octave, le scattering en spirale consiste à cascader trois décompositions en ondelettes selon chacune de ces variables, puis à appliquer le module complexe.
 \begin{figure}
 \label{spirale}
     \begin{center}
@@ -198,11 +198,10 @@ Conceptuellement, cela revient à enrouler la variable de log-fréquence $\log_2 \
 En suivant le même procédé que dans les deux transformées définies auparavant, on commence par définir une ondelette $\psi_{\lambda_2}$ comme un produit séparable d'ondelettes sur chacune des variables à transformer.
 Dans cet article, on a choisi une ondelette gammatone (profil asymétrique) selon le temps, une ondelette de Morlet (profil symétrique) selon les chromas et une ondelette gammatone selon les octaves.
 \[
-\psi_{\lambda_{2}}(t,\log\lambda_{1},\lfloor\log\lambda_{1}\rfloor)=\psi_{\alpha}(t)\,\psi_{\beta}(\log\lambda_{1})\,\psi_{\gamma}(\lfloor\log\lambda_{1}\rfloor).
+\psi_{\lambda_{2}}(t,\log\lambda_{1},j_1)=\psi_{\alpha}(t)\,\psi_{\beta}(\log\lambda_{1})\,\psi_{\gamma}(j_1).
 \]
-%Bien que le modèle précédent soit efficace pour modéliser la variabilité de la hauteur en fonction du temps, il reste agnostique à la structure harmonique du signal, omniprésente dans les sons naturels. L'évolution temporelle de cette structure recèle de l'information sur les formants en parole, ou sur les attaques instrumentales en musique par exemple. On peut mesurer cette évolution en comparant des partiels voisins sur des échelles allant de une à quatre octaves.
 La figure \ref{fig:spiral-wavelets-tfplane} illustre la structure géométrique de l'ondelette en spirale $\psi_{\lambda_{2}}$ dans le plan $(t,\log_2 \lambda_1)$, pour différentes valeurs de $\lambda_2 = (\alpha,\beta,\gamma)$.
-Nous définissons la transformée en spirale comme une convolution séparable entre le scalogramme et $\psi_{\lambda_2}$, selon les trois variables de temps $t$, log-fréquence $\log_2 \lambda_1$ et octave $\lfloor \log_2 \lambda_1 \rfloor$ :
+Nous définissons la transformée en spirale comme une convolution séparable entre le scalogramme et $\psi_{\lambda_2}$, selon les trois variables de temps $t$, log-fréquence $\log_2 \lambda_1$ et octave $j_1 = \lfloor \log_2 \lambda_1 \rfloor$ (partie entière) :
 \[
 x_{2}(t,\log\lambda_{1},\log\lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}
 (t,\log \lambda_1,\lfloor \log \lambda_1 \rfloor)\vert .
@@ -211,7 +210,7 @@ Il se trouve que l'idée consistant à enrouler les hauteurs en spirale est bien c
 
 \section{Déformations du modèle source-filtre}
 
-Un modèle de production sonore classique consiste en la convolution d'un signal de source glottique $e(t)$ avec un filtre de conduit vocal $h(t)$. Dans cette section, on introduit une variabilité de hauteur et d'enveloppe spectrale par des déformations temporelles de $e$ et $h$. On montre comment les propriétés d'harmonicité de $e(t)$ et de régularité spectrale de $h(t)$ permettent de séparer et linéariser ces deux vitesses de déformation, sans étape de détection préalable.
+Un modèle de production sonore classique consiste en la convolution d'un signal de source glottique $e(t)$ avec un filtre de conduit vocal $h(t)$. Dans cette section, on introduit une variabilité de hauteur et d'enveloppe spectrale par des déformations temporelles de $e$ et $h$. On montre comment les propriétés d'harmonicité de $e(t)$ et de régularité spectrale de $h(t)$, énoncées à l'équation (\ref{eq:properties}), permettent de séparer et linéariser ces deux vitesses de déformation, sans étape de détection préalable.
 
 \subsection{Résultat principal}
 Soit $\sum_{n}\delta(t-2 \pi n)$
@@ -262,20 +261,19 @@ En menant ces deux linéarisations conjointement, on aboutit à
 \]
 
 \subsection{Harmonicité et régularité spectrale}
-Les ondelettes $\psi_\beta$ et $\psi_\gamma$ sont conçues pour être orthogonales aux fonctions affines. Or l'harmonicité de $e_{\theta(t)}$ implique que son scalogramme est une constante le long de la variable d'octave $j$, et ce pour tout difféomorphisme $\theta(t)$. De plus, la régularité spectrale de $h_{\eta}(t)$ implique que son scalogramme est quasi linéaire le long de la variable de chroma $\chi_1$. Ces deux propriétés s'écrivent
-\[
+Les ondelettes $\psi_\beta$ et $\psi_\gamma$ sont conçues pour être orthogonales aux fonctions affines. Or l'harmonicité de $e_{\theta(t)}$ implique que son scalogramme est une constante le long de la variable d'octave $j_1$, et ce pour tout difféomorphisme $\theta(t)$. De plus, la régularité spectrale de $h_{\eta}(t)$ implique que son scalogramme est quasi linéaire le long de la variable de chroma $\chi_1$. Ces deux propriétés s'écrivent
+\begin{equation}
 \vert e_\theta \overset{j_1}{\ast} \psi_{\gamma} \vert \approx 0
 \quad
 \text{ et }
 \quad
 \vert h_\eta \overset{\chi_1}{\ast} \psi_{\beta} \vert \approx 0.
-\]
+\label{eq:properties}
+\end{equation}
 La définition du scattering en spirale se factorise alors en
 \begin{eqnarray}
-\begin{split}
 x_{\theta,\nu}\overset{t,\chi_{1},j_{1}}{\ast}\psi_{\lambda_{2}}  \mkern-72mu \\
- = & \left(\Big(\vert e_{\theta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{\chi_{1}}{\ast}\psi_{\beta}\Big)\times \Big(\vert h_{\eta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{j_{1}}{\ast}\psi_{\gamma}\Big)\right)\overset{t}{\ast}\psi_{\alpha},
- \end{split}
+ = & \left(\Big(\vert e_{\theta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{\chi_{1}}{\ast}\psi_{\beta}\Big)\times \Big(\vert h_{\eta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{j_{1}}{\ast}\psi_{\gamma}\Big)\right)\overset{t}{\ast}\psi_{\alpha} \nonumber,
 \end{eqnarray}
 où les opérateurs $\overset{t}{\ast}$, $\overset{\chi_1}{\ast}$, et $\overset{j_1}{\ast}$ désignent des convolutions en temps, log-fréquence, et octave respectivement.
 
@@ -290,15 +288,13 @@ Pour terminer, on constate que la phase du scalogramme de la source $\vert e_\th
 \]
 les enveloppes de ces deux convolutions sont approximativement constantes sur le support de $\psi_{\alpha}(t)$. On conclut avec la formule approchée suivante pour les coefficients de scattering en spirale du modèle source-filtre déformé :
 \begin{eqnarray}
-\begin{split}
 x_2(t,\log \lambda_1, \log \lambda_2)  \mkern-108mu \\
 = & \vert e_{\theta,1} \overset{\chi}{\ast} \psi_\beta \vert \times
 \vert h_{\nu,1} \overset{j_{1}}{\ast} \psi_\gamma \vert \times
-\left \vert \widehat{\psi}_{\alpha} \left( -\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \dfrac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right) \right \vert.
+\left \vert \widehat{\psi}_{\alpha} \left( -\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \dfrac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right) \right \vert. \nonumber
 \label{eq:x2-sourcefilter}
-\end{split}
 \end{eqnarray}
-Le spectre $\vert\widehat{\psi}_{\alpha}(\omega)\vert$ de $\psi_{\alpha}(t)$ est une bosse centrée en $\alpha$. L'équation \ref{eq:cartesian-equation} est une conséquence immédiate de la formule ci-dessus. Ce résultat reste vrai après filtrage passe-bas par $\phi_T$ à condition que les vitesses $\ddot{\theta}/\dot{\theta}(t)$ et $\ddot{\eta}(t)/\dot{\eta}(t)$ aient des variations relatives lentes devant $T$ :
+Le spectre $\vert\widehat{\psi}_{\alpha}(\omega)\vert$ de $\psi_{\alpha}(t)$ est une bosse centrée en $\alpha$. L'équation (\ref{eq:cartesian-equation}) est une conséquence immédiate de la formule ci-dessus. Ce résultat reste vrai après filtrage passe-bas par $\phi_T$ à condition que les vitesses $\ddot{\theta}/\dot{\theta}(t)$ et $\ddot{\eta}(t)/\dot{\eta}(t)$ aient des variations relatives lentes devant $T$ :
 \begin{equation}
 \left \vert \frac{\dddot{\theta}(t)}{\ddot{\theta}(t)} - \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \right \vert \ll T^{-1}
 \quad \text{and} \quad
