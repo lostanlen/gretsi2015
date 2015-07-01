@@ -185,7 +185,7 @@ Shamma \cite{PPS+12} afin de formaliser ses découvertes en neurologie de l'audit
 
 \subsection{Transformée sur la spirale}
 
-La transformée jointe temps-échelle décrit la variabilité temporelle de hauteur sans recourir à une segmentation préalable. Cependant, elle est agnostique à la structure harmonique des sons voisés. L'évolution de cette structure recèle de l'information sur les formants en parole, ou sur les attaques instrumentales en musique par exemple. On peut la mesurer en comparant des partiels voisins sur des échelles en log-fréquence allant de une à quatre octaves, et ce à chroma fixé. Nous proposons donc d'étendre la transformée jointe temps-fréquence afin d'incorporer les déplacements sur les octaves en conjonction avec les déplacements sur les log-fréquences voisines. Conceptuellement, cela revient à enrouler la variable de log-fréquence $\log_2 \lambda _1$ selon la spirale des hauteurs (voir figure 2) : on révèle ainsi la variable d'octave $\lfloor \log_2 \lambda_1 \rfloor$ (partie entière de $\log_2 \lambda_1$) et la variable de chroma $\{ \log_2 \lambda_1 \}$ (partie fractionnaire de  $\log_2 \lambda_1$).
+La transformée jointe temps-échelle décrit la variabilité temporelle de hauteur sans recourir à une segmentation préalable. Cependant, elle est agnostique à la structure harmonique des sons voisés. L'évolution de cette structure recèle de l'information sur les formants en parole, ou sur les attaques instrumentales en musique par exemple. On peut la mesurer en comparant des partiels voisins sur des échelles en log-fréquence allant de une à quatre octaves, et ce à chroma fixé. Nous proposons donc d'étendre la transformée jointe temps-fréquence afin d'incorporer les déplacements sur les octaves en conjonction avec les déplacements sur les log-fréquences voisines. Conceptuellement, cela revient à enrouler la variable de log-fréquence $\log_2 \lambda _1$ selon la spirale des hauteurs (voir figure \ref{fig:helix}) : on révèle ainsi la variable d'octave $\lfloor \log_2 \lambda_1 \rfloor$ (partie entière de $\log_2 \lambda_1$) et la variable de chroma $\{ \log_2 \lambda_1 \}$ (partie fractionnaire de  $\log_2 \lambda_1$).
 En suivant le même procédé que dans les deux transformées définies auparavant, on commence par définir une ondelette $\psi_{\lambda_2}$ comme un produit séparable d'ondelettes sur chacune des variables à transformer.
 Dans cet article, on a choisi une ondelette gammatone (profil asymétrique) selon le temps, une ondelette de Morlet (profil symétrique) selon les chromas et une ondelette gammatone selon les octaves.
 \[
@@ -205,6 +205,7 @@ Il se trouve que l'idée consistant à enrouler les hauteurs en spirale est bien c
     \begin{center}
 	\includegraphics[width=65mm]{gretsi_fig2.png}
     \end{center}
+    \ref{fig:helix}
     \legende{Hélice des log-fréquences}
 \end{figure}
 
@@ -218,8 +219,16 @@ un signal harmonique \og source \fg{} et soit $t\mapsto\theta(t)$ un diff\'{e}om
 du temps ; on d\'{e}finit $e_{\theta}(t)=(e\circ\theta)(t)$ la source d\'{e}form\'{e}e.
 De m\^{e}me, on compose un \og filtre \fg{} $h(t)$ et un diff\'{e}omorphisme
 $t\mapsto\eta(t)$ pour d\'{e}finir $h_{\eta}(t)=(h\circ\eta)(t)$. Le
-mod\`{e}le source-filtre d\'{e}form\'{e} est le signal $x_{\theta,\eta}(t)=(e_{\theta}\ast h_{\eta})(t)$.
+mod\`{e}le source-filtre d\'{e}form\'{e} est le signal
+\[
+x_{\theta,\eta}(t)=(e_{\theta}\ast h_{\eta})(t)$.
+\]
 
+La dérivée $\dot{\theta}(t)$ de $\theta(t)$ induit un changement de hauteur, tandis que $\dot{\eta}(t)$ provoque une dilatation locale de l'enveloppe spectrale $\vert \widehat{h}(\omega)\vert$. Nous allons montrer que, pour $\dot{\theta}(t)$ et $\dot{\eta}$ suffisamment réguliers sur le support des ondelettes de premier ordre $\psi_{\lambda_1}$, les maxima locaux de $x_2$ sont rassemblés sur un plan de l'espace $(\alpha,\beta,\gamma)$ des coefficients de scattering en spirale. Ce plane satisfait l'équation cartésienne
+\[
+\alpha + \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} + \frac{\ddot{\eta}(t)}{\dot{\eta}(t)} \gamma = 0.
+\]
+Dans un contexte polyphonique, ce résultat signifie que des sons se chevauchant en temps et en fréquence pourraient être distingués par leurs vitesses respectives de source et de filtre.
 \begin{enumerate}
 \item $\Vert\ddot{\eta}/\dot{\eta}\Vert_{\infty}\ll\lambda_{1}\eta/Q$
 (filtre lentement variable),
