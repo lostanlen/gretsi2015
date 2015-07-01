@@ -157,7 +157,9 @@ x_2(t,\log_2 \lambda_1,\log_2 \lambda_2) = \vert x_1 \overset{t}{\ast} \psi_{\la
 Les ondelettes $\psi_{\lambda_2}(t)$ ont un facteur de qualité égal à $1$, mais nous choisissons de conserver la notation $\psi$ par souci de simplicité. Chaque ondelette $\psi_{\lambda_2}(t)$ a pour fréquence centrale $\lambda_2$ et pour support temporel $2 / \lambda_2$.
 Comme dans l'équation (\ref{eq:S1-plain}), le filtrage de $x_2$ par $\phi_T(t)$ crée une représentation $S_2 x$ invariante à la translation jusqu'à $T$:
 \[
-S_2 x(t,\log_2 \lambda_1,\log_2 \lambda_2) = \left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert \overset{t}{\ast} \phi_T.
+S_2 x(t,\log_2 \lambda_1,\log_2 \lambda_2) =
+\vert x_1 \overset{t}{\ast} \psi_{\lambda_1} \vert =
+\left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert \overset{t}{\ast} \phi_T.
 \]
 %Le tenseur obtenu $x_2$, qui quantifie explicitement les modulations d'amplitude du signal pour des périodes atteignant $200$ ms,
 % est notablement plus performant sur des problèmes de classification de genre musical ou de reconnaissance de phonèmes \cite{AM11} que les représentations issues du scalogramme moyenné, telles que les descripteurs cepstraux (MFCC).
@@ -235,7 +237,7 @@ On s'intéresse au comportement du modèle autour du $p^\text{ième}$ partiel : soi
 \begin{enumerate}
 \item $\Vert\ddot{\eta}/\dot{\eta}\Vert_{\infty}\ll\lambda_{1}/Q$
 (filtre lentement variable),
-\item $\Vert\mathrm{d}(\log \vert \hat{h}\vert)/ \mathrm{d}\omega\Vert_{\infty}\Vert1/\dot{\eta}\Vert_{\infty}\ll Q/\lambda_{1}$
+\item $\Vert\mathrm{d}(\log \vert \hat{h}\vert)/ \mathrm{d}\omega\Vert_{\infty} \times \Vert1/\dot{\eta}\Vert_{\infty}\ll Q/\lambda_{1}$
 (régularité spectrale),
 \item $\Vert\ddot{\theta}/\dot{\theta}\Vert_{\infty}\ll\lambda_{1}/Q$
 (source lentement variable) et

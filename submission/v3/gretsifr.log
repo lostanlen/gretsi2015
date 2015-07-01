@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  1 JUL 2015 23:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  1 JUL 2015 23:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -388,13 +388,13 @@ se-bande
 
 
  <./gretsi_fig0.png>]
-Overfull \hbox (3.30327pt too wide) in paragraph at lines 167--169
+Overfull \hbox (3.30327pt too wide) in paragraph at lines 169--171
 \T1/ptm/m/n/10 peut donc pas cap-tu-rer la co-hé-rence de struc-tures so-nores 
 temps-
  []
 
 
-Overfull \hbox (3.08565pt too wide) in paragraph at lines 172--176
+Overfull \hbox (3.08565pt too wide) in paragraph at lines 174--178
 \T1/ptm/m/n/10 La va-riable $\OML/cmm/m/it/10 ^^L$ \T1/ptm/m/n/10 est me-su-rée
  en cycles par oc-tave; elle peut prendre
  []
@@ -402,52 +402,52 @@ Overfull \hbox (3.08565pt too wide) in paragraph at lines 172--176
 <gretsi_fig1.png, id=10, 250.1847pt x 241.65282pt>
 File: gretsi_fig1.png Graphic file (type png)
  <use gretsi_fig1.png>
-Package pdftex.def Info: gretsi_fig1.png used on input line 187.
+Package pdftex.def Info: gretsi_fig1.png used on input line 189.
 (pdftex.def)             Requested size: 206.2102pt x 199.16928pt.
 
 [2 <./gretsi_fig1.png>]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 276.
+(amsmath)                trying to recover with `aligned' on input line 278.
 
 
-Overfull \hbox (8.9806pt too wide) in alignment at lines 272--277
+Overfull \hbox (8.9806pt too wide) in alignment at lines 274--279
  [][][] []
  []
 
 [3]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 297.
+(amsmath)                trying to recover with `aligned' on input line 299.
 
 
-Overfull \hbox (24.85417pt too wide) in alignment at lines 290--298
+Overfull \hbox (24.85417pt too wide) in alignment at lines 292--300
  [][][] []
  []
 
 
-Overfull \hbox (0.30283pt too wide) in paragraph at lines 298--300
+Overfull \hbox (0.30283pt too wide) in paragraph at lines 300--302
 \T1/ptm/m/n/10 Le spectre $\OMS/cmsy/m/n/10 j[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/1
 0 !\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 j$ \T1/ptm/m/n/10 de $\OML/cmm/m/it/10  []
 \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )$ \T1/ptm/m/n/10 est une bo
 sse cen-trée en $\OML/cmm/m/it/10 $\T1/ptm/m/n/10 . L'équa-
  []
 
-LaTeX Font Info:    Try loading font information for T3+ptm on input line 307.
+LaTeX Font Info:    Try loading font information for T3+ptm on input line 309.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/tipa/t3ptm.fd
 File: t3ptm.fd 2001/12/31 TIPA font definitions
 )
 <gretsi_fig3.png, id=28, 250.1847pt x 398.23781pt>
 File: gretsi_fig3.png Graphic file (type png)
  <use gretsi_fig3.png>
-Package pdftex.def Info: gretsi_fig3.png used on input line 315.
+Package pdftex.def Info: gretsi_fig3.png used on input line 317.
 (pdftex.def)             Requested size: 250.18407pt x 398.23683pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (0.90749pt too wide) in paragraph at lines 330--331
+Overfull \hbox (0.90749pt too wide) in paragraph at lines 332--333
 \T1/ptm/m/n/10 et en psy-cho-lo-gie ex-pé-ri-men-tale. Ce-pen-dant, les mé-thod
 es exis-
  []
@@ -455,7 +455,7 @@ es exis-
 
 Package frenchb.ldf Warning: Degrees would look better in TS1-encoding: 
 (frenchb.ldf)                add \usepackage{textcomp} to the preamble. 
-(frenchb.ldf)                Degrees used on input line 337.
+(frenchb.ldf)                Degrees used on input line 339.
 
 [4 <./gretsi_fig3.png>] (./gretsifr.aux) ) 
 Here is how much of TeX's memory you used:
@@ -481,7 +481,7 @@ r8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
 usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/
 texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2
 014/texmf-dist/fonts/type1/public/tipa/xipa10.pfb>
-Output written on gretsifr.pdf (4 pages, 1150991 bytes).
+Output written on gretsifr.pdf (4 pages, 1151029 bytes).
 PDF statistics:
  80 PDF objects out of 1000 (max. 8388607)
  54 compressed objects within 1 object stream
