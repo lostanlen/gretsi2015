@@ -175,7 +175,7 @@ Pour y remédier, Andén \cite{And14} a redéfini les ondelettes $\psi_{\lambda_2}$
 \]
 La variable $\beta$ est mesurée en cycles par octave ; elle peut prendre des valeurs positives ou négatives, ce qui permet de représenter des changements de hauteur montants ou descendants.
 Le support temporel de $\psi_{\lambda_2}$ est maintenant $2/\alpha$, tandis que son support log-fréquentiel est $2/\beta$.
-On note $\overset{\chi_1}{\ast}$ les convolutions selon l'axe log-fréquentiel, c'est-à-dire le long des chromas. La transformée en scattering est étendu au cadre \og{}joint\fg{} temps-échelle en remplaçant $\psi_{\lambda_2}$ par $(\psi_{\alpha}\times\psi_{\beta})$ dans l'équation (\ref{eq:x2-plain}):
+On note $\overset{\chi_1}{\ast}$ les convolutions selon l'axe log-fréquentiel. La transformée en scattering est étendu au cadre \og{}joint\fg{} temps-échelle en remplaçant $\psi_{\lambda_2}$ par $(\psi_{\alpha}\times\psi_{\beta})$ dans l'équation (\ref{eq:x2-plain}):
 \[
 x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}\vert  = \vert x_1 \overset{t}{\ast} \psi_{\alpha} \overset{\chi_1}{\ast} \psi_{\beta} \vert.
 \]
@@ -233,7 +233,7 @@ On s'intéresse au comportement du modèle autour du $p^\text{ième}$ partiel : soi
 (source lentement variable) et
 \item $p<Q/2$ (partiel de rang faible).
 \end{enumerate}
-Les égalités (13) à (15) sont des approximations de Taylor qui ne sont valables que dans ce contexte.
+Les égalités (12) à (14) sont des approximations de Taylor qui ne sont valables que dans ce contexte.
 
 Avec (a), on peut négliger la contribution des partiels $p^{\prime} \neq p$ dans le scalogramme de $e_\theta$. Avec (b), la localisation temporelle de l'ondelette $\psi_{\lambda_1}(t)$ permet de remplacer l'action du difféomorphisme $\theta(t)$ est remplacée par une homothétie d'un facteur $\dot{\theta}(t)$ :
 \[
@@ -261,6 +261,18 @@ Les ondelettes $\psi_\beta$ et $\psi_\gamma$ sont conçues pour être orthogonales
 \vert h_\eta \overset{\chi_1}{\ast} \psi_{\beta} \vert \approx 0.
 \]
 
+La définition du scattering en spirale se factorise alors en
+\[
+x_{\theta,\nu} \overset{t,\chi_1,j_1}{\psi_{\lambda_2}} \\
+= 
+\left(
+\Big(\vert e_\theta \overset{t}{\ast} \psi_{\lambda_1}\vert \overset{\chi_1}{\ast} \psi_\beta\Big)
+\times
+\Big(\vert h_\eta \overset{t}{\ast} \psi_{\lambda_1}\vert \overset{j_1}{\ast} \psi_\gamma\Big)
+\right)
+\overset{t}{\ast} \psi_\alpha,
+\]
+où les opérateurs $\overset{t}{\ast}$, $\overset{\chi_1}{\ast}$, et $\overset{j_1}{\ast}$ désignent des convolutions en temps, log-fréquence, et octave respectivement.
 
 \begin{figure}[fig2]
     \begin{center}
