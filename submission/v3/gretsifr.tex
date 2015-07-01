@@ -99,13 +99,22 @@ En cascadant convolutions locales et non-linéarités, les représentations en rése
 
 Dans cet article, nous proposons une représentation en cascade, dite transformée de scattering, dont l'architecture est similaire à un réseau de neurones, mais sans besoin d'optimiser les unités de convolution. On tire parti de la géométrie naturelle des sons pour construire une description stable aux déformations et qui préserve l'information transitoire autant que possible.
 
-Un enjeu important de cette approche réside dans la préservation de la structure harmonique des partiels, y compris lorsque celle-ci est sujette à des variations d'amplitude, de hauteur et de timbre.
-Cette structure harmonique en peigne est très irrégulière sur un axe log-fréquentiel, et donc particulièrement difficile à caractériser dans un contexte polyphonique.
-Pourtant, en enroulant l'axe log-fréquentiel en une spirale, de sorte que les partiels sur des octaves consécutives se trouvent alignés, on fait apparaître la régularité de l'enveloppe spectrale sur une dimension radiale. La représentation en scattering consiste alors en une cascade de trois décompositions en ondelettes selon les trois variables introduites : temps, chroma et octave.
-
 \blfootnote{Ce travail est financ\'{e} par la bourse ERC InvariantClass 320959.
 Le code source des exp\'{e}riences et figures est en libre acc\`{e}s
 a l'adresse \texttt{www.github.com/lostanlen/scattering.m}.}
+Un enjeu important de cette approche réside dans la préservation de la structure harmonique des partiels, y compris lorsque celle-ci est sujette à des variations d'amplitude, de hauteur et de timbre.
+Cette structure harmonique en peigne est très irrégulière sur un axe log-fréquentiel, et donc particulièrement difficile à caractériser dans un contexte polyphonique.
+
+Pourtant, en enroulant l'axe log-fréquentiel en une spirale, de sorte que les partiels sur des octaves consécutives se trouvent alignés, on fait apparaître la régularité de l'enveloppe spectrale comme une dimension radiale. Une fois spécifiées les variables de temps, de chroma, et d'octave, le scattering en spirale consiste à cascader trois décompositions en ondelettes selon chacune de ces variables, puis à appliquer le module.
+
+
+\begin{figure}
+\label{spirale}
+    \begin{center}
+	\includegraphics[width=65mm]{gretsi_fig0.png}
+    \end{center}
+    \legende{L'ondelette en spirale est un produit d'ondelettes en temps, log-fréquence, et octave. Les oscillations bleues et vertes représentent la partie réelle et la partie imaginaire. L'enveloppe rouge représente le module complexe. Les partiels d'un son harmonique, représentés en gris, suivent un motif d'alignement radial.}
+\end{figure}
 
 \section{Transformées sur le scalogramme}
 
@@ -177,7 +186,6 @@ Shamma \cite{PPS+12} afin de formaliser ses découvertes en neurologie de l'audit
 \subsection{Transformée sur la spirale}
 
 La transformée jointe temps-échelle décrit la variabilité temporelle de hauteur sans recourir à une segmentation préalable. Cependant, elle est agnostique à la structure harmonique des sons voisés. L'évolution de cette structure recèle de l'information sur les formants en parole, ou sur les attaques instrumentales en musique par exemple. On peut la mesurer en comparant des partiels voisins sur des échelles en log-fréquence allant de une à quatre octaves, et ce à chroma fixé. Nous proposons donc d'étendre la transformée jointe temps-fréquence afin d'incorporer les déplacements sur les octaves en conjonction avec les déplacements sur les log-fréquences voisines. Conceptuellement, cela revient à enrouler la variable de log-fréquence $\log_2 \lambda _1$ selon la spirale des hauteurs (voir figure 2) : on révèle ainsi la variable d'octave $\lfloor \log_2 \lambda_1 \rfloor$ (partie entière de $\log_2 \lambda_1$) et la variable de chroma $\{ \log_2 \lambda_1 \}$ (partie fractionnaire de  $\log_2 \lambda_1$).
-Nous proposons donc d'étendre la transformée jointe temps-fréquence afin d'incorporer les déplacements sur les octaves en conjonction avec les déplacements sur les log-fréquences voisines. Pour ce faire, on enroule la variable de log-fréquence $\log_2 \lambda _1$  selon la spirale des hauteurs (voir figure 2) : on révèle ainsi la variable d'octave $\lfloor log_2 \lambda_1 \rfloor$ (partie entière de $\log_2 \lambda_1$) et la variable de chroma $\{ log_2 \lambda_1 \}$ (partie fractionnaire de  $\log_2 \lambda_1$).
 En suivant le même procédé que dans les deux transformées définies auparavant, on commence par définir une ondelette $\psi_{\lambda_2}$ comme un produit séparable d'ondelettes sur chacune des variables à transformer.
 Dans cet article, on a choisi une ondelette gammatone (profil asymétrique) selon le temps, une ondelette de Morlet (profil symétrique) selon les chromas et une ondelette gammatone selon les octaves.
 \[
@@ -193,6 +201,14 @@ x_{2}(t,\log\lambda_{1},\log\lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}
 \]
 
 Il se trouve que l'idée consistant à enrouler les hauteurs en spirale est bien connue en théorie de la musique, ne serait-ce que par la circularité des noms de notes. Elle a notamment été étudiée par Shepard et Risset pour construire des paradoxes de hauteurs \cite{Ris78} et a été validée par des imageries fonctionnelles du cortex auditif \cite{WUP+99}.
+
+\begin{figure}
+\label{spirale}
+    \begin{center}
+	\includegraphics[width=65mm]{gretsi_fig2.png}
+    \end{center}
+    \legende{Hélice des log-fréquences}
+\end{figure}
 
 \section{Déformations du modèle source-filtre}
 
@@ -249,15 +265,6 @@ La figure 3 présente un exemple de signal de parole dont chaque syllabe peut êtr
     \end{center}
     \legende{Deux ondelettes en spirale $\psi_{\lambda_{2}}$ \'{e}tal\'{e}es sur le plan temps-fr\'{e}quence, pr\'{e}sentant des $\lambda_{2}=(\alpha,\beta,\gamma)$ diff\'{e}rents et une localisation diff\'{e}rente sur le scalogramme. \`{A} gauche : $\alpha^{-1}=120\,\mathrm{ms}$, $\beta^{-1}=-0.25\,\mathrm{octave}$, $\gamma^{-1}=+2\ \mathrm{octaves}$. \`{A} droite : $\alpha^{-1}=60\,\mathrm{ms}$, $\beta^{-1}=+0.5\,\mathrm{octave}$, $\gamma^{-1}=-4\,\mathrm{octaves}$. On a affich\'{e} la partie r\'{e}elle des coefficients. Le noir correspond \`{a} des coefficients positifs et le blanc \`{a} des coefficients n\'{e}gatifs.}
 \end{figure}
-
-\begin{figure}
-\label{spirale}
-    \begin{center}
-	\includegraphics[width=65mm]{gretsi_fig2.png}
-    \end{center}
-    \legende{Hélice des log-fréquences}
-\end{figure}
-
 
 \begin{figure}[fig3!]
     \begin{center}
