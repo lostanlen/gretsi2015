@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  1 JUL 2015 23:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  1 JUL 2015 23:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -390,13 +390,13 @@ se-bande
  []
 
 
-Overfull \hbox (3.30327pt too wide) in paragraph at lines 169--171
+Overfull \hbox (3.30327pt too wide) in paragraph at lines 167--169
 \T1/ptm/m/n/10 peut donc pas cap-tu-rer la co-hé-rence de struc-tures so-nores 
 temps-
  []
 
 
-Overfull \hbox (3.08565pt too wide) in paragraph at lines 174--178
+Overfull \hbox (3.08565pt too wide) in paragraph at lines 172--176
 \T1/ptm/m/n/10 La va-riable $\OML/cmm/m/it/10 ^^L$ \T1/ptm/m/n/10 est me-su-rée
  en cycles par oc-tave; elle peut prendre
  []
@@ -404,16 +404,16 @@ Overfull \hbox (3.08565pt too wide) in paragraph at lines 174--178
 <gretsi_fig1.png, id=10, 250.1847pt x 241.65282pt>
 File: gretsi_fig1.png Graphic file (type png)
  <use gretsi_fig1.png>
-Package pdftex.def Info: gretsi_fig1.png used on input line 189.
+Package pdftex.def Info: gretsi_fig1.png used on input line 187.
 (pdftex.def)             Requested size: 206.2102pt x 199.16928pt.
 
 [2 <./gretsi_fig1.png>] [3]
-Overfull \hbox (13.18755pt too wide) in alignment at lines 290--296
+Overfull \hbox (13.18755pt too wide) in alignment at lines 288--294
  [][][] []
  []
 
 
-Overfull \hbox (0.30283pt too wide) in paragraph at lines 296--298
+Overfull \hbox (0.30283pt too wide) in paragraph at lines 294--296
 \T1/ptm/m/n/10 Le spectre $\OMS/cmsy/m/n/10 j[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/1
 0 !\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 j$ \T1/ptm/m/n/10 de $\OML/cmm/m/it/10  []
 \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )$ \T1/ptm/m/n/10 est une bo
@@ -421,26 +421,26 @@ sse cen-trée en $\OML/cmm/m/it/10 $\T1/ptm/m/n/10 . L'équa-
  []
 
 
-Overfull \hbox (5.27304pt too wide) in paragraph at lines 296--298
+Overfull \hbox (5.27304pt too wide) in paragraph at lines 294--296
 \T1/ptm/m/n/10 tion (11[]) est une consé-quence im-mé-diate de la for-mule ci-d
 essus.
  []
 
-LaTeX Font Info:    Try loading font information for T3+ptm on input line 305.
+LaTeX Font Info:    Try loading font information for T3+ptm on input line 303.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/tipa/t3ptm.fd
 File: t3ptm.fd 2001/12/31 TIPA font definitions
 )
 <gretsi_fig3.png, id=28, 250.1847pt x 398.23781pt>
 File: gretsi_fig3.png Graphic file (type png)
  <use gretsi_fig3.png>
-Package pdftex.def Info: gretsi_fig3.png used on input line 313.
+Package pdftex.def Info: gretsi_fig3.png used on input line 311.
 (pdftex.def)             Requested size: 250.18407pt x 398.23683pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (0.90749pt too wide) in paragraph at lines 328--329
+Overfull \hbox (0.90749pt too wide) in paragraph at lines 326--327
 \T1/ptm/m/n/10 et en psy-cho-lo-gie ex-pé-ri-men-tale. Ce-pen-dant, les mé-thod
 es exis-
  []
@@ -448,13 +448,9 @@ es exis-
 
 Package frenchb.ldf Warning: Degrees would look better in TS1-encoding: 
 (frenchb.ldf)                add \usepackage{textcomp} to the preamble. 
-(frenchb.ldf)                Degrees used on input line 335.
+(frenchb.ldf)                Degrees used on input line 333.
 
-[4 <./gretsi_fig3.png>] (./gretsifr.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[4 <./gretsi_fig3.png>] (./gretsifr.aux) ) 
 Here is how much of TeX's memory you used:
  5385 strings out of 493117
  72985 string characters out of 6135433
@@ -463,21 +459,21 @@ Here is how much of TeX's memory you used:
  50906 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,11n,26p,902b,278s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
-xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
-live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texli
-ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
-/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/20
-14/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/tex
-mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2014
-/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2014/texmf-d
-ist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/
-type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/
-times/utmri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/tipa/x
-ipa10.pfb>
+{/usr/local/texlive/2014/texmf-dist/f
+onts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/sym
+bols/msbm10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/courier/ucr
+r8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
+usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/
+texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2
+014/texmf-dist/fonts/type1/public/tipa/xipa10.pfb>
 Output written on gretsifr.pdf (4 pages, 1151036 bytes).
 PDF statistics:
  80 PDF objects out of 1000 (max. 8388607)
