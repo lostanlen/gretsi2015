@@ -106,8 +106,6 @@ Un enjeu important de cette approche réside dans la préservation de la structure
 Cette structure harmonique en peigne est très irrégulière sur un axe log-fréquentiel, et donc particulièrement difficile à caractériser dans un contexte polyphonique.
 
 Pourtant, en enroulant l'axe log-fréquentiel en une spirale, de sorte que les partiels sur des octaves consécutives se trouvent alignés, on fait apparaître la régularité de l'enveloppe spectrale comme une dimension radiale. Une fois spécifiées les variables de temps, de chroma, et d'octave, le scattering en spirale consiste à cascader trois décompositions en ondelettes selon chacune de ces variables, puis à appliquer le module.
-
-
 \begin{figure}
 \label{spirale}
     \begin{center}
@@ -194,14 +192,14 @@ Shamma \cite{PPS+12} afin de formaliser ses découvertes en neurologie de l'audit
 
 La transformée jointe temps-échelle décrit la variabilité temporelle de hauteur sans recourir à une segmentation préalable. Cependant, elle est agnostique à la structure harmonique des sons voisés. L'évolution de cette structure recèle de l'information sur les formants en parole, ou sur les attaques instrumentales en musique par exemple. On peut la mesurer en comparant des partiels voisins sur des échelles en log-fréquence allant de une à quatre octaves, et ce à chroma fixé. Nous proposons donc d'étendre la transformée jointe temps-fréquence afin d'incorporer les déplacements sur les octaves en conjonction avec les déplacements sur les log-fréquences voisines.
 
-Conceptuellement, cela revient à enrouler la variable de log-fréquence $\log_2 \lambda _1$ selon la spirale des hauteurs (voir figure \ref{fig:spiral-wavelets-3d}) : on révèle ainsi la variable radiale d'octave $\lfloor \log_2 \lambda_1 \rfloor$ (partie entière de $\log_2 \lambda_1$) et la variable angulaire de chroma $\{ \log_2 \lambda_1 \}$ (partie fractionnaire de  $\log_2 \lambda_1$).
+Conceptuellement, cela revient à enrouler la variable de log-fréquence $\log_2 \lambda _1$ selon la spirale des hauteurs (voir figure \ref{fig:spiral-wavelets-3d}) : on révèle ainsi la variable radiale d'octave $j_1$ et la variable angulaire de chroma $\chi_1$.
 En suivant le même procédé que dans les deux transformées définies auparavant, on commence par définir une ondelette $\psi_{\lambda_2}$ comme un produit séparable d'ondelettes sur chacune des variables à transformer.
 Dans cet article, on a choisi une ondelette gammatone (profil asymétrique) selon le temps, une ondelette de Morlet (profil symétrique) selon les chromas et une ondelette gammatone selon les octaves.
 \[
 \psi_{\lambda_{2}}(t,\log\lambda_{1},\lfloor\log\lambda_{1}\rfloor)=\psi_{\alpha}(t)\,\psi_{\beta}(\log\lambda_{1})\,\psi_{\gamma}(\lfloor\log\lambda_{1}\rfloor).
 \]
 %Bien que le modèle précédent soit efficace pour modéliser la variabilité de la hauteur en fonction du temps, il reste agnostique à la structure harmonique du signal, omniprésente dans les sons naturels. L'évolution temporelle de cette structure recèle de l'information sur les formants en parole, ou sur les attaques instrumentales en musique par exemple. On peut mesurer cette évolution en comparant des partiels voisins sur des échelles allant de une à quatre octaves.
-La figure \ref{eq:spiral-wavelets-tfplane} illustre la structure géométrique de l'ondelette en spirale $\psi_{\lambda_{2}}$ dans le plan $(t,\log_2 \lambda_1)$, pour différentes valeurs de $\lambda_2 = (\alpha,\beta,\gamma)$.
+La figure \ref{fig:spiral-wavelets-tfplane} illustre la structure géométrique de l'ondelette en spirale $\psi_{\lambda_{2}}$ dans le plan $(t,\log_2 \lambda_1)$, pour différentes valeurs de $\lambda_2 = (\alpha,\beta,\gamma)$.
 Nous définissons la transformée en spirale comme une convolution séparable entre le scalogramme et $\psi_{\lambda_2}$, selon les trois variables de temps $t$, log-fréquence $\log_2 \lambda_1$ et octave $\lfloor \log_2 \lambda_1 \rfloor$ :
 \[
 x_{2}(t,\log\lambda_{1},\log\lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}
@@ -243,7 +241,7 @@ On s'intéresse au comportement du modèle autour du $p^\text{ième}$ partiel : soi
 (source lentement variable) et
 \item $p<Q/2$ (partiel de rang faible).
 \end{enumerate}
-Les égalités (12) à (14) sont des approximations de Taylor qui ne sont valables que dans ce contexte.
+Les égalités (12) à (14) sont des approximations de Taylor valables uniquement dans ce contexte.
 
 Avec (a), on peut négliger la contribution des partiels $p^{\prime} \neq p$ dans le scalogramme de $e_\theta$. Avec (b), la localisation temporelle de l'ondelette $\psi_{\lambda_1}(t)$ permet de remplacer l'action du difféomorphisme $\theta(t)$ est remplacée par une homothétie d'un facteur $\dot{\theta}(t)$ :
 \[
@@ -253,7 +251,7 @@ De même, avec (c), l'action de $\eta(t)$ est remplacée par une homothétie d'un f
 \[
 \vert h_\eta \overset{t}{\ast} \psi_{\lambda_1} \vert (t) = \hat{h}\left(\frac{\lambda_1}{\dot{\eta}(t)}\right) \times \psi_{\lambda_1}\left(\frac{\nu(t)}{\dot{\nu}(t)} \right).
 \]
-En menant les deux linéarisations ci-dessus conjointement, on aboutit à
+En menant ces deux linéarisations conjointement, on aboutit à
 \[
 \vert x_{\theta,\eta} \overset{t}{\ast} \psi_{\lambda_1} \vert (t) =
 \vert \widehat{\psi}_{\lambda_1}(p \dot{\theta}(t)) \vert
@@ -270,7 +268,6 @@ Les ondelettes $\psi_\beta$ et $\psi_\gamma$ sont conçues pour être orthogonales
 \quad
 \vert h_\eta \overset{\chi_1}{\ast} \psi_{\beta} \vert \approx 0.
 \]
-
 La définition du scattering en spirale se factorise alors en
 \begin{eqnarray}
 \begin{split}
@@ -289,9 +286,7 @@ Pour terminer, on constate que la phase du scalogramme de la source $\vert e_\th
 \quad
 \alpha \geq \left\vert \dfrac{\ddot{\eta}(t)}{\dot{\eta}(t)} \gamma \right\vert,
 \]
-
 les enveloppes de ces deux convolutions sont approximativement constantes sur le support de $\psi_{\alpha}(t)$. On conclut avec la formule approchée suivante pour les coefficients de scattering en spirale du modèle source-filtre déformé :
-
 \begin{eqnarray}
 \begin{split}
 x_2(t,\log \lambda_1, \log \lambda_2)  \mkern-108mu \\
@@ -301,9 +296,7 @@ x_2(t,\log \lambda_1, \log \lambda_2)  \mkern-108mu \\
 \label{eq:x2-sourcefilter}
 \end{split}
 \end{eqnarray}
-
 Le spectre $\vert\widehat{\psi}_{\alpha}(\omega)\vert$ de $\psi_{\alpha}(t)$ est une bosse centrée en $\alpha$. L'équation \ref{eq:cartesian-equation} est une conséquence immédiate de la formule ci-dessus. Ce résultat reste vrai après filtrage passe-bas par $\phi_T$ à condition que les vitesses $\ddot{\theta}/\dot{\theta}(t)$ et $\ddot{\eta}(t)/\dot{\eta}(t)$ aient des variations relatives lentes devant $T$ :
-
 \begin{equation}
 \left \vert \frac{\dddot{\theta}(t)}{\ddot{\theta}(t)} - \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \right \vert \ll T^{-1}
 \quad \text{and} \quad
@@ -311,7 +304,7 @@ Le spectre $\vert\widehat{\psi}_{\alpha}(\omega)\vert$ de $\psi_{\alpha}(t)$ est
 \end{equation}
 
 \subsection{Illustration numérique}
-La figure \ref{fig:lion} illustre le comportement temps-fréquence de certains coefficients de scattering en spirale pour le mot anglais $\emph{lion}$ (prononcé /\textprimstress la\textsci \textschwa n/ ).
+La figure \ref{fig:lion} illustre le comportement temps-fréquence de certains coefficients de scattering en spirale pour le mot anglais $\emph{lion}$, prononcé /\textprimstress la\textsci \textschwa n/ .
 On constate que la syllabe /\textprimstress la\textsci / active en
 particulier les coefficients tels que $\beta>0$, $\gamma>0$ (hauteur montante,
 timbre montant) tandis que /\textsci \textschwa n/ active les coefficients
