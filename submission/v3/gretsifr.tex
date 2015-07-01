@@ -10,7 +10,7 @@
 \newtheorem*{prop*}{Th\'{e}or\`{e}me}
 \renewcommand\[{\begin{equation}}
 \renewcommand\]{\end{equation}}
-\renewcommand{\labelenumi}{\emph{(\alph{enumi})}}
+\renewcommand{\labelenumi}{(\alph{enumi})}
 
 
 %% Selectionnez ensuite les paquets que vous utilisez,
@@ -192,54 +192,16 @@ Il se trouve que l'idée consistant à enrouler les hauteurs en spirale est bien c
 
 \section{Déformations du modèle source-filtre}
 
-Un modèle de production sonore classique consiste en la convolution d'un signal de source glottique $e(t)$ avec un filtre de conduit vocal $h(t)$. Dans cette section, on introduit une variabilité de hauteur et d'enveloppe spectrale par des déformations temporelles de $e$ et $h$. On étudie la décomposition du modèle déformé dans la transformée en scattering.
+Un modèle de production sonore classique consiste en la convolution d'un signal de source glottique $e(t)$ avec un filtre de conduit vocal $h(t)$. Dans cette section, on introduit une variabilité de hauteur et d'enveloppe spectrale par des déformations temporelles de $e$ et $h$. On montre comment les propriétés d'harmonicité de $e(t)$ et de régularité spectrale de $h(t)$ permettent de séparer et linéariser ces deux vitesses de déformation.
 
+\subsection{Résultat principal}
 Soit $\sum_{n}\delta(t-2 \pi n)$
 un signal harmonique \og source \fg{} et soit $t\mapsto\theta(t)$ un diff\'{e}omorphisme
 du temps ; on d\'{e}finit $e_{\theta}(t)=(e\circ\theta)(t)$ la source d\'{e}form\'{e}e.
 De m\^{e}me, on compose un \og filtre \fg{} $h(t)$ et un diff\'{e}omorphisme
 $t\mapsto\eta(t)$ pour d\'{e}finir $h_{\eta}(t)=(h\circ\eta)(t)$. Le
-mod\`{e}le source-filtre d\'{e}form\'{e} est le signal $x(t)=[e_{\theta}\ast h_{\eta}](t)$.
-\begin{lem*}
-Pour tout $\lambda_{1}$ tel que 
-\begin{enumerate}
-\item $\Vert\ddot{\eta}/\dot{\eta}\Vert_{\infty}\ll\lambda_{1}/Q$ (filtre
-lentement variable) et
-\item $\Vert\dot{\hat{h}}/\hat{h}\Vert_{\infty}\Vert1/\dot{\eta}\Vert_{\infty}\ll Q/\lambda_{1}$
-(profil spectral r\'{e}gulier),
-\end{enumerate}
-la transform\'{e}e en ondelettes $[h_{\eta}\ast\psi_{\lambda_{1}}]$
-se factorise en
+mod\`{e}le source-filtre d\'{e}form\'{e} est le signal $x_{\theta,\eta}(t)=(e_{\theta}\ast h_{\eta})(t)$.
 
-\[
-[h_{\eta}\ast\psi_{\lambda_{1}}](t)\approx H(\log_{2}\lambda_{1}-\log_{2}\dot{\eta}(t))\psi_{\lambda_{1}}\left(\dfrac{\eta(t)}{\dot{\eta}(t)}\right)
-\]
-o\`{u} l'on a défini la réponse du filtre $H(\log_{2}\lambda_{1})=\lambda_{1}\hat{h}(\lambda_{1}\eta)$ sur un
-axe log-fréquentiel.\end{lem*}
-\begin{proof}
-Gr\^{a}ce \`{a} la premi\`{e}re hypoth\`{e}se, on d\'{e}veloppe $\eta(t-u)\approx\eta(t)-\dot{\eta}(t)\times u$
-sur le support de $\psi_{\lambda_{1}}(t)$. Le changement de variable
-$u^{\prime}=\dot{\eta}(t)\times u$ conduit \`{a}
-\[
-[h_{\eta}\ast\psi_{\lambda_{1}}](t)=\int_{\mathbb{R}}h(\eta(t)-u^{\prime})\psi_{\lambda_{1}}\left(\dfrac{u^{\prime}}{\dot{\eta}(t)}\right)\,\dfrac{\mathrm{d}u^{\prime}}{\dot{\eta}(t)}.
-\]
-L'ondelette $\psi_{\lambda_{1}}$ v\'{e}rifiant $\psi_{\lambda_{1}}(\dot{\eta}(t)^{-1}u^{\prime})=\dot{\eta}(t)\psi_{\dot{\eta}(t)^{-1}\lambda_{1}}(u^{\prime})$,
-on peut convertir le facteur de dilatation $\dot{\eta}(t)$ en une
-transposition fr\'{e}quentielle. D'o\`{u} $[h_{\eta}\ast\psi_{\lambda_{1}}](t)=[h\ast\psi_{\dot{\eta}(t)^{-1}\lambda_{1}}](t)$,
-ce qui s'\'{e}crit comme un produit dans le domaine de Fourier :
-\[
-[h_{\eta}\ast\psi_{\lambda_{1}}](t)=\dfrac{1}{2\pi}\int_{\mathbb{R}}\hat{h}(\omega)\hat{\psi}_{\dot{\eta}(t)^{-1}\lambda_{1}}(\omega)\exp(\mathrm{i}\omega\eta(t))\,\mathrm{d}u^{\prime}.
-\]
-Gr\^{a}ce \`{a} la seconde hypoth\`{e}se, on approxime localement
-$\hat{h}(\omega)$ par la constante $\hat{h}(\dot{\eta}(t)^{-1}\lambda_{1}\eta)$
-sur le support fr\'{e}quentiel de $\hat{\psi}_{\dot{\eta}(t)^{-1}\lambda_{1}}$.
-D\`{e}s lors, l'int\'{e}grale ci-dessus peut \^{e}tre vue comme la
-transform\'{e}e de Fourier inverse de $\hat{\psi}_{\dot{\eta}(t)^{-1}\lambda_{1}}(\omega)$
-\'{e}valu\'{e}e en $\eta(t)$. On conclut en revenant \`{a} l'ondelette
-$\psi_{\lambda_{1}}$ avec l'\'{e}quation $\dot{\eta}(t)^{-1}\psi_{\dot{\eta}(t)^{-1}\lambda_{1}}(\eta(t))=\psi_{\lambda_{1}}(\eta(t)/\dot{\eta}(t))$.\end{proof}
-\begin{prop*}
-Soit $\lambda_{1}$ de la forme $k\xi\eta^{-1}$, avec $k\leq K$.
-Si les conditions suivantes sont v\'{e}rifi\'{e}es :
 \begin{enumerate}
 \item $\Vert\ddot{\eta}/\dot{\eta}\Vert_{\infty}\ll\lambda_{1}\eta/Q$
 (filtre lentement variable),
@@ -249,6 +211,23 @@ Si les conditions suivantes sont v\'{e}rifi\'{e}es :
 (source lentement variable) et
 \item $k<Q/2$ (partiel de rang faible),
 \end{enumerate}
+
+
+\[
+\vert x_{\theta,\eta}\ast\psi_{\lambda_1} \vert (t)
+\approx
+\widehat{\psi}_{\lambda_1}(p\dot{\theta}(t))
+\times
+\hat{h}\left(\frac{\lambda_1}{\dot{\eta}(t)}\right),
+\]
+
+où l'entier $p$ est tel que $p \dot{\theta}(t) \approx \lambda_1$.
+
+
+\begin{prop*}
+Soit $\lambda_{1}$ de la forme $k\xi\eta^{-1}$, avec $k\leq K$.
+Si les conditions suivantes sont v\'{e}rifi\'{e}es :
+
 alors le module de la transform\'{e}e en ondelettes du mod\`{e}le
 source-filtre d\'{e}form\'{e}
 
