@@ -137,9 +137,7 @@ $\lambda_1 = 2^{j_1 + \chi_1}$ où $j_1 \in \mathbb{Z}$ et $\chi_1 \in \{1 \ldots
 \end{equation}
 Chaque $\psi_{\lambda_{1}}(t)$ est un filtre passe-bande de
 fr\'{e}quence centrale $\lambda_{1}$, de largeur de bande $\lambda_{1}/Q$
-et de support temporel $2Q/\lambda_{1}$. Son facteur de qualit\'{e},
-d\'{e}fini comme le rapport de la fr\'{e}quence centrale sur la largeur
-de bande, reste \'{e}gal \`{a} $Q$.
+et de support temporel $2Q/\lambda_{1}$.
 On construit donc un banc de filtres à Q constant, capable de produire une représentation temps-fréquence stable et parcimonieuse \cite{AM11, PPS+12}.
 On choisit $Q=16$ dans les figures
 de cet article.
@@ -161,7 +159,7 @@ x_2(t,\log_2 \lambda_1,\log_2 \lambda_2) = \vert x_1 \overset{t}{\ast} \psi_{\la
 Les ondelettes $\psi_{\lambda_2}(t)$ ont un facteur de qualité égal à $1$, mais nous choisissons de conserver la notation $\psi$ par souci de simplicité. Chaque ondelette $\psi_{\lambda_2}(t)$ a pour fréquence centrale $\lambda_2$ et pour support temporel $2 / \lambda_2$.
 Comme dans l'équation (\ref{eq:S1-plain}), le filtrage de $x_2$ par $\phi_T(t)$ crée une représentation $S_2 x$ invariante à la translation jusqu'à $T$:
 \[
-S_2 x(t,\log_2 \lambda_1,\log_2 \lambda_2) = x_2 \overset{t}{\ast} \phi = \left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert \overset{t}{\ast} \phi_T.
+S_2 x(t,\log_2 \lambda_1,\log_2 \lambda_2) = \left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert \overset{t}{\ast} \phi_T.
 \]
 %Le tenseur obtenu $x_2$, qui quantifie explicitement les modulations d'amplitude du signal pour des périodes atteignant $200$ ms,
 % est notablement plus performant sur des problèmes de classification de genre musical ou de reconnaissance de phonèmes \cite{AM11} que les représentations issues du scalogramme moyenné, telles que les descripteurs cepstraux (MFCC).
@@ -312,14 +310,13 @@ Le spectre $\vert\widehat{\psi}_{\alpha}(\omega)\vert$ de $\psi_{\alpha}(t)$ est
 \end{equation}
 
 \subsection{Illustration numérique}
-La figure \ref{fig:lion} illustre le comportement temps-fréquence de quatre coefficients de scattering en spirale pour le mot anglais $\emph{lion}$ (prononcé /\textprimstress la\textsci \textschwa n/ ).
+La figure \ref{fig:lion} illustre le comportement temps-fréquence de certains coefficients de scattering en spirale pour le mot anglais $\emph{lion}$ (prononcé /\textprimstress la\textsci \textschwa n/ ).
 On constate que la syllabe /\textprimstress la\textsci / active en
 particulier les coefficients tels que $\beta>0$, $\gamma>0$ (hauteur montante,
 timbre montant) tandis que /\textsci \textschwa n/ active les coefficients
 tels que $\beta<0$, $\gamma<0$ (hauteur descendante, timbre descendant). Ces signes sont corrélés avec
 les sens de déformations du modèle source-filtre : $\ddot{\theta}(t)<0$ et $\ddot{\eta}(t)<0$ pour la syllabe /\textprimstress la\textsci /, $\ddot{\theta}(t)>0$ et $\ddot{\eta}(t)>0$ pour la syllabe  /\textsci \textschwa n/.
-
-\begin{figure}[fig3!]
+\begin{figure}[h!]
     \begin{center}
 	\includegraphics{gretsi_fig3.png}
     \end{center}
