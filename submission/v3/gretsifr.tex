@@ -6,8 +6,6 @@
 %% POUR LES UTILISATEURS FRANCOPHONES DE LaTeX2e
   \documentclass{gretsi}
 \usepackage{amssymb,amsmath,amsthm, mathtools}
-\newtheorem*{lem*}{Lemme}
-\newtheorem*{prop*}{Th\'{e}or\`{e}me}
 \renewcommand\[{\begin{equation}}
 \renewcommand\]{\end{equation}}
 \renewcommand{\labelenumi}{(\alph{enumi})}
@@ -99,7 +97,10 @@ La variabilité des signaux acoustiques naturels peut se modéliser comme une acti
 Ainsi, la classification de sons repose essentiellement sur la construction de représentations qui demeurent stables à ces déformations, tout en offrant une bonne discriminabilité entre signaux de classes différentes.
 En cascadant convolutions locales et non-linéarités, les représentations en réseaux de neurones parviennent à combiner ces deux qualités ; mais elles sont entièrement adaptées aux données, et requièrent par conséquent une vaste base d'entraînement pour atteindre des performances de classification élevée.
 Dans cet article, nous proposons une représentation en cascade, dite transformée de scattering, dont l'architecture est similaire à un réseau de neurones, mais sans besoin d'optimiser les unités de convolution. On tire parti de la géométrie naturelle des sons pour construire une description stable aux déformations, mais qui préserve l'information discriminante autant que possible.
-Un enjeu fondamental de cette approche réside dans la préservation de la structure harmonique des sons, y compris lorsque celle-ci est sujette à des variations d'amplitude, de hauteur et de timbre. Cette idée nous conduira à réorganiser l'axe fréquentiel en spirale, de sorte que des partiels sur des octaves consécutives se trouvent alignés.
+Un enjeu fondamental de cette approche réside dans la préservation de la structure harmonique des partiels, y compris lorsque celle-ci est sujette à des variations d'amplitude, de hauteur et de timbre. 
+En enroulant l'axe log-fréquentiel en une spirale, de sorte que des partiels sur des octaves consécutives se trouvent alignés, on fait apparaître la régularité de l'enveloppe spectrale sur un axe radial. La représentation en scattering consiste alors en une cascade de trois décompositions en ondelettes selon les trois variables introduites : temps, chroma et octave.
+
+Cette idée nous conduira à réorganiser l'axe fréquentiel en spirale, 
 
 \blfootnote{Ce travail est financ\'{e} par la bourse ERC InvariantClass 320959.
 Le code source des exp\'{e}riences et figures est en libre acc\`{e}s
@@ -223,60 +224,7 @@ mod\`{e}le source-filtre d\'{e}form\'{e} est le signal $x_{\theta,\eta}(t)=(e_{\
 
 où l'entier $p$ est tel que $p \dot{\theta}(t) \approx \lambda_1$.
 
-
-\begin{prop*}
-Soit $\lambda_{1}$ de la forme $k\xi\eta^{-1}$, avec $k\leq K$.
-Si les conditions suivantes sont v\'{e}rifi\'{e}es :
-
-alors le module de la transform\'{e}e en ondelettes du mod\`{e}le
-source-filtre d\'{e}form\'{e}
-
-\[
-\vert e_{\theta}\ast h_{\eta}\ast\psi_{\lambda_{1}}\vert(t)\approx E(\log_{2}\lambda_{1}-\log_{2}\dot{\theta}(t))H(\log_{2}\lambda_{1}-\log_{2}\dot{\eta}(t))
-\]
-est localement s\'{e}parable en une r\'{e}ponse de source $E(\log_{2}\lambda_{1})=\vert\widehat{\psi_{\lambda_{1}}}(k\xi)\vert$
-et une r\'{e}ponse de filtre $H(\log_{2}\lambda_{1})=\lambda_{1}\hat{h}(\lambda_{1}\eta)$,
-chacune en mouvement rigide sur l'axe log-fr\'{e}quentiel $\log_{2}\lambda_{1}$;
-le mouvement de $E$ (resp. $H$) \'{e}tant r\'{e}gi par le signal
-$\log_{2}\dot{\theta}(t)$ (resp. $\log_{2}\dot{\eta}(t))$.\end{prop*}
-
-\begin{proof}
-On part des hypoth\`{e}ses (a) et (b) pour affirmer le lemme pr\'{e}c\'{e}dent.
-%\[
-%\begin{array}{c}
-%\mkern-320mu
- %\left[e_{\theta}\ast h_{\eta}\ast\psi_{\lambda_{1}}\right](t) \\
-%=H\left(\log_{2}\lambda_{1}-\log_{2}\dot{\eta}(t)\right)\times\int_{\mathbb{R}}e_{\theta}(t-u)\psi_{\lambda_{1}}\left(\dfrac{\eta(u)}{\dot{\eta}(u)}\right)\,\mathrm{d}u
-%\end{array}
-%\]
-Comme dans la preuve du lemme, on pose $u^{\prime}=\dot{\theta}(t)\times(\frac{\eta(t)}{\dot{\eta}(t)}+u-t)$,
-on d\'{e}veloppe et simplifie $\frac{\eta(u)}{\dot{\eta}(u)}\approx\frac{u^{\prime}}{\dot{\theta}(t)}$,
-et l'on convertit la dilatation temporelle en transposition fr\'{e}quentielle
-avec l'\'{e}quation $\dot{\theta}(t)^{-1}\psi_{\lambda_{1}}(\dot{\theta}(t)^{-1}u^{\prime})=\psi_{\dot{\theta}(t)^{-1}\lambda_{1}}(u^{\prime})$
-:
-\[
-\begin{array}{c}
-\mkern-55mu
-\int_{\mathbb{R}}e_{\theta}(t-u)\psi_{\lambda_{1}}\left(\frac{\eta(u)}{\dot{\eta}(u)}\right)\,\mathrm{d}u\\
-=\int_{\mathbb{R}}e_{\theta}\left(\frac{\eta(t)}{\dot{\eta}(t)}-\frac{u^{\prime}}{\dot{\theta}(t)}\right)\psi_{\dot{\theta}(t)^{-1}\lambda_{1}}(u^{\prime})\,\mathrm{d}u^{\prime}
-\end{array}
-\]
-Avec l'hypoth\`{e}se (c), on lin\'{e}arise le diff\'{e}omorphisme
-$\theta$ autour de $\frac{\eta(t)}{\dot{\eta}(t)}$, ce qui permet de
-voir l'int\'{e}grale ci-dessus comme la convolution $[e\ast\psi_{\dot{\theta}(t)^{-1}\lambda_{1}}]$
-\'{e}valu\'{e}e en $\theta(\frac{\eta(t)}{\dot{\eta}(t)})$. Puisque le
-banc de filtres a un facteur de qualit\'{e} constant $Q$, la largeur
-de bande \`{a} la fr\'{e}quence $k\xi\dot{\theta}(t)$ est $k\xi\dot{\theta}(t)Q^{-1}$.
-L'hypoth\`{e}se (d) peut se r\'{e}\'{e}crire $(k+1)\xi\dot{\theta}(t)>k\xi\dot{\theta}(t)+\frac{k\xi\dot{\theta}(t)}{2Q}$
-; autrement dit, le $(k+1)^{\text{\`{e}me}}$ partiel est hors de
-la bande passante de $\psi_{\dot{\theta}(t)\lambda_{1}}$. Plus g\'{e}n\'{e}ralement,
-les partiels $k^{\prime}\neq k$ ont une contribution n\'{e}gligeable
-\`{a} la transform\'{e}e en ondelettes de $e(t)$. En l'absence d'interf\'{e}rences,
-le module $\vert e\ast\psi_{\dot{\theta}(t)^{-1}\lambda_{1}}\vert(t)$
-se r\'{e}sume au seul terme $E(\log_{2}\lambda_{1}-\log_{2}\dot{\theta}(t))$
-o\`{u} l'on a d\'{e}fini $E(\log_{2}\lambda_{1})=\vert\widehat{\psi_{\lambda_{1}}}(k\xi)\vert$
-sur un axe log-fr\'{e}quentiel.
-\end{proof}
+%\begin{prop*}
 On peut calculer explicitement la r\'{e}ponse de source dans le cas
 d'un spectre harmonique : 
 \[
