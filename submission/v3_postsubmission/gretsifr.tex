@@ -115,6 +115,7 @@ Pourtant, en enroulant l'axe log-fréquentiel en une spirale, de sorte que les pa
     \label{fig:spiral-wavelets-3d}
 \end{figure}
 
+\vspace{-1mm}
 \section{Transformées sur le scalogramme}
 
 Dans cette section, on définit progressivement la transformée en scattering sur la spirale comme une extension de la transformée en scattering temporelle et de la transformée en scattering jointe temps-fréquence. Les trois transformées partagent le même formalisme.
@@ -158,13 +159,12 @@ Les ondelettes $\psi_{\lambda_2}(t)$ ont un facteur de qualité égal à $1$, mais 
 Comme dans l'équation (\ref{eq:S1-plain}), le filtrage de $x_2$ par $\phi_T(t)$ crée une représentation $S_2 x$ invariante à la translation jusqu'à $T$:
 \[
 S_2 x(t,\log_2 \lambda_1,\log_2 \lambda_2) =
-\vert x_1 \overset{t}{\ast} \psi_{\lambda_1} \vert =
 \left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert \overset{t}{\ast} \phi_T.
 \]
 
 \subsection{Transformée jointe temps-échelle}
 
-La transformée de scattering définie à l'équation (\ref{eq:x2-plain}) décompose chaque bande de fréquence $\lambda_1$ indépendamment, et ne peut donc pas capturer la cohérence de structures sonores temps-fréquence, telle que les variations de hauteur.
+La transformée de scattering définie à l'équation (\ref{eq:x2-plain}) décompose chaque bande de fréquence $\lambda_1$ indépendamment, et ne peut donc pas capturer la cohérence de structures sonores temps-fréquence, telles que les variations de hauteur.
 Pour y remédier, Andén \cite{And14} a redéfini les ondelettes $\psi_{\lambda_2}$'s comme des fonctions du temps et de la log-fréquence, indexées par la paire $\lambda_{2}=(\alpha,\beta)$, o\`u $\alpha$ est une fréquence de modulation en Hertz et $\beta$ est une fréquence sur les déplacements en log-fréquence :
 \[
 \psi_{\lambda_{2}}(t,\log_2\lambda_{1})=\psi_{\alpha}(t)\times
@@ -199,7 +199,7 @@ Dans cet article, on a choisi une ondelette gammatone (profil asymétrique) selon
 \psi_{\lambda_{2}}(t,\log\lambda_{1},j_1)=\psi_{\alpha}(t)\,\psi_{\beta}(\log\lambda_{1})\,\psi_{\gamma}(j_1).
 \]
 La figure \ref{fig:spiral-wavelets-tfplane} illustre la structure géométrique de l'ondelette en spirale $\psi_{\lambda_{2}}$ dans le plan $(t,\log_2 \lambda_1)$, pour différentes valeurs de $\lambda_2 = (\alpha,\beta,\gamma)$.
-Nous définissons la transformée en spirale comme une convolution séparable entre le scalogramme et $\psi_{\lambda_2}$, selon les trois variables de temps $t$, log-fréquence $\log_2 \lambda_1$ et octave $j_1 = \lfloor \log_2 \lambda_1 \rfloor$ (partie entière) :
+Nous définissons la transformée en spirale comme une convolution séparable entre le scalogramme et $\psi_{\lambda_2}$, selon les trois variables de temps $t$, log-fréquence $\log_2 \lambda_1$, et octave $j_1 = \lfloor \log_2 \lambda_1 \rfloor$ (partie entière) :
 \[
 x_{2}(t,\log\lambda_{1},\log\lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}
 (t,\log \lambda_1,\lfloor \log \lambda_1 \rfloor)\vert .
@@ -290,14 +290,14 @@ les enveloppes de ces deux convolutions sont approximativement constantes sur le
 x_2(t,\log \lambda_1, \log \lambda_2) = 
 \Big\vert \vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{\chi_1}{\ast} \psi_{\beta} \Big\vert
 \times
-\Big\vert \vert h_\nu \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{j_1}{\ast} \psi_{\beta} \Big\vert \nonumber \mkern-310mu \\
+\Big\vert \vert h_\nu \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{j_1}{\ast} \psi_{\gamma} \Big\vert \nonumber \mkern-310mu \\
 & \times \left \vert \widehat{\psi}_{\alpha} \left( -\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \dfrac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right) \right \vert.
 \label{eq:x2-sourcefilter}
 \end{eqnarray}
 Le spectre $\vert\widehat{\psi}_{\alpha}(\omega)\vert$ de $\psi_{\alpha}(t)$ est une bosse centrée en $\alpha$. L'équation (\ref{eq:cartesian-equation}) est une conséquence immédiate de la formule ci-dessus. Ce résultat reste vrai après filtrage passe-bas par $\phi_T$ à condition que les vitesses $\ddot{\theta}/\dot{\theta}(t)$ et $\ddot{\eta}(t)/\dot{\eta}(t)$ aient des variations relatives lentes devant $T$ :
 \begin{equation}
 \left \vert \frac{\dddot{\theta}(t)}{\ddot{\theta}(t)} - \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \right \vert \ll T^{-1}
-\quad \text{and} \quad
+\quad \text{et} \quad
 \left \vert \frac{\dddot{\nu}(t)}{\ddot{\nu}(t)} - \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \right \vert \ll T^{-1}.
 \end{equation}
 
