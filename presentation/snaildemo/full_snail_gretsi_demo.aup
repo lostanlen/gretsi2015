@@ -1,6 +1,6 @@
 <?xml version="1.0" standalone="no" ?>
 <!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
-<project xmlns="http://audacity.sourceforge.net/xml/" projname="full_snail_gretsi_demo_data" version="1.3.0" audacityversion="2.1.0" sel0="0.0000000000" sel1="0.0000000000" vpos="0" h="9.6641604507" zoom="27.1104770391" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + milliseconds">
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="full_snail_gretsi_demo_data" version="1.3.0" audacityversion="2.1.0" sel0="32.9946147377" sel1="50.4970732639" vpos="0" h="17.5393446347" zoom="54.2209540781" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + milliseconds">
 	<tags/>
 	<wavetrack name="Son2_DemoSnail3" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0">
 		<waveclip offset="0.00000000">
@@ -28,8 +28,8 @@
 			</envelope>
 		</waveclip>
 	</wavetrack>
-	<wavetrack name="original" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="22050" gain="1.0" pan="0.0">
-		<waveclip offset="27.10000000">
+	<wavetrack name="original" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="22050" gain="1.0" pan="0.0">
+		<waveclip offset="33.11242630">
 			<sequence maxsamples="262144" sampleformat="262159" numsamples="65536">
 				<waveblock start="0">
 					<simpleblockfile filename="e0000b2b.au" len="65536" min="-0.717621" max="0.646179" rms="0.176109"/>
@@ -39,7 +39,7 @@
 				<controlpoint t="2.972108843537" val="1.000000000000"/>
 			</envelope>
 		</waveclip>
-		<waveclip offset="32.01147392">
+		<waveclip offset="38.02390023">
 			<sequence maxsamples="262144" sampleformat="262159" numsamples="65536">
 				<waveblock start="0">
 					<simpleblockfile filename="e00004b0.au" len="65536" min="-0.802032" max="0.646179" rms="0.165238"/>
@@ -47,7 +47,7 @@
 			</sequence>
 			<envelope numpoints="0"/>
 		</waveclip>
-		<waveclip offset="36.70167800">
+		<waveclip offset="42.71410431">
 			<sequence maxsamples="262144" sampleformat="262159" numsamples="65536">
 				<waveblock start="0">
 					<simpleblockfile filename="e0000d2e.au" len="65536" min="-0.717621" max="0.564789" rms="0.145195"/>
@@ -55,7 +55,7 @@
 			</sequence>
 			<envelope numpoints="0"/>
 		</waveclip>
-		<waveclip offset="41.42308390">
+		<waveclip offset="47.43551020">
 			<sequence maxsamples="262144" sampleformat="262159" numsamples="65536">
 				<waveblock start="0">
 					<simpleblockfile filename="e00002f0.au" len="65536" min="-0.720825" max="0.791016" rms="0.196372"/>
