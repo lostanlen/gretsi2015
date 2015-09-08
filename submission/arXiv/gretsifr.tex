@@ -1,0 +1,352 @@
+%% ==============================================================
+%% WARNING! ENGLISH SPEAKING AUTHORS SHOULD READ gretsien.tex
+%%          FILE INSTEAD
+%% ==============================================================
+%% EXEMPLE DE CONTRIBUTION AU GRETSI
+%% POUR LES UTILISATEURS FRANCOPHONES DE LaTeX2e
+  \documentclass{gretsi}
+\usepackage{amssymb,amsmath,amsthm, mathtools}
+\renewcommand\[{\begin{equation}}
+\renewcommand\]{\end{equation}}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+
+%% Selectionnez ensuite les paquets que vous utilisez,
+%% par suppression ou adjonction d'un caractere %
+%% en debut de ligne (mise en commentaire).
+%% --------------------------------------------------------------
+%% UTILISATION DE CARACTERES ACCENTUES AU CLAVIER ?
+%% (le codage du clavier depend du systeme d'exploitation)
+% \usepackage[applemac]{inputenc} % MacOS
+% \usepackage[ansinew]{inputenc}  % Windows ANSI
+% \usepackage[cp437]{inputenc}    % DOS, page de code 437
+% \usepackage[cp850]{inputenc}    % DOS, page de code 850
+% \usepackage[cp852]{inputenc}    % DOS, page de code 852
+% \usepackage[cp865]{inputenc}    % DOS, page de code 865
+ \usepackage[latin1]{inputenc}   % UNIX, codage ISO 8859-1
+% \usepackage[decmulti]{inputenc} % VMS
+% \usepackage[next]{inputenc}
+% \usepackage[latin2]{inputenc}
+% \usepackage[latin3]{inputenc}
+%% --------------------------------------------------------------
+%% REGLES DE TYPOGRAPHIE FRANCAISES ?
+ \usepackage[english,french]{babel}   % "babel.sty" + "french.sty"
+% \usepackage[english,francais]{babel} % "babel.sty"
+% \usepackage{french}                  % "french.sty"
+  \usepackage{times}			% ajout times le 30 mai 2003
+ 
+%% --------------------------------------------------------------
+%% CODAGE DE POLICES ?
+%% Si votre moteur Latex est francise, il est conseille
+%% d'utiliser le codage de police T1 pour faciliter la cï¿½sure,
+%% si vous disposez de ces polices (DC/EC)
+ \usepackage[T1]{fontenc}
+
+%%  --------------------------------------------------------------
+%% FIGURES
+\usepackage{graphicx}
+\usepackage{float}
+
+%%  --------------------------------------------------------------
+%% PHONETIQUE
+\usepackage[T1]{tipa}
+
+%%  --------------------------------------------------------------
+%% NOTE DE BAS DE PAGE
+\usepackage{lipsum}
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+%% --------------------------------------------------------------
+%% EQUATIONS MULTI-LIGNES
+
+
+%% ==============================================================
+
+\titre{Transform\'{e}e en scattering sur la spirale temps-chroma-octave}
+
+%% Si tous les auteurs ont la mï¿½me adresse %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+   \auteur{\coord{Vincent}{Lostanlen}{}, \coord{St{\'e}phane}{Mallat}{}}  
+                                                                            %
+  \adresse{\affil{}{D{\'e}partement d'Informatique, {\'E}cole normale sup{\'e}rieure \\     %
+     45 rue d'Ulm, Paris}}   %
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\email{vincent.lostanlen@ens.fr}
+
+\resumefrancais{
+On introduit une représentation en scattering pour l'analyse et la classification des sons. Elle est localement invariante par translation, stable par déformation en temps et en fréquence, et elle capture les structures harmoniques. Cette représentation en scattering peut s'interpréter comme un réseau de neurones convolutif, calculé en cascadant une transformée en ondelettes dans le temps, et le long d'une spirale harmonique. Nous étudions son application pour l'analyse des déformations du modèle source-filtre.
+}
+
+\resumeanglais{
+We introduce a scattering representation for the analysis and classification of sounds. It is locally translation-invariant, stable to deformations in time and frequency, and has the ability to capture harmonic structures. The scattering representation can be interpreted as a convolutional neural network which cascades a wavelet transform in time and along a harmonic spiral. We study its application for the analysis of the deformations of the source-filter model.
+}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+La variabilité des signaux acoustiques naturels peut se modéliser comme une action de déformation localisée en temps et en fréquence.
+Ainsi, la classification de sons repose essentiellement sur la construction de représentations qui demeurent stables à ces déformations, tout en offrant une bonne discriminabilité entre signaux de classes différentes.
+En cascadant convolutions locales et non-linéarités, les représentations en réseaux de neurones parviennent à combiner ces deux qualités ; mais elles sont entièrement adaptées aux données, et requièrent par conséquent une vaste base d'entraînement pour atteindre des performances satisfaisantes.
+
+Dans cet article, nous proposons une représentation en cascade, dite transformée de scattering, dont l'architecture est similaire à un réseau de neurones, mais sans besoin d'optimiser les unités de convolution. On tire parti de la géométrie naturelle des sons pour construire une description stable aux déformations et qui préserve l'information transitoire autant que possible.
+
+\blfootnote{Ce travail est financ\'{e} par la bourse ERC InvariantClass 320959.
+Le code source des exp\'{e}riences et figures est en libre acc\`{e}s
+a l'adresse \texttt{www.github.com/lostanlen/scattering.m}.}
+Un enjeu important de cette approche réside dans la préservation de la structure harmonique des partiels, y compris lorsque celle-ci est sujette à des variations d'amplitude, de hauteur et de timbre.
+Cette structure harmonique en peigne est très irrégulière sur un axe log-fréquentiel, et donc particulièrement difficile à caractériser dans un contexte polyphonique.
+
+Pourtant, en enroulant l'axe log-fréquentiel en une spirale, de sorte que les partiels sur des octaves consécutives se trouvent alignés, on fait apparaître la régularité de l'enveloppe spectrale comme une dimension radiale. Une fois spécifiées les variables de temps, de chroma, et d'octave, le scattering en spirale consiste à cascader trois décompositions en ondelettes selon chacune de ces variables, puis à appliquer le module complexe.
+\begin{figure}
+\label{spirale}
+    \begin{center}
+	\includegraphics[width=80mm]{gretsi_fig1.png}
+    \end{center}
+    \legende{L'ondelette en spirale est un produit d'ondelettes en temps, log-fréquence, et octave. Les oscillations bleues et vertes représentent la partie réelle et la partie imaginaire. L'enveloppe rouge représente le module complexe. Les partiels d'un son harmonique, représentés en gris, suivent un motif d'alignement radial.}
+    \label{fig:spiral-wavelets-3d}
+\end{figure}
+
+\vspace{-1mm}
+\section{Transformées sur le scalogramme}
+
+Dans cette section, on définit progressivement la transformée en scattering sur la spirale comme une extension de la transformée en scattering temporelle et de la transformée en scattering jointe temps-fréquence. Les trois transformées partagent le même formalisme.
+
+\subsection{Scalogramme et scattering temporel}
+
+On commence par construire une transform\'{e}e en ondelettes couvrant
+les fr\'{e}quences audibles. Soit $\psi(t)$ un filtre passe-bande
+\`{a} de fr\'{e}quence centrale r\'{e}duite $1$
+et de largeur de bande $1/Q$. On dilate la transform\'{e}e de Fourier
+$\hat{\psi}(\omega)$ de
+$\psi(t)$ par des facteurs de r\'{e}solution
+$\lambda_1 = 2^{j_1 + \chi_1}$ où $j_1 \in \mathbb{Z}$ et $\chi_1 \in \{1 \ldots Q\}$ : 
+\begin{equation}
+\widehat{\psi}_{\lambda_{1}}(\omega) = \widehat{\psi}({\lambda_1}^{-1} \omega),
+\text{ soit }
+\psi_{\lambda_{1}}(t)=\lambda_{1}\psi(\lambda_{1}t).
+\end{equation}
+Chaque $\psi_{\lambda_{1}}(t)$ est un filtre passe-bande de
+fr\'{e}quence centrale $\lambda_{1}$, de largeur de bande $\lambda_{1}/Q$
+et de support temporel $2Q/\lambda_{1}$.
+On construit donc un banc de filtres à Q constant, capable de produire une représentation temps-fréquence stable et parcimonieuse \cite{AM11, PPS+12}.
+On choisit $Q=16$ dans les figures
+de cet article.
+
+Soit $\overset{t}{\ast}$ l'opérateur de convolution sur la variable temporelle $t$. On appelle scalogramme de $x(t)$ le module de la transformée en ondelettes $(x \ast \psi_{\lambda_{1}})$, indexé par le logarithme en base $2$ de la fréquence acoustique $\lambda_1$ :
+\[
+x_{1}(t,\log_2\lambda_{1})=\vert x\ast\psi_{\lambda_{1}}\vert(t).
+\]
+La transformée à Q constant (CQT) $S_1 x$ correspond à un filtrage passe-bas de $x_1$ par une fenêtre $\phi_T$ de support $T$:
+\[
+S_1 x(t,\log_2\lambda_1) = x_1 \overset{t}{\ast} \phi_T = \vert x \overset{t}{\ast} \psi_{\lambda_1} \vert \ast \phi_T.
+\label{eq:S1-plain}
+\]
+$S_1 x$ est ainsi rendu invariant à toute translation inférieure à $T$. Toutefois, lors de ce filtrage passe-bas, les modulations d'amplitude dans $x_1$ de fréquence supérieure à $1/T$ sont détruites. Afin de les restaurer, Andén et Mallat \cite{AM11} ont introduit la transformée de scattering comme le scalogramme du scalogramme:
+\[
+x_2(t,\log_2 \lambda_1,\log_2 \lambda_2) = \vert x_1 \overset{t}{\ast} \psi_{\lambda_2} \vert = \left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert.
+\label{eq:x2-plain}
+\]
+Les ondelettes $\psi_{\lambda_2}(t)$ ont un facteur de qualité égal à $1$, mais nous choisissons de conserver la notation $\psi$ par souci de simplicité. Chaque ondelette $\psi_{\lambda_2}(t)$ a pour fréquence centrale $\lambda_2$ et pour support temporel $2 / \lambda_2$.
+Comme dans l'équation (\ref{eq:S1-plain}), le filtrage de $x_2$ par $\phi_T(t)$ crée une représentation $S_2 x$ invariante à la translation jusqu'à $T$:
+\[
+S_2 x(t,\log_2 \lambda_1,\log_2 \lambda_2) =
+\left \vert \vert x \overset{t}{\ast} \psi_{\lambda_1 } \vert \overset{t}{\ast} \psi_{\lambda_2} \right \vert \overset{t}{\ast} \phi_T.
+\]
+
+\subsection{Transformée jointe temps-échelle}
+
+La transformée de scattering définie à l'équation (\ref{eq:x2-plain}) décompose chaque bande de fréquence $\lambda_1$ indépendamment, et ne peut donc pas capturer la cohérence de structures sonores temps-fréquence, telles que les variations de hauteur.
+Pour y remédier, Andén \cite{And14} a redéfini les ondelettes $\psi_{\lambda_2}$'s comme des fonctions du temps et de la log-fréquence, indexées par la paire $\lambda_{2}=(\alpha,\beta)$, o\`u $\alpha$ est une fréquence de modulation en Hertz et $\beta$ est une fréquence sur les déplacements en log-fréquence :
+\[
+\psi_{\lambda_{2}}(t,\log_2\lambda_{1})=\psi_{\alpha}(t)\times
+\psi_{\beta}(\log_2\lambda_{1}).
+\]
+La variable $\beta$ est mesurée en cycles par octave ; elle peut prendre des valeurs positives ou négatives, ce qui permet de représenter des changements de hauteur montants ou descendants.
+Le support temporel de $\psi_{\lambda_2}$ est maintenant $2/\alpha$, tandis que son support log-fréquentiel est $2/\beta$.
+On note $\overset{\chi_1}{\ast}$ les convolutions selon l'axe log-fréquentiel. La transformée en scattering est étendu au cadre \og{}joint\fg{} temps-échelle en remplaçant $\psi_{\lambda_2}$ par $(\psi_{\alpha}\times\psi_{\beta})$ dans l'équation (\ref{eq:x2-plain}):
+\[
+x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}\vert  = \vert x_1 \overset{t}{\ast} \psi_{\alpha} \overset{\chi_1}{\ast} \psi_{\beta} \vert.
+\]
+
+Le modèle joint temps-fréquence correspond \`a la transform\'ee \og{}corticale\fg{} introduite par
+Shamma \cite{PPS+12} afin de formaliser ses découvertes en neurologie de l'audition.
+
+\subsection{Transformée sur la spirale}
+
+\begin{figure}
+    \begin{center}
+	\includegraphics[height=7cm]{gretsi_fig2.png}
+    \end{center}
+    \legende{Deux ondelettes en spirale $\psi_{\lambda_{2}}$ \'{e}tal\'{e}es sur le plan temps-fr\'{e}quence, pr\'{e}sentant des $\lambda_{2}=(\alpha,\beta,\gamma)$ diff\'{e}rents et une localisation diff\'{e}rente sur le scalogramme. \`{A} gauche : $\alpha^{-1}=120\,\mathrm{ms}$, $\beta^{-1}=-0.25\,\mathrm{octave}$, $\gamma^{-1}=+2\ \mathrm{octaves}$. \`{A} droite : $\alpha^{-1}=60\,\mathrm{ms}$, $\beta^{-1}=+0.5\,\mathrm{octave}$, $\gamma^{-1}=-4\,\mathrm{octaves}$. On a affich\'{e} la partie r\'{e}elle des coefficients. Le noir correspond \`{a} des coefficients positifs et le blanc \`{a} des coefficients n\'{e}gatifs.}
+    \label{fig:spiral-wavelets-tfplane}
+\end{figure}
+
+La transformée jointe temps-échelle décrit la variabilité temporelle de hauteur sans recourir à une segmentation préalable. Cependant, elle est agnostique à la structure harmonique des sons voisés. L'évolution de cette structure recèle de l'information sur les formants en parole, ou sur les attaques instrumentales en musique par exemple. On peut la mesurer en comparant des partiels voisins sur des échelles en log-fréquence allant de une à quatre octaves, et ce à chroma fixé. Nous proposons donc d'étendre la transformée jointe temps-fréquence afin d'incorporer les déplacements sur les octaves en conjonction avec les déplacements sur les log-fréquences voisines.
+
+Conceptuellement, cela revient à enrouler la variable de log-fréquence $\log_2 \lambda _1$ selon la spirale des hauteurs (voir figure \ref{fig:spiral-wavelets-3d}) : on révèle ainsi la variable radiale d'octave $j_1$ et la variable angulaire de chroma $\chi_1$.
+En suivant le même procédé que dans les deux transformées définies auparavant, on commence par définir une ondelette $\psi_{\lambda_2}$ comme un produit séparable d'ondelettes sur chacune des variables à transformer.
+Dans cet article, on a choisi une ondelette gammatone (profil asymétrique) selon le temps, une ondelette de Morlet (profil symétrique) selon les chromas et une ondelette gammatone selon les octaves.
+\[
+\psi_{\lambda_{2}}(t,\log\lambda_{1},j_1)=\psi_{\alpha}(t)\,\psi_{\beta}(\log\lambda_{1})\,\psi_{\gamma}(j_1).
+\]
+La figure \ref{fig:spiral-wavelets-tfplane} illustre la structure géométrique de l'ondelette en spirale $\psi_{\lambda_{2}}$ dans le plan $(t,\log_2 \lambda_1)$, pour différentes valeurs de $\lambda_2 = (\alpha,\beta,\gamma)$.
+Nous définissons la transformée en spirale comme une convolution séparable entre le scalogramme et $\psi_{\lambda_2}$, selon les trois variables de temps $t$, log-fréquence $\log_2 \lambda_1$, et octave $j_1 = \lfloor \log_2 \lambda_1 \rfloor$ (partie entière) :
+\[
+x_{2}(t,\log\lambda_{1},\log\lambda_{2})=\vert x_{1}\ast\psi_{\lambda_{2}}
+(t,\log \lambda_1,\lfloor \log \lambda_1 \rfloor)\vert .
+\]
+Il se trouve que l'idée consistant à enrouler les hauteurs en spirale est bien connue en théorie de la musique, ne serait-ce que par la circularité des noms de notes. Elle a notamment été étudiée par Shepard et Risset pour construire des paradoxes de hauteurs \cite{Ris78} et a été validée par des imageries fonctionnelles du cortex auditif \cite{WUP+99}.
+
+\section{Déformations du modèle source-filtre}
+
+Un modèle de production sonore classique consiste en la convolution d'un signal de source glottique $e(t)$ avec un filtre de conduit vocal $h(t)$. Dans cette section, on introduit une variabilité de hauteur et d'enveloppe spectrale par des déformations temporelles de $e$ et $h$. On montre comment les propriétés d'harmonicité de $e(t)$ et de régularité spectrale de $h(t)$, énoncées à l'équation (\ref{eq:properties}), permettent de séparer et linéariser ces deux vitesses de déformation, sans étape de détection préalable.
+
+\subsection{Résultat principal}
+Soit $\sum_{n}\delta(t-2 \pi n)$
+un signal harmonique \og source \fg{} et soit $t\mapsto\theta(t)$ un diff\'{e}omorphisme
+du temps ; on d\'{e}finit $e_{\theta}(t)=(e\circ\theta)(t)$ la source d\'{e}form\'{e}e.
+De m\^{e}me, on compose un \og filtre \fg{} $h(t)$ et un diff\'{e}omorphisme
+$t\mapsto\eta(t)$ pour d\'{e}finir $h_{\eta}(t)=(h\circ\eta)(t)$. Le
+mod\`{e}le source-filtre d\'{e}form\'{e} est le signal
+\[
+x_{\theta,\eta}(t)=(e_{\theta}\ast h_{\eta})(t).
+\]
+
+La dérivée $\dot{\theta}(t)$ de $\theta(t)$ induit un changement de hauteur, tandis que $\dot{\eta}(t)$ provoque une dilatation locale de l'enveloppe spectrale $\vert \widehat{h}(\omega)\vert$. Nous allons montrer que, pour $\dot{\theta}(t)$ et $\dot{\eta}$ suffisamment réguliers sur le support des ondelettes de premier ordre $\psi_{\lambda_1}$, les maxima locaux de $x_2$ sont rassemblés sur un plan de l'espace $(\alpha,\beta,\gamma)$ des coefficients de scattering en spirale. Ce plan satisfait l'équation cartésienne
+\[
+\alpha + \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} + \frac{\ddot{\eta}(t)}{\dot{\eta}(t)} \gamma = 0.
+\label{eq:cartesian-equation}
+\]
+Dans un contexte polyphonique, ce résultat signifie que des sons se chevauchant en temps et en fréquence pourraient être distingués par leurs vitesses respectives de source et de filtre.
+Les deux propriétés essentielles qui le sous-tendent sont l'harmonicité de $\hat{e}(\omega)$ et la régularité spectrale de $\hat{h}(\omega)$.
+
+\subsection{Factorisation du scalogramme}
+On s'intéresse au comportement du modèle autour du $p^\text{ième}$ partiel : soient $t$ et $\lambda_1$ tels que $\lambda_1$ est proche de $p \dot{\theta}(t)$. Afin de pouvoir linéariser $\theta(t)$ et $\nu(t)$ sur le support de $\psi_{\lambda_1}$, on travaille sous les hypothèses suivantes :
+\begin{enumerate}
+\item $\Vert\ddot{\eta}/\dot{\eta}\Vert_{\infty}\ll\lambda_{1}/Q$
+(filtre lentement variable),
+\item $\Vert\mathrm{d}(\log \vert \hat{h}\vert)/ \mathrm{d}\omega\Vert_{\infty} \times \Vert1/\dot{\eta}\Vert_{\infty}\ll Q/\lambda_{1}$
+(régularité spectrale),
+\item $\Vert\ddot{\theta}/\dot{\theta}\Vert_{\infty}\ll\lambda_{1}/Q$
+(source lentement variable) et
+\item $p<Q/2$ (partiel de rang faible).
+\end{enumerate}
+Les égalités (12) à (14) sont des approximations de Taylor valables uniquement dans ce contexte.
+
+Avec (a), on peut négliger la contribution des partiels $p^{\prime} \neq p$ dans le scalogramme de $e_\theta$. Avec (b), la localisation temporelle de l'ondelette $\psi_{\lambda_1}(t)$ permet de remplacer l'action du difféomorphisme $\theta(t)$ est remplacée par une homothétie d'un facteur $\dot{\theta}(t)$ :
+\[
+\vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert (t) = \vert \widehat{\psi}_{\lambda_1}(p \dot{\theta}(t)) \vert.
+\]
+De même, avec (c), l'action de $\eta(t)$ est remplacée par une homothétie d'un facteur $\dot{\eta}(t)$. Par ailleurs, avec (d), la localisation fréquentielle de cette même ondelette permet de remplacer l'enveloppe spectrale $\hat{h}(\omega)$ par une constante autour de la fréquence $\lambda_1 / \dot{\eta}(t)$ :
+\[
+\vert h_\eta \overset{t}{\ast} \psi_{\lambda_1} \vert (t) = \hat{h}\left(\frac{\lambda_1}{\dot{\eta}(t)}\right) \times \psi_{\lambda_1}\left(\frac{\nu(t)}{\dot{\nu}(t)} \right).
+\]
+En menant ces deux linéarisations conjointement, on aboutit à
+\[
+\vert x_{\theta,\eta} \overset{t}{\ast} \psi_{\lambda_1} \vert (t) =
+\vert \widehat{\psi}_{\lambda_1}(p \dot{\theta}(t)) \vert
+\times
+\hat{h}\left(\frac{\lambda_1}{\dot{\eta}(t)}\right).
+\]
+
+\subsection{Harmonicité et régularité spectrale}
+Les ondelettes $\psi_\beta$ et $\psi_\gamma$ sont conçues pour être orthogonales aux fonctions affines. Or l'harmonicité de $e_{\theta(t)}$ implique que son scalogramme est une constante le long de la variable d'octave $j_1$, et ce pour tout difféomorphisme $\theta(t)$. De plus, la régularité spectrale de $h_{\eta}(t)$ implique que son scalogramme est quasi linéaire le long de la variable de chroma $\chi_1$. Ces deux propriétés s'écrivent
+\begin{equation}
+\Big\vert \vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{j_1}{\ast} \psi_{\gamma} \Big\vert \approx 0
+\quad
+\text{ et }
+\quad
+\Big\vert \vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{\chi_1}{\ast} \psi_{\beta} \Big \vert \approx 0.
+\label{eq:properties}
+\end{equation}
+La définition du scattering en spirale se factorise alors en
+\begin{eqnarray}
+x_{\theta,\nu}\overset{t,\chi_{1},j_{1}}{\ast}\psi_{\lambda_{2}}  \mkern-72mu \\
+ = & \left(\Big(\vert e_{\theta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{\chi_{1}}{\ast}\psi_{\beta}\Big)\times \Big(\vert h_{\eta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{j_{1}}{\ast}\psi_{\gamma}\Big)\right)\overset{t}{\ast}\psi_{\alpha} \nonumber,
+\end{eqnarray}
+où les opérateurs $\overset{t}{\ast}$, $\overset{\chi_1}{\ast}$, et $\overset{j_1}{\ast}$ désignent des convolutions en temps, log-fréquence, et octave respectivement.
+
+\subsection{Extraction de fréquences instantanées}
+Pour terminer, on constate que la phase du scalogramme de la source $\vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{\chi_1}{\ast} \psi_{\beta}$ est $\beta \times (\log_2 {\lambda_1} - \log_2 (p \dot{\theta}(t))$. En dérivant cette quantité à $\log_2 \lambda_1$ fixé, on trouve une fréquence instantanée égale à $-\beta \ddot{\theta}(t)/\dot{\theta}(t)$. De même, la fréquence instantanée du scalogramme du filtre après convolution selon les octaves est $- \gamma \ddot{\eta}(t) / \dot{\eta}(t)$. En supposant que
+\[
+\alpha \geq \left\vert \dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta \right\vert
+\quad
+\text{et}
+\quad
+\alpha \geq \left\vert \dfrac{\ddot{\eta}(t)}{\dot{\eta}(t)} \gamma \right\vert,
+\]
+les enveloppes de ces deux convolutions sont approximativement constantes sur le support de $\psi_{\alpha}(t)$. On conclut avec la formule approchée suivante pour les coefficients de scattering en spirale du modèle source-filtre déformé :
+\begin{eqnarray}
+\mkern-60mu
+x_2(t,\log \lambda_1, \log \lambda_2) = 
+\Big\vert \vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{\chi_1}{\ast} \psi_{\beta} \Big\vert
+\times
+\Big\vert \vert h_\nu \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{j_1}{\ast} \psi_{\gamma} \Big\vert \nonumber \mkern-310mu \\
+& \times \left \vert \widehat{\psi}_{\alpha} \left( -\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \dfrac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right) \right \vert.
+\label{eq:x2-sourcefilter}
+\end{eqnarray}
+Le spectre $\vert\widehat{\psi}_{\alpha}(\omega)\vert$ de $\psi_{\alpha}(t)$ est une bosse centrée en $\alpha$. L'équation (\ref{eq:cartesian-equation}) est une conséquence immédiate de la formule ci-dessus. Ce résultat reste vrai après filtrage passe-bas par $\phi_T$ à condition que les vitesses $\ddot{\theta}/\dot{\theta}(t)$ et $\ddot{\eta}(t)/\dot{\eta}(t)$ aient des variations relatives lentes devant $T$ :
+\begin{equation}
+\left \vert \frac{\dddot{\theta}(t)}{\ddot{\theta}(t)} - \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \right \vert \ll T^{-1}
+\quad \text{et} \quad
+\left \vert \frac{\dddot{\nu}(t)}{\ddot{\nu}(t)} - \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \right \vert \ll T^{-1}.
+\end{equation}
+
+\subsection{Illustration numérique}
+La figure \ref{fig:lion} illustre le comportement temps-fréquence de certains coefficients de scattering en spirale pour le mot anglais $\emph{lion}$, prononcé /\textprimstress la\textsci \textschwa n/ .
+On constate que la syllabe /\textprimstress la\textsci / active en
+particulier les coefficients tels que $\beta>0$, $\gamma>0$ (hauteur montante,
+timbre montant) tandis que /\textsci \textschwa n/ active les coefficients
+tels que $\beta<0$, $\gamma<0$ (hauteur descendante, timbre descendant). Ces signes sont corrélés avec
+les sens de déformations du modèle source-filtre : $\ddot{\theta}(t)<0$ et $\ddot{\eta}(t)<0$ pour la syllabe /\textprimstress la\textsci /, $\ddot{\theta}(t)>0$ et $\ddot{\eta}(t)>0$ pour la syllabe  /\textsci \textschwa n/.
+\begin{figure}[h!]
+    \begin{center}
+	\includegraphics{gretsi_fig3.png}
+    \end{center}
+    \legende{En haut, un scalogramme $x_{1}(t,\log_2 \lambda_{1})$ du mot anglais \emph{lion}
+    (prononcé /\textprimstress la\textsci \textschwa n/ ).
+    En bas, coefficients de scattering de $x_{2}(t,\log_2 \lambda_{1},\log_2 \lambda_{2})$
+en fonction du temps $t$ et de la log-fr\'{e}quence $\log_{2}\lambda_{1}$,
+pour $\lambda_{2}=(\alpha,\beta,\gamma)$ fix\'{e} avec $\alpha^{-1}=120\,\mathrm{ms}$,
+$\beta^{-1}=\pm1\,\mathrm{octave}$, $\gamma^{-1}=\pm4\,\mathrm{octaves}$.
+La clart\'{e} est inversement proportionelle \`{a} l'amplitude des
+coefficients.}
+\label{fig:lion}
+\end{figure}
+
+
+\section{Conclusion}
+Le modèle en spirale présenté ici est bien connu en musique et en psychologie expérimentale. Cependant, les méthodes existantes en traitement du signal ne tirent pas avantage de sa richesse : elles représentent la hauteur sur une ligne (MFCC) ou sur un cercle (vecteurs de chroma). Dans cet article, on a montré comment la transformée de scattering sur la spirale caractérise les transitoires des sons harmoniques.
+
+\begin{thebibliography}{1}
+
+\bibitem{And14}J. Andén. Time and Frequency Scattering for Audio Classification. Thèse de doctorat, École Polytechnique, 2014.
+
+\bibitem{AM11}J. And\'{e}n, S. Mallat. Deep Scattering Spectrum.
+\emph{IEEE Transactions on Signal Processing}, vol. 62, n\textdegree{}
+16, p. 4114\textendash 4128, 2014.
+
+\bibitem{PPS+12}K. Patil, D. Pressnitzer, S. Shamma, M. Elhilali.
+Music in our ears: the biological bases of musical timbre perception.
+\emph{PLoS computational biology}, vol. 8, n\textdegree{} 11, 2012.
+
+\bibitem{Ris78} J.-C. Risset. Paradoxes de hauteur. Rapport Ircam
+11/78, 1978.
+
+\bibitem{WUP+99}J. D. Warren, S. Uppenkamp, R. D. Patterson, T. Griffiths.
+Separating pitch chroma and pitch height in the human brain. \emph{Proceedings
+of the National Academy of Sciences}, vol. 100, n\textdegree{} 17,
+p. 10038\textendash 10042, 2003.
+
+\end{thebibliography}
+
+\end{document}
