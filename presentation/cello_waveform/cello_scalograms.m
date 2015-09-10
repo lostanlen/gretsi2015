@@ -19,8 +19,8 @@ load(joint_filepath);
 summaries = {target_summary, firstorder_summary, plain_summary, joint_summary};
 suffixes = {'target', 'firstorder', 'plain', 'joint'};
 %%
-epsilon = 1e-3;
-starting_gamma = 49;
+epsilon = 1e2;
+starting_gamma = 1;
 
 nSummaries = length(summaries);
 for summary_index = 1:nSummaries
