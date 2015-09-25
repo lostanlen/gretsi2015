@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  25 SEP 2015 16:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.2.12)  25 SEP 2015 16:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -406,7 +406,7 @@ Package pdftex.def Info: gretsi_fig2.png used on input line 187.
 (pdftex.def)             Requested size: 206.2102pt x 199.16928pt.
 
 [2 <./gretsi_fig2.png>] [3]
-Overfull \hbox (0.30283pt too wide) in paragraph at lines 296--298
+Overfull \hbox (0.30283pt too wide) in paragraph at lines 299--301
 \T1/ptm/m/n/10 Le spectre $\OMS/cmsy/m/n/10 j[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/1
 0 !\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 j$ \T1/ptm/m/n/10 de $\OML/cmm/m/it/10  []
 \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )$ \T1/ptm/m/n/10 est une bo
@@ -414,22 +414,22 @@ sse cen-trée en $\OML/cmm/m/it/10 $\T1/ptm/m/n/10 . L'équa-
  []
 
 
-Overfull \hbox (5.27304pt too wide) in paragraph at lines 296--298
+Overfull \hbox (5.27304pt too wide) in paragraph at lines 299--301
 \T1/ptm/m/n/10 tion (11[]) est une consé-quence im-mé-diate de la for-mule ci-d
 essus.
  []
 
-LaTeX Font Info:    Try loading font information for T3+ptm on input line 305.
+LaTeX Font Info:    Try loading font information for T3+ptm on input line 308.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/tipa/t3ptm.fd
 File: t3ptm.fd 2001/12/31 TIPA font definitions
 )
 <gretsi_fig3.png, id=28, 250.89735pt x 410.4936pt>
 File: gretsi_fig3.png Graphic file (type png)
  <use gretsi_fig3.png>
-Package pdftex.def Info: gretsi_fig3.png used on input line 313.
+Package pdftex.def Info: gretsi_fig3.png used on input line 316.
 (pdftex.def)             Requested size: 250.89674pt x 410.4926pt.
 
-Overfull \hbox (0.5125pt too wide) in paragraph at lines 313--314
+Overfull \hbox (0.5125pt too wide) in paragraph at lines 316--317
  [] 
  []
 
@@ -437,7 +437,7 @@ Overfull \hbox (0.5125pt too wide) in paragraph at lines 313--314
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (0.90749pt too wide) in paragraph at lines 328--329
+Overfull \hbox (0.90749pt too wide) in paragraph at lines 331--332
 \T1/ptm/m/n/10 et en psy-cho-lo-gie ex-pé-ri-men-tale. Ce-pen-dant, les mé-thod
 es exis-
  []
@@ -445,7 +445,7 @@ es exis-
 
 Package frenchb.ldf Warning: Degrees would look better in TS1-encoding: 
 (frenchb.ldf)                add \usepackage{textcomp} to the preamble. 
-(frenchb.ldf)                Degrees used on input line 335.
+(frenchb.ldf)                Degrees used on input line 338.
 
 [4 <./gretsi_fig3.png>] (./gretsifr.aux) ) 
 Here is how much of TeX's memory you used:
@@ -471,7 +471,7 @@ r8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
 usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/
 texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2
 014/texmf-dist/fonts/type1/public/tipa/xipa10.pfb>
-Output written on gretsifr.pdf (4 pages, 1619412 bytes).
+Output written on gretsifr.pdf (4 pages, 1619056 bytes).
 PDF statistics:
  80 PDF objects out of 1000 (max. 8388607)
  54 compressed objects within 1 object stream
