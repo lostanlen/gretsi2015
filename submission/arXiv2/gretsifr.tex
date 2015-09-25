@@ -230,7 +230,7 @@ Dans un contexte polyphonique, ce résultat signifie que des sons se chevauchant 
 Les deux propriétés essentielles qui le sous-tendent sont l'harmonicité de $\hat{e}(\omega)$ et la régularité spectrale de $\hat{h}(\omega)$.
 
 \subsection{Factorisation du scalogramme}
-On s'intéresse au comportement du modèle autour du $p^\text{ième}$ partiel : soient $t$ et $\lambda_1$ tels que $\lambda_1$ est proche de $p \dot{\theta}(t)$. Afin de pouvoir linéariser $\theta(t)$ et $\nu(t)$ sur le support de $\psi_{\lambda_1}$, on travaille sous les hypothèses suivantes :
+On s'intéresse au comportement du modèle autour du $p^\text{ième}$ partiel : soient $t$ et $\lambda_1$ tels que $\lambda_1$ est proche de $p \dot{\theta}(t)$. Afin de pouvoir linéariser $\theta(t)$ et $\eta(t)$ sur le support de $\psi_{\lambda_1}$, on travaille sous les hypothèses suivantes :
 \begin{enumerate}
 \item $\Vert\ddot{\eta}/\dot{\eta}\Vert_{\infty}\ll\lambda_{1}/Q$
 (filtre lentement variable),
@@ -248,7 +248,10 @@ Avec (a), on peut négliger la contribution des partiels $p^{\prime} \neq p$ dans
 \]
 De même, avec (c), l'action de $\eta(t)$ est remplacée par une homothétie d'un facteur $\dot{\eta}(t)$. Par ailleurs, avec (d), la localisation fréquentielle de cette même ondelette permet de remplacer l'enveloppe spectrale $\hat{h}(\omega)$ par une constante autour de la fréquence $\lambda_1 / \dot{\eta}(t)$ :
 \[
-( h_\eta \overset{t}{\ast} \psi_{\lambda_1} ) (t) = \hat{h}\left(\frac{\lambda_1}{\dot{\eta}(t)}\right) \times \psi_{\lambda_1}\left(\frac{\nu(t)}{\dot{\nu}(t)} \right).
+( h_\eta \overset{t}{\ast} \psi_{\lambda_1} ) (t) =
+\hat{h}\left(\frac{\lambda_1}{\dot{\eta}(t)}\right)
+\times
+\psi_{\lambda_1}\left(\frac{\eta(t)}{\dot{\eta}(t)} \right).
 \]
 En menant ces deux linéarisations conjointement, on aboutit à
 \[
@@ -270,7 +273,7 @@ Les ondelettes $\psi_\beta$ et $\psi_\gamma$ sont conçues pour être orthogonales
 \end{equation}
 La définition du scattering en spirale se factorise alors en
 \begin{eqnarray}
-x_{\theta,\nu}\overset{t,\chi_{1},j_{1}}{\ast}\psi_{\lambda_{2}}  \mkern-72mu \\
+x_{\theta,\eta}\overset{t,\chi_{1},j_{1}}{\ast}\psi_{\lambda_{2}}  \mkern-72mu \\
  = & \left(\Big(\vert e_{\theta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{\chi_{1}}{\ast}\psi_{\beta}\Big)\times \Big(\vert h_{\eta}\overset{t}{\ast}\psi_{\lambda_{1}}\vert\overset{j_{1}}{\ast}\psi_{\gamma}\Big)\right)\overset{t}{\ast}\psi_{\alpha} \nonumber,
 \end{eqnarray}
 où les opérateurs $\overset{t}{\ast}$, $\overset{\chi_1}{\ast}$, et $\overset{j_1}{\ast}$ désignent des convolutions en temps, log-fréquence, et octave respectivement.
@@ -290,15 +293,15 @@ les enveloppes de ces deux convolutions sont approximativement constantes sur le
 x_2(t,\log \lambda_1, \log \lambda_2) = 
 \Big\vert \vert e_\theta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{\chi_1}{\ast} \psi_{\beta} \Big\vert
 \times
-\Big\vert \vert h_\nu \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{j_1}{\ast} \psi_{\gamma} \Big\vert \nonumber \mkern-310mu \\
-& \times \left \vert \widehat{\psi}_{\alpha} \left( -\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \dfrac{\ddot{\nu}(t)}{\dot{\nu}(t)} \gamma \right) \right \vert.
+\Big\vert \vert h_\eta \overset{t}{\ast} \psi_{\lambda_1} \vert \overset{j_1}{\ast} \psi_{\gamma} \Big\vert \nonumber \mkern-310mu \\
+& \times \left \vert \widehat{\psi}_{\alpha} \left( -\dfrac{\ddot{\theta}(t)}{\dot{\theta}(t)} \beta - \dfrac{\ddot{\eta}(t)}{\dot{\eta}(t)} \gamma \right) \right \vert.
 \label{eq:x2-sourcefilter}
 \end{eqnarray}
 Le spectre $\vert\widehat{\psi}_{\alpha}(\omega)\vert$ de $\psi_{\alpha}(t)$ est une bosse centrée en $\alpha$. L'équation (\ref{eq:cartesian-equation}) est une conséquence immédiate de la formule ci-dessus. Ce résultat reste vrai après filtrage passe-bas par $\phi_T$ à condition que les vitesses $\ddot{\theta}/\dot{\theta}(t)$ et $\ddot{\eta}(t)/\dot{\eta}(t)$ aient des variations relatives lentes devant $T$ :
 \begin{equation}
 \left \vert \frac{\dddot{\theta}(t)}{\ddot{\theta}(t)} - \frac{\ddot{\theta}(t)}{\dot{\theta}(t)} \right \vert \ll T^{-1}
 \quad \text{et} \quad
-\left \vert \frac{\dddot{\nu}(t)}{\ddot{\nu}(t)} - \frac{\ddot{\nu}(t)}{\dot{\nu}(t)} \right \vert \ll T^{-1}.
+\left \vert \frac{\dddot{\eta}(t)}{\ddot{\eta}(t)} - \frac{\ddot{\eta}(t)}{\dot{\eta}(t)} \right \vert \ll T^{-1}.
 \end{equation}
 
 \subsection{Illustration numérique}
